@@ -1,11 +1,11 @@
 #!/bin/bash
 
 gen_str(){
-    echo $RANDOM | base64
+    echo $RANDOM$RANDOM$RANDOM | base64
 }
 
 gen_int(){
-    echo $RANDOM
+    echo $RANDOM$RANDOM
 }
 
 gen_insert_sql(){
