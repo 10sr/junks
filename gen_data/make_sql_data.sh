@@ -21,7 +21,7 @@ gen_transaction_sql(){
     for i in `seq 1000`
     do
         gen_insert_sql $1
-        echo -n $i\  1>&2
+        printf $i\\r\  1>&2
         { echo $i | grep '00$' >/dev/null; } && echo "" 1>&2
     done
 
