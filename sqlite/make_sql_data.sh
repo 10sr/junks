@@ -9,13 +9,16 @@ gen_int(){
 }
 
 gen_insert_sql(){
-    echo "INSERT INTO $1 VALUES (`gen_int`, \"`gen_str`\");"
+    local r=$RANDOM$RANDOM
+    local int=$r
+    local str=`echo $r | base64`
+    echo "INSERT INTO $1 VALUES ($int, \"$str\");"
 }
 
 gen_transaction_sql(){
     echo "BEGIN TRANSACTION;"
 
-    for i in `seq 10000`
+    for i in `seq 1000`
     do
         gen_insert_sql $1
         echo -n $i\  1>&2
