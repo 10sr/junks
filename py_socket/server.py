@@ -9,14 +9,16 @@ def main() :
     s.bind(PIPE)
     s.listen(1)
     conn, addr = s.accept()
-    print('Connected.')
+    print('Server:Connected.')
     while True:
         data = conn.recv(1024)
+        print("Server:Recieved:Type:" + str(type(data)) + ":" + str(data))
         if not data:
             break
-        print('Echoing:' + data.decode())
+        # print("Recieved:" + data.decode())
+        print('Server:Send:' + data.decode())
         conn.send(data)
-    print('Closing.')
+    print('Server:Closing.')
     conn.close()
     os.unlink(PIPE)
 
