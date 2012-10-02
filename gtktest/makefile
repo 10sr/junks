@@ -1,6 +1,6 @@
 OBJS = helloworld helloworld2 eventbox frame
 
-CFLAGS = `pkg-config gtk+-2.0 --cflags --libs`
+CFLAGS = -Wall -g `pkg-config gtk+-2.0 --cflags --libs`
 
 default : all
 
