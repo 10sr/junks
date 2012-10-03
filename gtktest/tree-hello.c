@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
 /* 
+=======
+/*
+>>>>>>> dcff55f832e31d63abece69ef9ac27d2c47ee11c
  * Compile with:
  *  gcc -o helloworld helloworld.c `pkg-config --cflags --libs gtk+-2.0`
  *
@@ -20,7 +24,11 @@ create_and_fill_model (void)
 {
   GtkListStore  *store;
   GtkTreeIter    iter;
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> dcff55f832e31d63abece69ef9ac27d2c47ee11c
   store = gtk_list_store_new (NUM_COLS, G_TYPE_STRING, G_TYPE_UINT);
 
   /* Append a row and fill in some data */
@@ -29,21 +37,33 @@ create_and_fill_model (void)
                       COL_NAME, "Heinz El-Mann",
                       COL_AGE, 51,
                       -1);
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> dcff55f832e31d63abece69ef9ac27d2c47ee11c
   /* append another row and fill in some data */
   gtk_list_store_append (store, &iter);
   gtk_list_store_set (store, &iter,
                       COL_NAME, "Jane Doe",
                       COL_AGE, 23,
                       -1);
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> dcff55f832e31d63abece69ef9ac27d2c47ee11c
   /* ... and a third row */
   gtk_list_store_append (store, &iter);
   gtk_list_store_set (store, &iter,
                       COL_NAME, "Joe Bungop",
                       COL_AGE, 91,
                       -1);
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> dcff55f832e31d63abece69ef9ac27d2c47ee11c
   return GTK_TREE_MODEL (store);
 }
 
@@ -60,8 +80,13 @@ create_view_and_model (void)
 
   renderer = gtk_cell_renderer_text_new ();
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (view),
+<<<<<<< HEAD
                                                -1,      
                                                "Name",  
+=======
+                                               -1,
+                                               "Name",
+>>>>>>> dcff55f832e31d63abece69ef9ac27d2c47ee11c
                                                renderer,
                                                "text", COL_NAME,
                                                NULL);
@@ -70,8 +95,13 @@ create_view_and_model (void)
 
   renderer = gtk_cell_renderer_text_new ();
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (view),
+<<<<<<< HEAD
                                                -1,      
                                                "Age",  
+=======
+                                               -1,
+                                               "Age",
+>>>>>>> dcff55f832e31d63abece69ef9ac27d2c47ee11c
                                                renderer,
                                                "text", COL_AGE,
                                                NULL);

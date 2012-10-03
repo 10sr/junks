@@ -1,4 +1,4 @@
-OBJS = helloworld helloworld2 eventbox frame rangewidgets notebook tree-hello
+OBJS = helloworld helloworld2 eventbox frame rangewidgets notebook tree-hello scrolledwin
 
 CFLAGS = -Wall -g `pkg-config gtk+-2.0 --cflags`
 LDFLAGS = `pkg-config gtk+-2.0 --libs`
