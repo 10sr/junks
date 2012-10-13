@@ -2,5 +2,8 @@ CFLAGS = -Wall
 
 default : all
 
-all : invheader.o
+all : catstr
 
+catstr : catstr.o
+
+invheader : invheader.o
