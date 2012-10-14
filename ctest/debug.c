@@ -7,7 +7,17 @@
 #define __SLINE__    _STR2(__LINE__)
 #define HERE         __FILE__ "(" __SLINE__ ")"
 
+/* [トリッキーなコード - デバッグ用printfマクロ](http://tricky-code.net/nicecode/code10.php) */
+
+#define DEBUG
+
+#ifdef DEBUG
+#define dprintf printf
+#else
+#define dprintf 1 ? (void) 0 : printf
+#endif
+
 int main(int argc, char** argv){
-  printf(HERE);
+  dprintf(HERE);
   return 0;
 }
