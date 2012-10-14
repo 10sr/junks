@@ -17,7 +17,10 @@
 #define dprintf 1 ? (void) 0 : printf
 #endif
 
+#define dphere() dprintf(HERE "\n")
+
 int main(int argc, char** argv){
-  dprintf(HERE);
+  dprintf(HERE "\n");
+  dphere();
   return 0;
 }
