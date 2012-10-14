@@ -2,7 +2,7 @@ CFLAGS = -Wall
 
 default : all
 
-all : catstr
+all : debug
 
 catstr : catstr.o
 
