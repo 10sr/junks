@@ -29,5 +29,14 @@ gen_transaction_sql(){
     echo "COMMIT TRANSACTION;"
 }
 
+gen_create_table_sql(){
+    echo "CREATE TABLE \"$1\" (id int, str char);"
+}
+
 test $# -eq 2 || exit 1
-gen_transaction_sql $1 $2
+if test "$1" = create
+then
+    gen_create_table_sql "$2"
+else
+    gen_transaction_sql $1 $2
+fi
