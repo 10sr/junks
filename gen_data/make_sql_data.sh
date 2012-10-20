@@ -22,7 +22,7 @@ gen_transaction_sql(){
     do
         gen_insert_sql $1
         printf $i\\r\  1>&2
-        { echo $i | grep '00$' >/dev/null; } && echo "" 1>&2
+        #{ echo $i | grep '00$' >/dev/null; } && echo "" 1>&2
     done
 
     echo "COMMIT TRANSACTION;"
