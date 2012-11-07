@@ -4,8 +4,7 @@ default : all
 
 all : ${OBJS}
 
-.SUFFIXES : .md .html
 
-.md.html :
-	markdown $< >$*.html
+%.html : %.md
+	markdown $< >$@
 
