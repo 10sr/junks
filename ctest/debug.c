@@ -20,7 +20,7 @@
 #define dphere() dprintf(HERE "\n")
 
 int main(int argc, char** argv){
-  dprintf(HERE "\n");
-  dphere();
-  return 0;
+    dprintf(HERE "\n");
+    dphere();
+    return 0;
 }

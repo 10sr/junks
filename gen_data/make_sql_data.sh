@@ -33,10 +33,19 @@ gen_create_table_sql(){
     echo "CREATE TABLE \"$1\" (id int, str char);"
 }
 
-test $# -eq 2 || exit 1
+echo_help(){
+    echo $1 create tablename
+    echo or
+    echo $1 tablename num
+}
+
+#test $# -eq 2 || exit 1
 if test "$1" = create
 then
     gen_create_table_sql "$2"
-else
+elif test -n "$1"
+then
     gen_transaction_sql $1 $2
+else
+    echo_help $0
 fi
