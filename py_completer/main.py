@@ -14,16 +14,20 @@ else:
 def compl1(text, state) :
     if state == 0 :
         return "text "
+    elif state == 1 :
+        return "txt"
     else :
         return None
 
 def main() :
     readline.set_completer(compl1)
     print(readline.get_completer_delims())
+    readline.set_completer_delims("")
     while True :
         s = input("input str: ")
         print(s)
-        if s == "" :
+        print("buf: " + readline.get_line_buffer())
+        if s == "quit" :
             break
 
 main()
