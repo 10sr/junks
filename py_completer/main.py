@@ -12,10 +12,12 @@ else:
         readline.parse_and_bind("tab: complete")
 
 def compl1(text, state) :
+    # previous content is not cleared untill input is committed
+    buf = readline.get_line_buffer()
     if state == 0 :
-        return "text "
+        return text
     elif state == 1 :
-        return "txt"
+        return text + buf
     else :
         return None
 
