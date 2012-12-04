@@ -13,11 +13,14 @@ else:
 
 def compl1(text, state) :
     # previous content is not cleared untill input is committed
-    buf = readline.get_line_buffer()
+    beg = readline.get_begidx()
+    end = readline.get_endidx()
+    # current line can be get by this way
+    buf = readline.get_line_buffer()[:end]
     if state == 0 :
         return text
     elif state == 1 :
-        return text + buf
+        return text + buf + "%d,%d" % (beg, end)
     else :
         return None
 
