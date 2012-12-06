@@ -27,7 +27,6 @@ def compl1(text, state) :
 def main() :
     readline.set_completer(compl1)
     print(readline.get_completer_delims())
-    readline.set_completer_delims("")
     while True :
         s = input("input str: ")
         print(s)

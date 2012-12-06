@@ -49,7 +49,7 @@ class HelloWorld:
         # function is NULL and is ignored in the callback function.
         self.window.connect("delete_event", self.delete_event)
 
-        # Here we connect the "destroy" event to a signal handler.  
+        # Here we connect the "destroy" event to a signal handler.
         # This event occurs when we call gtk_widget_destroy() on the window,
         # or if we return FALSE in the "delete_event" callback.
         self.window.connect("destroy", self.destroy)
