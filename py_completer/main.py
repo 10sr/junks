@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from cmd import Cmd
+
 try:
     import readline
 except ImportError:
@@ -24,10 +26,12 @@ def compl1(text, state) :
     else :
         return None
 
+class MyCmd(Cmd) :
+    pass
+
 def main() :
     readline.set_completer(compl1)
     print(readline.get_completer_delims())
-    readline.set_completer_delims("")
     while True :
         s = input("input str: ")
         print(s)
@@ -35,4 +39,8 @@ def main() :
         if s == "quit" :
             break
 
-main()
+def main2() :
+    c = MyCmd()
+    c.cmdloop()
+
+main2()
