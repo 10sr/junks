@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
 
+# [Ordered Dictionary for Py2.4 « Python recipes « ActiveState Code]
+# (http://code.activestate.com/recipes/576693/)
+
 from collections import OrderedDict
 
 od = OrderedDict()
