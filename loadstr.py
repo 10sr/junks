@@ -24,3 +24,5 @@ exec(scr, d)
 print(d.v1, d.v2)
 print("PI = {}".format(d.pi))
 d.myprint("a")
+
+print(d.keys())
