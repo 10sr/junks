@@ -20,6 +20,10 @@ def myprint(str) :
     print("E = {}".format(e))
     myintfunc("aa" + str)
     return
+
+fn = {"f1" : myintfunc,         # this line must be after func definition
+      "f2" : myprint}
+
 """
 
 d = exDict()
@@ -29,5 +33,7 @@ exec(scr, d)
 print(d.v1 + d.v2)
 print("PI = {}".format(d.pi))
 d.myprint("a")
+
+d["fn"]["f1"]("astr")
 
 print(d.keys())
