@@ -17,7 +17,7 @@ exec 3<&-
 
 # open output fd
 if test -n "$2"
-then 
+then
     exec 4>$2
 else
     exec 4>&1
