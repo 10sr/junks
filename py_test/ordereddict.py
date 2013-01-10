@@ -14,11 +14,11 @@ od["d"] = 5
 del od["a"]
 od["a"] = 3
 
-for k, v in od.iteritems() :
+for k, v in od.iteritems():
     print("{},{}".format(k,v))
 print("")
 
-# print :
+# print:
 # b,2
 # c,4
 # d,5
@@ -34,7 +34,7 @@ print("")
 # c,4
 # b,2
 
-for k, v in od.iteritems() :
+for k, v in od.iteritems():
     print("{},{}".format(k,v))
 print("")
 

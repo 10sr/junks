@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-class MyClass :
+class MyClass:
 
     @staticmethod
-    def func(s) :
+    def func(s):
         print(s)
 
-    def met(self) :
+    def met(self):
         print("bcd")
         self.func("aaab")
 

@@ -15,7 +15,7 @@ print("%f:get cursor." % clock())
 cur.execute("select id from t1 order by id;")
 print("%f:execute started."% clock())
 
-for d in cur.fetchmany(10) :
+for d in cur.fetchmany(10):
     print(d, end="")
 print("")
 

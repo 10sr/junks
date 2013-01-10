@@ -3,7 +3,7 @@
 import socket
 import os
 
-def main() :
+def main():
     PIPE = '/tmp/socket54321'
     s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
     s.bind(PIPE)

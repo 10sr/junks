@@ -2,7 +2,7 @@
 # UNIX domain Echo client
 import socket
 
-def main() :
+def main():
     PIPE = '/tmp/socket54321'
     s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
     print('Client:Connecting %s.' % repr(PIPE))

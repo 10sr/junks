@@ -40,11 +40,11 @@ def main2():
     USERPROG()
 
 def main():
-    while True :
+    while True:
         sleep(10)
         call("echo `date` >~/py_daemon.txt", shell = True)
 
-def run_daemon() :
+def run_daemon():
     # do the UNIX double-fork magic, see Stevens' "Advanced
     # Programming in the UNIX Environment" for details (ISBN 0201563177)
     try:
@@ -76,5 +76,5 @@ def run_daemon() :
     # start the daemon main loop
     main()
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     run_daemon()

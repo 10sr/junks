@@ -76,7 +76,7 @@ class MenuExample:
         # the screen at once.
         window.show()
 
-        def posfunc(menu, data=None) :
+        def posfunc(menu, data=None):
             pos = button.get_pointer()
             return (pos[0], pos[1], True)
 

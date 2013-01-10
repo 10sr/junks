@@ -14,11 +14,11 @@ class HelloWorld:
     # in this example. More on callbacks below.
     def hello(self, widget, event, data=None):
         print("Hello World")
-        if event.type == gdk.BUTTON_PRESS :
+        if event.type == gdk.BUTTON_PRESS:
             print("button pressed.")
-            if event.button == 1 :
+            if event.button == 1:
                 print("left button prssed.")
-            elif event.button == 3 :
+            elif event.button == 3:
                 print("right button pressed.")
         return
 
