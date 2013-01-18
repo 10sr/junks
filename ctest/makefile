@@ -1,8 +1,13 @@
 CFLAGS = -Wall
+OBJS = debug deadlock
+ALLOBJS = $(OBJS) catstr invheader
 
 default : all
 
-all : debug deadlock
+all : $(OBJS)
+
+gitignore :
+	(for f in ${ALLOBJS}; do echo $$f; echo $${f}.dSYM; done) >>.gitignore
 
 catstr : catstr.o
 
