@@ -1,33 +1,77 @@
 var Clock = (function () {
+    // -------> x
+    // |
+    // |
+    // \/ y
+
+    const pi = Math.PI;
+
     function init (){
         if(window.addEventListener) { /* W3C準拠ブラウザ用 */
-            window.addEventListener("load", draw, false);
+            window.addEventListener("load", start, false);
             // } else if(window.attachEvent) { /* Internet Explorer用 */
             //     window.attachEvent("onload", init);
         }
     };
-    function draw () {
-        /* canvas要素のノードオブジェクト */
+
+    function start () {
         var canvas = document.getElementById('clock');
-        /* canvas要素の存在チェックとCanvas未対応ブラウザの対処 */
         if ( ! canvas || ! canvas.getContext ) {
             return false;
-        }
-        /* 2Dコンテキスト */
+        };
+        setInterval(function () { draw(canvas); }, 1000);
+        return null;
+    };
+
+    function draw (canvas) {
+        var width = parseInt(canvas.width);
+        var height = parseInt(canvas.height);
+
         var ctx = canvas.getContext('2d');
-        /* 四角を描く */
-        ctx.strokeStyle = '#ff0000';
-        ctx.beginPath();
-        ctx.moveTo(20, 20);
-        ctx.lineTo(120, 20);
-        ctx.lineTo(120, 120);
-        ctx.lineTo(20, 120);
-        ctx.closePath();
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(70, 70, 60, 0, Math.PI*2, false);
+
+        ctx.clearRect(0, 0, width, height);
+
+        var mr = Math.min(width, height) / 2.0;
+        var x0 = width / 2.0;
+        var y0 = height / 2.0;
+
+        now = new Date();
+        var s = now.getSeconds();
+        var m = now.getMinutes();
+        var h = now.getHours();
+        var srad = 2 * pi * s / 60.0;
+        var mrad = 2 * pi * m / 60.0 + 2 * pi * s / 60.0 / 60.0;
+        var hrad = 2 * pi * h / 12.0 + 2 * pi * m / 12.0 / 60.0;
+
         ctx.strokeStyle = '#00ff00';
+        ctx.fillStyle = "#ff0000";
+
+        ctx.beginPath();
+        ctx.arc(x0, y0, mr * 0.3, 0, pi * 2, false);
         ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(x0, y0, mr * 0.6, 0, pi * 2, false);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(x0, y0, mr * 0.9, 0, pi * 2, false);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(x0 + mr * 0.3 * Math.sin(hrad), y0 - mr * 0.3 * Math.cos(hrad),
+                mr * 0.1, 0, pi * 2, false);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(x0 + mr * 0.6 * Math.sin(mrad), y0 - mr * 0.6 * Math.cos(mrad),
+                mr * 0.1, 0, pi * 2, false);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(x0 + mr * 0.9 * Math.sin(srad), y0 - mr * 0.9 * Math.cos(srad),
+                mr * 0.1, 0, pi * 2, false);
+        ctx.fill();
         return null;
     };
     return {
