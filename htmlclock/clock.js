@@ -7,11 +7,7 @@ var Clock = (function () {
     const pi = Math.PI;
 
     function init (){
-        if(window.addEventListener) { /* W3C準拠ブラウザ用 */
-            window.addEventListener("load", start, false);
-            // } else if(window.attachEvent) { /* Internet Explorer用 */
-            //     window.attachEvent("onload", init);
-        }
+        window.onload = start;
     };
 
     function start () {
