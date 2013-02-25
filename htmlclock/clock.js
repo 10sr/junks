@@ -40,14 +40,28 @@ var Clock = (function () {
         var hrad = 2 * pi * h / 12.0 + 2 * pi * m / 12.0 / 60.0;
 
         // ctx.strokeStyle = '#00ff00';
-        ctx.fillStyle = "#aaaaaa";
 
         // background
+        ctx.fillStyle = "#aaaaaa";
         ctx.beginPath();
         ctx.arc(x0, y0, mr * 0.9, 0, pi * 2, false);
         ctx.fill();
 
+        // plot dots
         ctx.fillStyle = "#ffffff";
+        for (var i = 0; i < 12; i++){
+            var r;              // r of dots
+            if (i % 3 == 0) {
+                r = mr * 0.03;
+            } else {
+                r = mr * 0.02;
+            }
+            ctx.beginPath();
+            ctx.arc(x0 + mr * 0.8 * Math.sin(pi / 6.0 * i),
+                    y0 - mr * 0.8 * Math.cos(pi / 6.0 * i),
+                    r, 0, pi * 2, false);
+            ctx.fill();
+        }
 
         // arrow
         ctx.beginPath();
@@ -66,6 +80,7 @@ var Clock = (function () {
         ctx.fill();
         return null;
     };
+
     return {
         init : init
     };
