@@ -39,21 +39,17 @@ var Clock = (function () {
         var mrad = 2 * pi * m / 60.0 + 2 * pi * s / 60.0 / 60.0;
         var hrad = 2 * pi * h / 12.0 + 2 * pi * m / 12.0 / 60.0;
 
-        ctx.strokeStyle = '#00ff00';
-        ctx.fillStyle = "#ff0000";
+        // ctx.strokeStyle = '#00ff00';
+        ctx.fillStyle = "#aaaaaa";
 
-        ctx.beginPath();
-        ctx.arc(x0, y0, mr * 0.3, 0, pi * 2, false);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(x0, y0, mr * 0.6, 0, pi * 2, false);
-        ctx.stroke();
-
+        // background
         ctx.beginPath();
         ctx.arc(x0, y0, mr * 0.9, 0, pi * 2, false);
-        ctx.stroke();
+        ctx.fill();
 
+        ctx.fillStyle = "#ffffff";
+
+        // arrow
         ctx.beginPath();
         ctx.arc(x0 + mr * 0.3 * Math.sin(hrad), y0 - mr * 0.3 * Math.cos(hrad),
                 mr * 0.1, 0, pi * 2, false);
