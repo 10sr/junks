@@ -3,14 +3,13 @@
 // }, "text");
 $(function(){
     $("#fileInfo").click(function(){
-        $("#myFile").each(function(){
-            var fileData = this.files[0];
-            var txt = "name: "+fileData.name+"<br />";
-            txt += "size: "+fileData.size+"<br />";
-            txt += "type: "+fileData.type+"<br />";
-            console.log(txt);
-            $("#result").html(txt);
-        });
+        console.log($("#myFile").get(0).files[0].name);
+        var fileData = $("#myFile").get(0).files[0];
+        var txt = "name: "+fileData.name+"<br />";
+        txt += "size: "+fileData.size+"<br />";
+        txt += "type: "+fileData.type+"<br />";
+        console.log(txt);
+        $("#result").html(txt);
     });
 });
 // $(function () {
