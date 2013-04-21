@@ -27,8 +27,9 @@ fn = {"f1" : myintfunc,         # this line must be after func definition
 """
 
 d = exDict()
+l = exDict()
 
-exec(scr, d)
+exec(scr, d)                    # keyError when use locals arg
 
 print(d.v1 + d.v2)
 print("PI = {}".format(d.pi))

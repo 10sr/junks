@@ -4,7 +4,5 @@ default : all
 
 all : ${OBJS}
 
-
 %.html : %.md
 	markdown $< >$@
-
