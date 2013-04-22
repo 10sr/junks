@@ -1,9 +1,13 @@
+OBJS = mpi_hello
+CFLAGS = -Wall -g
+CC = mpicc
+
 default: all
 
-all: mpi_hello
+all: $(OBJS)
 
 clean:
-	$(RM) mpi_hello
+	$(RM) $(OBJS)
 
 mpi_hello : mpi_hello.c
-	mpicc -g -Wall -o mpi_hello mpi_hello.c
+	$(CC) $(CFLAGS) $< -o $@

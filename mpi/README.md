@@ -1,6 +1,20 @@
-# Some MPI test programs
+Some MPI test programs
+======================
 
-## error
+Compile
+-------
+
+    $ mpicc <args_for_cc>
+
+Run
+---
+
+    $ mpiexec -n <num> <program>
+
+Notes
+-----
+
+### Error
 
 This error occur when receved messages are longer than the value of 2nd argument
 of MPI_Recv.
