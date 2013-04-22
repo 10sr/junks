@@ -1,0 +1,21 @@
+total 96M
+drwxr-xr-x 2 yuk users 4.0K 2012-09-23 03:11 bak/
+-rwxr-xr-x 1 yuk users   55 2012-09-23 02:01 create_table.sh*
+-rw-r--r-- 1 yuk users 2.7M 2012-09-23 01:09 hundred_thousand.csv
+-rw-r--r-- 1 yuk users 2.0M 2012-09-23 01:37 hundred_thousand.ods
+-rw-r--r-- 1 yuk users 2.9M 2012-09-23 02:47 hundred_thousand.sqlite
+-rw-r--r-- 1 yuk users    0 2012-09-23 03:11 ls-l.txt
+-rwxr-xr-x 1 yuk users  125 2012-09-23 00:57 make_csv_data.sh*
+-rwxr--r-- 1 yuk users  544 2012-09-23 02:12 make_sql_data.sh*
+-rw-r--r-- 1 yuk users  27M 2012-09-22 22:13 million.csv
+-rw-r--r-- 1 yuk users  20M 2012-09-23 01:31 million.ods
+-rw-r--r-- 1 yuk users  42M 2012-09-21 00:26 million_390144.sqlite
+-rwxr--r-- 1 yuk users  240 2012-09-15 12:19 run.sh*
+-rw-r--r-- 1 yuk users 271K 2012-09-23 01:14 ten_thousand.csv
+-rw-r--r-- 1 yuk users 209K 2012-09-23 01:44 ten_thousand.gnumeric
+-rw-r--r-- 1 yuk users 222K 2012-09-23 01:39 ten_thousand.ods
+-rw-r--r-- 1 yuk users 283K 2012-09-23 02:09 ten_thousand.sqlite
+-rw-r--r-- 1 yuk users  28K 2012-09-23 01:22 thousand.csv
+-rw-r--r-- 1 yuk users  24K 2012-09-23 01:48 thousand.gnumeric
+-rw-r--r-- 1 yuk users  44K 2012-09-23 01:40 thousand.ods
+-rw-r--r-- 1 yuk users  30K 2012-09-23 02:03 thousand.sqlite
