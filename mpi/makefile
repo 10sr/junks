@@ -1,4 +1,4 @@
-OBJS = mpi_hello
+OBJS = mpi_hello mpi_any
 CFLAGS = -Wall -g
 CC = mpicc
 
