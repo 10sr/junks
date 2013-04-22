@@ -9,5 +9,5 @@ all: $(OBJS)
 clean:
 	$(RM) $(OBJS)
 
-mpi_hello : mpi_hello.c
-	$(CC) $(CFLAGS) $< -o $@
+# mpi_hello : mpi_hello.c
+# 	$(CC) $(CFLAGS) $< -o $@
