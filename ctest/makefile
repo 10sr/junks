@@ -1,5 +1,5 @@
 CFLAGS = -Wall
-OBJS = debug deadlock
+OBJS = debug deadlock forever
 ALLOBJS = $(OBJS) catstr invheader
 
 default : all
