@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<pthread.h>
 
-const int LEN = 50000;
+const unsigned int LEN = 5000000;
 
 void print_array(unsigned char* data, int len){
   int i;
