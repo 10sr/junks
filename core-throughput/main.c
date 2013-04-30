@@ -3,35 +3,33 @@
 #include<stdlib.h>
 #include<pthread.h>
 
-const int LEN = 50;
+const int LEN = 50000;
 
-void* receiver(void* arg){
-  char data[LEN];
-  int fd = (int) arg;
-
-  printf("Im receiver!\n");
-  if (read(fd, data, LEN) < 0) {
-    perror("read");
-    exit(1);
-  }
-  print_array(data, LEN);
-  return NULL;
-}
-
-void print_array(char* data, int len){
+void print_array(unsigned char* data, int len){
   int i;
-  printf("|");
-  for (i = 0; i < len; i++) {
-    printf("%d|", data[i]);
+  if (len < 10) {
+    printf("|");
+    for (i = 0; i < len; i++) {
+      printf("%d|", data[i]);
+    }
+  } else {
+    for (i = 0; i < 5; i++) {
+      printf("|%d", data[i]);
+    }
+    printf("...");
+    for (i = len - 5; i < len; i++){
+      printf("%d|", data[i]);
+    }
   }
   printf("\n");
   return;
 }
 
-void init_array(char* data, int len){
+void init_array(unsigned char* data, int len){
   char num;
   int i = 0;
 
+  srandom(4);
   for (i = 0; i < len - 1; i++) {
     num = random() % 256;
     data[i] = num;
@@ -41,9 +39,25 @@ void init_array(char* data, int len){
   return;
 }
 
+void* receiver(void* arg){
+  unsigned char data[LEN];
+  int fd = (int) arg;
+  int l;
+
+  l = read(fd, data, LEN);
+  if (l < 0) {
+    perror("read");
+    exit(1);
+  }
+  printf("Im receiver and received %d bytes!\n", l);
+  print_array(data, LEN);
+  return NULL;
+}
+
 int main(int argc, char** argv){
   int fildes[2];
-  char data[LEN];
+  unsigned char data[LEN];
+  int l;
   pthread_t th;
 
   pipe(fildes);
@@ -55,12 +69,13 @@ int main(int argc, char** argv){
   }
 
 
-  printf("Im sender!\n");
-  if (write(fildes[1], data, LEN * sizeof(char)) < 0) {
+  l = write(fildes[1], data, LEN * sizeof(char));
+  if (l < 0){
     perror("write");
     exit(1);
   }
-  print_array(data, LEN);
   pthread_join(th, NULL);
+  printf("Im sender and sent %d bytes!\n", l);
+  print_array(data, LEN);
   return 0;
 }
