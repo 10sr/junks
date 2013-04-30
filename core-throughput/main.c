@@ -14,8 +14,18 @@ void* receiver(void* arg){
     perror("read");
     exit(1);
   }
-  printf("%s", data);
+  print_array(data, LEN);
   return NULL;
+}
+
+void print_array(char* data, int len){
+  int i;
+  printf("|");
+  for (i = 0; i < len; i++) {
+    printf("%d|", data[i]);
+  }
+  printf("\n");
+  return;
 }
 
 void init_array(char* data, int len){
@@ -31,29 +41,26 @@ void init_array(char* data, int len){
   return;
 }
 
-
 int main(int argc, char** argv){
   int fildes[2];
   char data[LEN];
-
   pthread_t th;
+
+  pipe(fildes);
+  init_array(data, LEN);
+
   if (pthread_create(&th, NULL, receiver, (void*) fildes[0]) < 0) {
     perror("pthread_create");
     exit(1);
   }
 
-  pipe(fildes);
-  init_array(data, LEN);
 
   printf("Im sender!\n");
   if (write(fildes[1], data, LEN * sizeof(char)) < 0) {
     perror("write");
     exit(1);
   }
-  /* int i; */
-  /* for (i = 0; i < LEN; i++) { */
-  /*   printf("%d ", data[i]); */
-  /* } */
-  printf("%s\n", data);
+  print_array(data, LEN);
+  pthread_join(th, NULL);
   return 0;
 }
