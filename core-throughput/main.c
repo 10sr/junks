@@ -2,11 +2,14 @@
 #include<stdlib.h>
 #include<unistd.h>
 #include<pthread.h>
+#include<limits.h>
 
 #include"array.h"
 #include"getcpu.h"
 
-const unsigned int LEN = 500000;
+/* data less than PIPE_BUF must be atomic
+ for details see pipe(7)*/
+const unsigned int LEN = PIPE_BUF;
 
 void* receiver(void* arg){
 unsigned char data[LEN];
