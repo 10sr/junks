@@ -1,5 +1,6 @@
 CFLAGS = -Wall
-OBJS = debug deadlock forever
+CC = gcc
+OBJS = debug deadlock forever alloc readline
 ALLOBJS = $(OBJS) catstr invheader
 
 default : all
