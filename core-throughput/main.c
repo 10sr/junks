@@ -4,28 +4,37 @@
 #include<pthread.h>
 
 #include"array.h"
+#include"getcpu.h"
 
 const unsigned int LEN = 500000;
 
 void* receiver(void* arg){
-  unsigned char data[LEN];
-  int fd = (int) arg;
-  int l;
+unsigned char data[LEN];
+ int fd = (int) arg;
+ int l;
+ int cpu;
 
-  l = read(fd, data, LEN);
-  if (l < 0) {
-    perror("read");
-    exit(1);
-  }
-  printf("Im receiver and received %d bytes!\n", l);
-  print_array(data, LEN);
-  return NULL;
+ cpu = getcpuid();
+ if (cpu < 0) {
+     perror("getcpu");
+     exit(1);
+ }
+
+ l = read(fd, data, LEN);
+ if (l < 0) {
+   perror("read");
+   exit(1);
+ }
+ printf("Im receiver on %d and received %d bytes!\n", cpu, l);
+ print_array(data, LEN);
+ return NULL;
 }
 
 int main(int argc, char** argv){
   int fildes[2];
   unsigned char data[LEN];
   int l;
+  int cpu;
   pthread_t th;
 
   pipe(fildes);
@@ -36,6 +45,11 @@ int main(int argc, char** argv){
     exit(1);
   }
 
+  cpu = getcpuid();
+  if (cpu < 0) {
+    perror("getcpu");
+    exit(1);
+  }
 
   l = write(fildes[1], data, LEN * sizeof(char));
   if (l < 0){
@@ -43,7 +57,7 @@ int main(int argc, char** argv){
     exit(1);
   }
   pthread_join(th, NULL);
-  printf("Im sender and sent %d bytes!\n", l);
+  printf("Im sender on %d and sent %d bytes!\n", cpu, l);
   print_array(data, LEN);
   return 0;
 }
