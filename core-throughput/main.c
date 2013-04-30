@@ -14,6 +14,7 @@ unsigned char data[LEN];
  int l;
  int cpu;
 
+ setcpuid(1);
  cpu = getcpuid();
  if (cpu < 0) {
      perror("getcpu");
@@ -45,6 +46,7 @@ int main(int argc, char** argv){
     exit(1);
   }
 
+  setcpuid(0);
   cpu = getcpuid();
   if (cpu < 0) {
     perror("getcpu");

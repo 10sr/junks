@@ -36,3 +36,19 @@ int getcpuid(){
     return i;
   }
 }
+
+void setcpuid(int cpu){
+  cpu_set_t mask;
+  int r;
+
+  CPU_ZERO(&mask);
+  CPU_SET(cpu, &mask);
+
+  r = sched_setaffinity(0, sizeof(cpu_set_t), &mask);
+  if (r < 0) {
+    perror("sched_setaffinity");
+    exit(1);
+  }
+
+  return;
+}
