@@ -9,8 +9,11 @@ int main(void){
   /* int s_double = sizeof(double); */
 
   /* printf("int: %d, pointer: %d\n", s_int, s_pointer); */
+  P(char);
   P(int);
   P(float);
   P(double);
+  /* P(void*); */
+  int s_pointer = sizeof(void*); printf("pointer: %d\n", s_pointer);
   return 0;
 }
