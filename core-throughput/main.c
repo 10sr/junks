@@ -3,6 +3,7 @@
 #include<unistd.h>
 #include<pthread.h>
 #include<limits.h>
+#include<fcntl.h>
 
 #include"array.h"
 #include"getcpu.h"
@@ -42,6 +43,7 @@ int main(int argc, char** argv){
   pthread_t th;
 
   pipe(fildes);
+  fcntl(fildes[1], F_SETFD, O_NONBLOCK);
   init_array(data, LEN);
 
   if (pthread_create(&th, NULL, receiver, (void*) fildes[0]) < 0) {
