@@ -43,7 +43,7 @@ int main(int argc, char** argv){
   pthread_t th;
 
   pipe(fildes);
-  fcntl(fildes[1], F_SETFD, O_NONBLOCK);
+  fcntl(fildes[1], F_SETFL, O_NONBLOCK);
   init_array(data, LEN);
 
   if (pthread_create(&th, NULL, receiver, (void*) fildes[0]) < 0) {
