@@ -7,8 +7,6 @@
 #define MAX_LEN 256 /* １行の最大文字数 -1 */
 
 /* http://www1.cts.ne.jp/~clab/hsample/File/File03/File03.html#fgets(%20%20) */
-void main(void);
-
 int main(void)
 {
   FILE *fp;
