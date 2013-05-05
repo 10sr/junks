@@ -1,3 +1,3 @@
-int getcpuid();
+int GetCPUID();
 
-void setcpuid(int);
+void SetCPUID(int);

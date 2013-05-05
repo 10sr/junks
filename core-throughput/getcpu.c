@@ -10,7 +10,7 @@
 /* [Manpage of SCHED_SETAFFINITY](http://surf.ml.seikei.ac.jp/~nakano/JMwww/html/LDP_man-pages/man2/sched_setaffinity.2.html)
  */
 
-int getcpuid(){
+int GetCPUID(){
   /* cpu_set_t mask; */
   /* int r; */
   int i;
@@ -37,7 +37,7 @@ int getcpuid(){
   }
 }
 
-void setcpuid(int cpu){
+void SetCPUID(int cpu){
   cpu_set_t mask;
   int r;
 

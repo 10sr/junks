@@ -12,27 +12,34 @@
  for details see pipe(7)*/
 const unsigned int LEN = PIPE_BUF;
 
-void* receiver(void* arg){
-unsigned char data[LEN];
- int fd = (int) arg;
- int l;
- int cpu;
+/* Receiver function. Intended to be called by pthread_create().
 
- setcpuid(1);
- cpu = getcpuid();
- if (cpu < 0) {
-     perror("getcpu");
-     exit(1);
- }
+   Args:
+   * arg: File Descriptor for read. Before use must be casted to int.
 
- l = read(fd, data, LEN);
- if (l < 0) {
-   perror("read");
-   exit(1);
- }
- printf("Im receiver on %d and received %d bytes!\n", cpu, l);
- print_array(data, LEN);
- return NULL;
+   Returns: NULL
+*/
+void* ReceiveData(void* arg){
+  unsigned char data[LEN];
+  int fd = (int) arg;
+  int l;
+  int cpu;
+
+  SetCPUID(1);
+  cpu = GetCPUID();
+  if (cpu < 0) {
+    perror("getcpu");
+    exit(1);
+  }
+
+  l = read(fd, data, LEN);
+  if (l < 0) {
+    perror("read");
+    exit(1);
+  }
+  printf("Im receiver on %d and received %d bytes!\n", cpu, l);
+  PrintArray(data, LEN);
+  return NULL;
 }
 
 int main(int argc, char** argv){
@@ -44,15 +51,15 @@ int main(int argc, char** argv){
 
   pipe(fildes);                 /* fildes[0] => read, fildes[1] => write */
   fcntl(fildes[1], F_SETFL, O_NONBLOCK);
-  init_array(data, LEN);
+  InitArray(data, LEN);
 
-  if (pthread_create(&th, NULL, receiver, (void*) fildes[0]) < 0) {
+  if (pthread_create(&th, NULL, ReceiveData, (void*) fildes[0]) < 0) {
     perror("pthread_create");
     exit(1);
   }
 
-  setcpuid(0);
-  cpu = getcpuid();
+  SetCPUID(0);
+  cpu = GetCPUID();
   if (cpu < 0) {
     perror("getcpu");
     exit(1);
@@ -65,6 +72,6 @@ int main(int argc, char** argv){
   }
   pthread_join(th, NULL);
   printf("Im sender on %d and sent %d bytes!\n", cpu, l);
-  print_array(data, LEN);
+  PrintArray(data, LEN);
   return 0;
 }
