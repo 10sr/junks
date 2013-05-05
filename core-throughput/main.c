@@ -42,7 +42,7 @@ int main(int argc, char** argv){
   int cpu;
   pthread_t th;
 
-  pipe(fildes);
+  pipe(fildes);                 /* fildes[0] => read, fildes[1] => write */
   fcntl(fildes[1], F_SETFL, O_NONBLOCK);
   init_array(data, LEN);
 
