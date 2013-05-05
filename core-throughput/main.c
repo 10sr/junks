@@ -2,11 +2,15 @@
 #include<stdlib.h>
 #include<unistd.h>
 #include<pthread.h>
+#include<limits.h>
+#include<fcntl.h>
 
 #include"array.h"
 #include"getcpu.h"
 
-const unsigned int LEN = 500000;
+/* data less than PIPE_BUF must be atomic
+ for details see pipe(7)*/
+const unsigned int LEN = PIPE_BUF;
 
 /* Receiver function. Intended to be called by pthread_create().
 
@@ -46,6 +50,7 @@ int main(int argc, char** argv){
   pthread_t th;
 
   pipe(fildes);
+  fcntl(fildes[1], F_SETFL, O_NONBLOCK);
   InitArray(data, LEN);
 
   if (pthread_create(&th, NULL, ReceiveData, (void*) fildes[0]) < 0) {
