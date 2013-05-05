@@ -1,2 +1,2 @@
-void print_array(unsigned char*, int);
-void init_array(unsigned char*, int);
+void PrintArray(unsigned char*, int);
+void InitArray(unsigned char*, int);
