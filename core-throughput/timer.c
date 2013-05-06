@@ -1,5 +1,19 @@
 #include"timer.h"
 
+#include<stdio.h>
+#include<stdlib.h>
+
+inline void GetCurrentTime(struct timeval *tv)
+{
+    int r;
+    r = gettimeofday(tv, NULL);
+    if (r < 0){
+        perror("gettimeofday");
+        exit(1);
+    }
+    return;
+}
+
 double GetElapsedTime(struct timeval *t_start, struct timeval *t_end)
 {
     double d_start, d_end;

@@ -12,7 +12,7 @@
 /* data whose size is same or less than PIPE_BUF is always sent atomicly
    for details see pipe(7)*/
 const unsigned int LEN_SEND = PIPE_BUF;
-const unsigned int NUM_SEND = 1000;
+const unsigned int NUM_SEND = 100;
 /* const unsigned int LEN = LEN_SEND * NUM_SEND; */
 
 
@@ -34,7 +34,6 @@ void* ReceiveData(void* arg)
     int cpu;
 
     struct timeval t_start, t_end;
-    int t_status;
     double t_elapse;
 
     SetCPUID(1);
@@ -44,11 +43,7 @@ void* ReceiveData(void* arg)
         exit(1);
     }
 
-    t_status = gettimeofday(&t_start, NULL);
-    if (t_status < 0) {
-        perror("gettimeofday");
-        exit(1);
-    }
+    GetCurrentTime(&t_start);
 
     for (i = 0; i < NUM_SEND; i++) {
         len_recv = read(fd, data, LEN_SEND * sizeof(char));
@@ -60,11 +55,7 @@ void* ReceiveData(void* arg)
         start_recv = &(start_recv[len_recv]);
     }
 
-    t_status = gettimeofday(&t_end, NULL);
-    if (t_status < 0) {
-        perror("gettimeofday");
-        exit(1);
-    }
+    GetCurrentTime(&t_end);
 
     printf("Im receiver on %d and received %d bytes!\n", cpu, all_recv);
     PrintArray(data, LEN_SEND * NUM_SEND);
@@ -89,7 +80,6 @@ int main(int argc, char** argv)
 
     struct timeval t_start, t_end;
     double t_elapse;
-    int t_status;
 
     pipe(fildes);
     fcntl(fildes[1], F_SETFL, O_NONBLOCK);
@@ -107,11 +97,7 @@ int main(int argc, char** argv)
         exit(1);
     }
 
-    t_status = gettimeofday(&t_start, NULL);
-    if (t_status < 0) {
-        perror("gettimeofday");
-        exit(1);
-    }
+    GetCurrentTime(&t_start);
 
     for (i = 0; i < NUM_SEND; i++) {
         len_sent = write(fildes[1], start_send, LEN_SEND * sizeof(char));
@@ -123,11 +109,7 @@ int main(int argc, char** argv)
         start_send = &(start_send[len_sent]);
     }
 
-    t_status = gettimeofday(&t_end, NULL);
-    if (t_status < 0) {
-        perror("gettimeofday");
-        exit(1);
-    }
+    GetCurrentTime(&t_end);
 
     pthread_join(th, NULL);
 
