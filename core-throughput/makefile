@@ -17,4 +17,4 @@ $(RESULT) : $(TARGET)
 $(TARGET) : $(OBJS)
 
 clean :
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(TARGET) $(RESULT)
