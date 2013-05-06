@@ -36,4 +36,5 @@
 
 #include<sys/time.h>
 
+/* Calculate the time interval between t_start and t_end. */
 double GetElapsedTime(struct timeval *t_start, struct timeval *t_end);

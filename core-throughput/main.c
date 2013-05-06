@@ -9,7 +9,7 @@
 #include"getcpu.h"
 #include"timer.h"
 
-/* data same or less than PIPE_BUF is always atomic
+/* data whose size is same or less than PIPE_BUF is always sent atomicly
    for details see pipe(7)*/
 const unsigned int LEN_SEND = PIPE_BUF;
 const unsigned int NUM_SEND = 1000;
