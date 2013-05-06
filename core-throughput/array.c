@@ -4,7 +4,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void PrintArray(unsigned char* data, int len){
+void PrintArray(unsigned char* data, int len)
+{
     int i;
     if (len < 10) {
         printf("|");
@@ -24,7 +25,8 @@ void PrintArray(unsigned char* data, int len){
     return;
 }
 
-void InitArray(unsigned char* data, int len){
+void InitArray(unsigned char* data, int len)
+{
     char num;
     int i = 0;
 

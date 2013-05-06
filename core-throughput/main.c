@@ -7,6 +7,7 @@
 
 #include"array.h"
 #include"getcpu.h"
+#include"timer.h"
 
 /* data less than PIPE_BUF is always atomic
    for details see pipe(7)*/
@@ -19,11 +20,16 @@ const unsigned int LEN = PIPE_BUF;
  *
  * Returns: NULL
  */
-void* ReceiveData(void* arg){
+void* ReceiveData(void* arg)
+{
     unsigned char data[LEN];
     int fd = (int) arg;
-    int l;
+    int len_written;
     int cpu;
+
+    struct timeval t_start, t_end;
+    int t_status;
+    double t_elapse;
 
     SetCPUID(1);
     cpu = GetCPUID();
@@ -32,22 +38,45 @@ void* ReceiveData(void* arg){
         exit(1);
     }
 
-    l = read(fd, data, LEN);
-    if (l < 0) {
+    t_status = gettimeofday(&t_start, NULL);
+    if (t_status < 0) {
+        perror("gettimeofday");
+        exit(1);
+    }
+
+    len_written = read(fd, data, LEN);
+    if (len_written < 0) {
         perror("read");
         exit(1);
     }
-    printf("Im receiver on %d and received %d bytes!\n", cpu, l);
+
+    t_status = gettimeofday(&t_end, NULL);
+    if (t_status < 0) {
+        perror("gettimeofday");
+        exit(1);
+    }
+
+    printf("Im receiver on %d and received %d bytes!\n", cpu, len_written);
     PrintArray(data, LEN);
+
+    t_elapse = GetElapsedTime(&t_start, &t_end);
+    printf("Elapsed: %f\n", t_elapse);
+
     return NULL;
 }
 
-int main(int argc, char** argv){
+int main(int argc, char** argv)
+{
     int fildes[2];
     unsigned char data[LEN];
-    int l;
+    int len_written;
+
     int cpu;
     pthread_t th;
+
+    struct timeval t_start, t_end;
+    double t_elapse;
+    int t_status;
 
     pipe(fildes);
     fcntl(fildes[1], F_SETFL, O_NONBLOCK);
@@ -65,13 +94,30 @@ int main(int argc, char** argv){
         exit(1);
     }
 
-    l = write(fildes[1], data, LEN * sizeof(char));
-    if (l < 0){
+    t_status = gettimeofday(&t_start, NULL);
+    if (t_status < 0) {
+        perror("gettimeofday");
+        exit(1);
+    }
+
+    len_written = write(fildes[1], data, LEN * sizeof(char));
+    if (len_written < 0){
         perror("write");
         exit(1);
     }
+
+    t_status = gettimeofday(&t_end, NULL);
+    if (t_status < 0) {
+        perror("gettimeofday");
+        exit(1);
+    }
+
     pthread_join(th, NULL);
-    printf("Im sender on %d and sent %d bytes!\n", cpu, l);
+
+    printf("Im sender on %d and sent %d bytes!\n", cpu, len_written);
     PrintArray(data, LEN);
+
+    t_elapse = GetElapsedTime(&t_start, &t_end);
+    printf("Elapsed: %f\n", t_elapse);
     return 0;
 }
