@@ -5,14 +5,7 @@ Core Throughput
 * [Linux日和～スレッド間の非同期通信～](http://linux-biyori.sakura.ne.jp/program/pr_sigqueue.php)
 * [スレッド間通信のオーバーヘッドを比較する - 古橋貞之の日記](http://d.hatena.ne.jp/viver/20081015/p1)
 
-comm\_sigqueue.c
----------------
+Refs
+----
 
-Code from <http://linux-biyori.sakura.ne.jp/program/pr_sigqueue.php>.
-
-About sigqueue see <http://kazmax.zpp.jp/cmd/s/sigqueue.2.html>.
-
-### Compile
-
-    gcc -Wall -o sigqueue sigqueue.c -lpthread
-
+[Man page of FCNTL](http://linuxjm.sourceforge.jp/html/LDP_man-pages/man2/fcntl.2.html)
