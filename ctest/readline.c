@@ -25,4 +25,6 @@ int main(void)
     puts(string); /*読み込んだ行を表示 */
   }
   fclose(fp); /* ファイルを閉じる */
+
+  return 1;
 }

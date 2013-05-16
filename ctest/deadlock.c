@@ -7,7 +7,7 @@ pthread_mutex_t* lock_handles;
 
 void *deadlock(void *rank){
   int my_rank = (int) rank;
-  
+
   printf("I am thread %d and lock %d.\n", my_rank, my_rank);
   pthread_mutex_lock(&lock_handles[my_rank]);
 
@@ -20,7 +20,7 @@ void *deadlock(void *rank){
   pthread_mutex_unlock(&lock_handles[my_rank]);
   printf("I am thread %d and unlock %d.\n", my_rank, 1 - my_rank);
   pthread_mutex_unlock(&lock_handles[1 - my_rank]);
-  
+
   return NULL;
 }
 
@@ -35,7 +35,7 @@ int main(int argc, char **argv){
   lock_handles = (pthread_mutex_t *)
     malloc(lock_count*sizeof(pthread_mutex_t));
 
-  
+
   for (lock = 0; lock < lock_count; lock++){
     pthread_mutex_init(&lock_handles[lock], NULL);
   }
@@ -53,10 +53,9 @@ int main(int argc, char **argv){
   for (lock = 0; lock < lock_count; lock++){
     pthread_mutex_destroy(&lock_handles[lock]);
   }
-  
+
   free(thread_handles);
   free(lock_handles);
 
   return 0;
 }
-

@@ -1,4 +1,4 @@
-CFLAGS = -Wall
+CFLAGS = -Wall -g
 CC = gcc
 OBJS = debug deadlock forever alloc readline sizeof
 ALLOBJS = $(OBJS) catstr invheader
@@ -20,4 +20,4 @@ catstr : catstr.o
 invheader : invheader.o
 
 deadlock : deadlock.c
-	gcc -Wall -g -o deadlock -pthread deadlock.c
+	$(CC) $(CFLAGS) -o $@ -pthread $<
