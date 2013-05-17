@@ -1,4 +1,7 @@
 #include<errno.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
 
 #include"getcpu.h"
 #include"timer.h"
@@ -6,16 +9,17 @@
 
 #include"comm.h"
 
+/* TODO: make sure all data sent and received */
+
 void *ReceiveData(void* _arg)
 {
     struct comm_arg *arg = _arg;
-    unsigned char data[arg->len_send * arg->num_send;
+    unsigned char data[arg->len_send * arg->num_send];
     unsigned char *start_recv = data;
     int i;
-    int fd = arg->fd;
-    int len_recv;
-    int all_recv = 0;
     int cpu;
+    int len_recv;
+    int all_recv;
 
     struct timeval t_start, t_end;
     double t_elapse;
@@ -46,11 +50,12 @@ void *ReceiveData(void* _arg)
 
     GetCurrentTime(&t_end);
 
-    printf("Im receiver on %d and received %d bytes!\n", cpu, all_recv);
+    printf("Receiver: Im receiver on %d and received %d bytes!\n", cpu,
+           all_recv);
     PrintArray(data, arg->num_send * arg->len_send);
 
     t_elapse = GetElapsedTime(&t_start, &t_end);
-    printf("Elapsed: %f\n", t_elapse);
+    printf("Receiver: Elapsed: %f\n", t_elapse);
 
     return NULL;
 }
@@ -59,7 +64,10 @@ void *SendData(void *_arg){
     struct comm_arg *arg = _arg;
     unsigned char data[arg->len_send * arg->num_send];
     unsigned char *start_send = data;
+    int i;
     int cpu;
+    int len_sent;
+    int all_sent;
 
     struct timeval t_start, t_end;
     double t_elapse;
@@ -94,11 +102,11 @@ void *SendData(void *_arg){
     GetCurrentTime(&t_end);
 
 
-    printf("Im sender on %d and sent %d bytes!\n", cpu, all_sent);
+    printf("Sender: Im sender on %d and sent %d bytes!\n", cpu, all_sent);
     PrintArray(data, arg->num_send * arg->len_send);
 
     t_elapse = GetElapsedTime(&t_start, &t_end);
-    printf("Elapsed: %f\n", t_elapse);
+    printf("Sender: Elapsed: %f\n", t_elapse);
 
     return NULL;
 }
