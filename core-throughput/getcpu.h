@@ -1,5 +1,5 @@
 /* Get or set cpuid of current thread. */
 
-int GetCPUID();
+int GetCPUID(void);
 
 void SetCPUID(int cpuid);

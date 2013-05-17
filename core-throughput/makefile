@@ -5,14 +5,14 @@ CC = gcc
 TARGET = main
 RESULT = result.txt
 
-OBJS = array.o main.o getcpu.o timer.o
+OBJS = array.o main.o getcpu.o timer.o comm_pipe.o
 
 all : $(TARGET)
 
 run : $(RESULT)
 
 $(RESULT) : $(TARGET)
-	./$(TARGET) | tee result.txt
+	./$(TARGET) | tee $(RESULT)
 
 $(TARGET) : $(OBJS)
 
