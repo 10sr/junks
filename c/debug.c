@@ -19,7 +19,8 @@
 
 #define dphere() dprintf(HERE "\n")
 
-int main(int argc, char** argv){
+int main(int argc, char** argv)
+{
     dprintf(HERE "\n");
     dphere();
     return 0;

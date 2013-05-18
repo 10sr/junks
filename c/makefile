@@ -1,11 +1,14 @@
 CFLAGS = -Wall -g
 CC = gcc
-OBJS = debug deadlock forever alloc readline sizeof
+OBJS = debug deadlock forever alloc readline sizeof env
 ALLOBJS = $(OBJS) catstr invheader
 
 default : all
 
 all : $(OBJS)
+
+clean :
+	$(RM) $(ALLOBJS)
 
 gitignore :
 	(for f in ${ALLOBJS}; \

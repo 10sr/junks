@@ -5,7 +5,8 @@
 
 pthread_mutex_t* lock_handles;
 
-void *deadlock(void *rank){
+void *deadlock(void *rank)
+{
   int my_rank = (int) rank;
 
   printf("I am thread %d and lock %d.\n", my_rank, my_rank);
@@ -24,7 +25,8 @@ void *deadlock(void *rank){
   return NULL;
 }
 
-int main(int argc, char **argv){
+int main(int argc, char **argv)
+{
   int thread;
   int thread_count = 2;
   pthread_t *thread_handles;
