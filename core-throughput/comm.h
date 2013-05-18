@@ -5,10 +5,10 @@
  *
  * Returns: NULL
  */
-void* ReceiveData(void* _arg){};
+void* ReceiveData(void* _arg);
 
 /* Make array and send data and print them. */
-void* SendData(void* _arg){};
+void* SendData(void* _arg);
 
 struct comm_arg {
     int num_send;
