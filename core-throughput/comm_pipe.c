@@ -19,7 +19,7 @@ void *ReceiveData(void* _arg)
     int i;
     int cpu;
     int len_recv;
-    int all_recv;
+    unsigned int all_recv;
 
     struct timeval t_start, t_end;
     double t_elapse;
@@ -33,7 +33,7 @@ void *ReceiveData(void* _arg)
 
     GetCurrentTime(&t_start);
 
-    for (i = 0; i < arg->num_send; i++) {
+    for (i = 0; i < arg->num_send;) {
         len_recv = read(arg->fd, start_recv, arg->len_send * sizeof(char));
         if (len_recv < 0) {
             if (errno == EAGAIN) {
@@ -45,6 +45,7 @@ void *ReceiveData(void* _arg)
         } else {
             all_recv += len_recv;
             start_recv = &(start_recv[len_recv]);
+            i++;
         }
     }
 
@@ -67,7 +68,7 @@ void *SendData(void *_arg){
     int i;
     int cpu;
     int len_sent;
-    int all_sent;
+    unsigned int all_sent;
 
     struct timeval t_start, t_end;
     double t_elapse;
