@@ -1,8 +1,8 @@
 default : all
 2 : all2
 
-all : main mylib1
-all2 : main mylib2
+all : mylib1 main
+all2 : mylib2 main
 
 clean :
 	$(RM) main libmylib.so
