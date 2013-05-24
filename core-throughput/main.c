@@ -50,5 +50,8 @@ int main(int argc, char** argv)
 
     pthread_join(th, NULL);
 
+    printf("Receiver: time: %f\n", comm_args[0].time);
+    printf("Sender: time: %f\n", comm_args[1].time);
+
     return 0;
 }

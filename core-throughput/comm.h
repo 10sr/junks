@@ -15,4 +15,5 @@ struct comm_arg {
     int len_send;
     int cpuid;
     int fd;
+    double time;
 };

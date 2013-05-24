@@ -22,7 +22,6 @@ void *ReceiveData(void* _arg)
     unsigned int all_recv;
 
     struct timeval t_start, t_end;
-    double t_elapse;
 
     SetCPUID(arg->cpuid);
     cpu = GetCPUID();
@@ -55,8 +54,7 @@ void *ReceiveData(void* _arg)
            all_recv);
     PrintArray(data, arg->num_send * arg->len_send);
 
-    t_elapse = GetElapsedTime(&t_start, &t_end);
-    printf("Receiver: Elapsed: %f\n", t_elapse);
+    arg->time = GetElapsedTime(&t_start, &t_end);
 
     return NULL;
 }
@@ -71,7 +69,6 @@ void *SendData(void *_arg){
     unsigned int all_sent;
 
     struct timeval t_start, t_end;
-    double t_elapse;
 
     SetCPUID(arg->cpuid);
     cpu = GetCPUID();
@@ -106,7 +103,7 @@ void *SendData(void *_arg){
     printf("Sender: Im sender on %d and sent %d bytes!\n", cpu, all_sent);
     PrintArray(data, arg->num_send * arg->len_send);
 
-    t_elapse = GetElapsedTime(&t_start, &t_end);
+    arg->time = GetElapsedTime(&t_start, &t_end);
     printf("Sender: Elapsed: %f\n", t_elapse);
 
     return NULL;
