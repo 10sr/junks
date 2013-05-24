@@ -3,6 +3,6 @@
 
 void PrintHello(char *s)
 {
-    printf("hello %s!\n", s);
+    printf("Hello %s!\n", s);
     return;
 }

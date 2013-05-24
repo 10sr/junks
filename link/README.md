@@ -7,9 +7,21 @@ Files to learn dynamic link.
 Usage
 -----
 
-`make` will create `libmylib.so` from `mylib.c`.
-`make 2` will create `libmylib.so` from `mylib2.c`.
-In either cases `main` will be created.
+First, try `make` and `./main`.
+
+    $ make
+    $ ./main
+    Hello world!
+
+Then, issue `make 2`.
+
+    $ make 2
+    $ ./main
+    Hell world!
+
+In this way, you can see that the function of `main` changes *without
+re-compiling main.c*.
+
 `make ldd` will show dynamic linked files from `main`.
 
 
@@ -19,6 +31,8 @@ What makefile does
 ### Create .so files
 
 Shared library (with .so suffix) can be create with `gcc -shared` command.
+`make` creates `limylib.so` from `mylib.c` and `make 2` creates `libmylib.so`
+from `mylib2.c`.
 
 ### Use .so files
 
