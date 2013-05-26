@@ -3,4 +3,5 @@
 int main(void)
 {
     PrintHello("world");
+    return 0;
 }
