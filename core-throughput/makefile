@@ -24,4 +24,4 @@ run : $(RESULT)
 # 	./ | tee $(RESULT)
 
 clean :
-	$(RM) $(OBJS) $(TARGET) $(RESULT) comm_pipe.o comm_mpi.o
+	$(RM) $(OBJS) main_pipe main_mpi $(RESULT) comm_pipe.o comm_mpi.o
