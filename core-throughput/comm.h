@@ -13,6 +13,7 @@ void* SendData(void* _arg);
 struct comm_arg {
     int num_send;
     int len_send;
+    unsigned char* buf;
     int cpuid;
     int fd;
     double time;

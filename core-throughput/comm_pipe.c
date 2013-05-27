@@ -15,7 +15,7 @@ void *ReceiveData(void* _arg)
 {
     struct comm_arg *arg = _arg;
     int len_rest = arg->len_send * arg->num_send;
-    unsigned char data[len_rest];
+    unsigned char *data = arg->buf;
     unsigned char *start_recv = data;
     int len_recv;               /* len of data received by one read */
     int cpu;
@@ -51,10 +51,6 @@ void *ReceiveData(void* _arg)
 
     GetCurrentTime(&t_end);
 
-    printf("Receiver: Im receiver on %d and received d bytes!\n",
-           cpu);
-    PrintArray(data, arg->num_send * arg->len_send);
-
     arg->time = GetElapsedTime(&t_start, &t_end);
 
     return NULL;
@@ -62,7 +58,7 @@ void *ReceiveData(void* _arg)
 
 void *SendData(void *_arg){
     struct comm_arg *arg = _arg;
-    unsigned char data[arg->len_send * arg->num_send];
+    unsigned char *data = arg->buf;
     unsigned char *start_send = data;
     int i;
     int cpu;
@@ -100,12 +96,7 @@ void *SendData(void *_arg){
 
     GetCurrentTime(&t_end);
 
-
-    printf("Sender: Im sender on %d and sent %d bytes!\n", cpu, all_sent);
-    PrintArray(data, arg->num_send * arg->len_send);
-
     arg->time = GetElapsedTime(&t_start, &t_end);
-    /* printf("Sender: Elapsed: %f\n", t_elapse); */
 
     return NULL;
 }
