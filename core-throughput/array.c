@@ -10,10 +10,11 @@ int CheckArray(unsigned char *a1, unsigned char *a2, int len)
     for (i = 0; i < len; i++) {
         if (a1[i] != a2[i]) {
             printf("Two arrays are not identical!\n");
+            exit(1);
             return 1;
         }
     }
-    printf("Tow arrays are identical.\n");
+    /* printf("Tow arrays are identical.\n"); */
     return 0;
 }
 

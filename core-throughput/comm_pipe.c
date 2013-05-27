@@ -15,7 +15,8 @@ void *ReceiveData(void* _arg)
 {
     struct comm_arg *arg = _arg;
     int len_rest = arg->len_send * arg->num_send;
-    unsigned char *data = arg->buf;
+    unsigned char buf[len_rest];
+    unsigned char *data = buf;
     unsigned char *start_recv = data;
     int len_recv;               /* len of data received by one read */
     int cpu;
@@ -53,12 +54,20 @@ void *ReceiveData(void* _arg)
 
     arg->time = GetElapsedTime(&t_start, &t_end);
 
+    {
+        int i;
+        for (i = 0; i < arg->len_send * arg->num_send; i++) {
+            arg->buf[i] = buf[i];
+        }
+    }
+
     return NULL;
 }
 
 void *SendData(void *_arg){
     struct comm_arg *arg = _arg;
-    unsigned char *data = arg->buf;
+    unsigned char buf[arg->num_send * arg->len_send];
+    unsigned char *data = buf;
     unsigned char *start_send = data;
     int i;
     int cpu;
@@ -97,6 +106,13 @@ void *SendData(void *_arg){
     GetCurrentTime(&t_end);
 
     arg->time = GetElapsedTime(&t_start, &t_end);
+
+    {
+        int i;
+        for (i = 0; i < arg->len_send * arg->num_send; i++) {
+            arg->buf[i] = buf[i];
+        }
+    }
 
     return NULL;
 }

@@ -116,7 +116,7 @@ int OneTry(struct main_arg *arg)
     /* printf("Sender: time: %f\n", comm_args[1].time); */
     /* PrintArray(buf_s, len_all); */
 
-    /* CheckArray(buf_r, buf_s, len_all); */
+    CheckArray(buf_r, buf_s, len_all);
 
     return 0;
 }
