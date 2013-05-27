@@ -51,7 +51,7 @@ int Try(int num_send)
 {
     struct main_arg arg;
     int i;
-    int try = 10000;
+    int try = 1000;
     double time_r[try];
     double time_s[try];
 
@@ -105,6 +105,9 @@ int OneTry(struct main_arg *arg)
     ReceiveData(&(comm_args[0]));
 
     pthread_join(th, NULL);
+
+    close(fildes[0]);
+    close(fildes[1]);
 
     arg->time_r = comm_args[0].time;
     arg->time_s = comm_args[1].time;
