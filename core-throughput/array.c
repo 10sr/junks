@@ -30,7 +30,7 @@ void InitArray(unsigned char* data, int len)
     char num;
     int i = 0;
 
-    srandom(4);
+    srandom(getpid());
     for (i = 0; i < len - 1; i++) {
         num = random() % 256;
         data[i] = num;

@@ -14,12 +14,11 @@
 void *ReceiveData(void* _arg)
 {
     struct comm_arg *arg = _arg;
-    unsigned char data[arg->len_send * arg->num_send];
+    int len_rest = arg->len_send * arg->num_send;
+    unsigned char data[len_rest];
     unsigned char *start_recv = data;
-    int i;
+    int len_recv;               /* len of data received by one read */
     int cpu;
-    int len_recv;
-    unsigned int all_recv;
 
     struct timeval t_start, t_end;
 
@@ -32,8 +31,8 @@ void *ReceiveData(void* _arg)
 
     GetCurrentTime(&t_start);
 
-    for (i = 0; i < arg->num_send;) {
-        len_recv = read(arg->fd, start_recv, arg->len_send * sizeof(char));
+    while (1) {
+        len_recv = read(arg->fd, start_recv, len_rest * sizeof(char));
         if (len_recv < 0) {
             if (errno == EAGAIN) {
                 continue;
@@ -42,16 +41,18 @@ void *ReceiveData(void* _arg)
                 exit(1);
             }
         } else {
-            all_recv += len_recv;
+            len_rest -= len_recv;
             start_recv = &(start_recv[len_recv]);
-            i++;
+        }
+        if (len_rest <= 0) {
+            break;
         }
     }
 
     GetCurrentTime(&t_end);
 
-    printf("Receiver: Im receiver on %d and received %d bytes!\n", cpu,
-           all_recv);
+    printf("Receiver: Im receiver on %d and received d bytes!\n",
+           cpu);
     PrintArray(data, arg->num_send * arg->len_send);
 
     arg->time = GetElapsedTime(&t_start, &t_end);
@@ -66,7 +67,7 @@ void *SendData(void *_arg){
     int i;
     int cpu;
     int len_sent;
-    unsigned int all_sent;
+    unsigned int all_sent = 0;
 
     struct timeval t_start, t_end;
 
@@ -104,7 +105,7 @@ void *SendData(void *_arg){
     PrintArray(data, arg->num_send * arg->len_send);
 
     arg->time = GetElapsedTime(&t_start, &t_end);
-    printf("Sender: Elapsed: %f\n", t_elapse);
+    /* printf("Sender: Elapsed: %f\n", t_elapse); */
 
     return NULL;
 }
