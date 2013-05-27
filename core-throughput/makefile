@@ -2,19 +2,21 @@ CFLAGS = -Wall -g
 LDFLAGS = -lpthread
 CC = gcc
 
-TARGET = main
+TARGET = pipe
 RESULT = result.txt
 
-OBJS = array.o main.o getcpu.o timer.o comm_pipe.o
+OBJS = array.o main.o getcpu.o timer.o
 
 all : $(TARGET)
+
+pipe : $(OBJS) comm_pipe.o
+
+mpi : $(OBJS) comm_mpi.o
 
 run : $(RESULT)
 
 $(RESULT) : $(TARGET)
 	./$(TARGET) | tee $(RESULT)
 
-$(TARGET) : $(OBJS)
-
 clean :
-	$(RM) $(OBJS) $(TARGET) $(RESULT)
+	$(RM) $(OBJS) $(TARGET) $(RESULT) comm_pipe.o comm_mpi.o
