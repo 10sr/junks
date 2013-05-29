@@ -127,7 +127,7 @@ double GetAvg(int *a, int len)
     return (double) sum / len;
 }
 
-int TryOnCPU(cpuid)
+int TryOnCPU(int cpuid)
 {
     int try = 10000;
     int size = 40000;
@@ -135,17 +135,17 @@ int TryOnCPU(cpuid)
     int result[try];
     int i;
 
-    double avgnsec;
+    double avgusec;
     double throuput;
 
     for (i = 0; i < try; i++) {
         result[i] = OneTry(size, cpuid);
     }
 
-    avgnsec = GetAvg(result, try) / CPU_FREQ_M;
+    avgusec = GetAvg(result, try) / CPU_FREQ_M;
     /* 64 is cache line size. i should get this value from getconf. */
-    throuput = 64 * size / avgnsec;
-    printf("CPU: %d, Speed: %f[KByte/us]\n", cpuid, throuput);
+    throuput = 64 * size / avgusec;
+    printf("CPU: %d, Speed: %f[Byte/us]\n", cpuid, throuput);
     /* printf("%d, %f\n", cpuid, throuput); */
     return 0;
 }
