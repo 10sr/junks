@@ -27,7 +27,7 @@ void *Reader(void *_arg)
     int csize;
     uint64_t start, end;
     int i;
-    char d;
+    volatile char d;
 
     arg = _arg;
 
@@ -65,7 +65,12 @@ void *GetNearestEdge(void *ptr, int size)
 
 int GetCacheLineSize(void)
 {
-    return (int)sysconf(_SC_LEVEL1_DCACHE_LINESIZE);
+    return (int) sysconf(_SC_LEVEL1_DCACHE_LINESIZE);
+}
+
+int GetCPUNum(void)
+{
+    return (int) sysconf(_SC_NPROCESSORS_ONLN);
 }
 
 int OneTry(int size, int cpuid)
@@ -122,8 +127,8 @@ double GetAvg(int *a, int len)
 
 int TryOnCPU(cpuid)
 {
-    int try = 1000;
-    int size = 400;
+    int try = 10000;
+    int size = 40000;
 
     int result[try];
     int i;
@@ -138,7 +143,7 @@ int TryOnCPU(cpuid)
     avgnsec = GetAvg(result, try) / CPU_FREQ_M;
     /* 64 is cache line size. i should get this value from getconf. */
     throuput = 64 * size / avgnsec;
-    printf("CPU: %d, Speed: %f[KByte/ns]\n", cpuid, throuput);
+    printf("CPU: %d, Speed: %f[KByte/us]\n", cpuid, throuput);
     /* printf("%d, %f\n", cpuid, throuput); */
     return 0;
 }
@@ -149,14 +154,14 @@ int main(int argc, char **argv)
     int num_cpu;
     int csize;
 
-    if (argc < 2) {
-        fprintf(stderr, "%s <cpunum>\n", argv[0]);
-        exit(1);
-    }
+    /* if (argc < 2) { */
+    /*     fprintf(stderr, "%s <cpunum>\n", argv[0]); */
+    /*     exit(1); */
+    /* } */
 
     csize = GetCacheLineSize();
 
-    num_cpu = atoi(argv[1]);
+    num_cpu = GetCPUNum();
 
     for (cpu = 0; cpu < num_cpu; cpu++) {
         TryOnCPU(cpu);
