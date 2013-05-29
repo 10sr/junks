@@ -14,7 +14,7 @@ struct pthread_arg {
     char *buf;
     int cpuid;
     int csize;
-    int len;
+    long unsigned int len;
     /* out */
     int e;
 };
@@ -26,7 +26,7 @@ void *Reader(void *_arg)
     int cpuid;
     int csize;
     uint64_t start, end;
-    int i;
+    long unsigned int i;
     volatile char d;
 
     arg = _arg;
@@ -39,11 +39,11 @@ void *Reader(void *_arg)
     assert(GetCPUID() == cpuid);
 
     start = rdtsc();
-    for (i = 0; i < arg->len; i+=(csize*4)) {
+    for (i = 0; i < arg->len; i++) {
         d = a[i];
-        d = a[i + csize];
-        d = a[i + csize * 2];
-        d = a[i + csize * 3];
+        /* d = a[i + csize]; */
+        /* d = a[i + csize * 2]; */
+        /* d = a[i + csize * 3]; */
     }
     end = rdtsc();
 
@@ -129,8 +129,8 @@ double GetAvg(int *a, int len)
 
 int TryOnCPU(int cpuid)
 {
-    int try = 10000;
-    int size = 40000;
+    int try = 100;
+    int size = 100000;
 
     int result[try];
     int i;
@@ -165,7 +165,7 @@ int main(int argc, char **argv)
 
     num_cpu = GetCPUNum();
 
-    for (cpu = 0; cpu < num_cpu; cpu++) {
+    for (cpu = 1; cpu < num_cpu; cpu++) {
         TryOnCPU(cpu);
     }
     /* printf("CacheLine Size: %dKB\n", csize); */
