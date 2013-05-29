@@ -85,11 +85,13 @@ int OneTry(int size, int cpuid)
 
     char buf[size * (csize + 1)];
 
-    abuf = GetNearestEdge(buf, csize);
-
-    for (i = 0; i < 16; i++) {
+    SetCPUID(0);
+    assert(GetCPUID() == 0);
+    for (i = 0; i < (size * (csize + 1)); i++) {
         buf[i] = (char) i;
     }
+
+    abuf = GetNearestEdge(buf, csize);
 
     arg.buf = abuf;
     arg.cpuid = cpuid;
@@ -118,7 +120,7 @@ int OneTry(int size, int cpuid)
 double GetAvg(int *a, int len)
 {
     int i;
-    int sum = 0;
+    long int sum = 0;
     for (i = 0; i < len; i++) {
         sum += a[i];
     }
