@@ -138,8 +138,8 @@ int TryOnCPU(cpuid)
     avgnsec = GetAvg(result, try) / CPU_FREQ_M;
     /* 64 is cache line size. i should get this value from getconf. */
     throuput = 64 * size / avgnsec;
-    /* printf("CPU: %d, Speed: %f[KByte/ns]\n", cpuid, throuput); */
-    printf("%d, %f\n", cpuid, throuput);
+    printf("CPU: %d, Speed: %f[KByte/ns]\n", cpuid, throuput);
+    /* printf("%d, %f\n", cpuid, throuput); */
     return 0;
 }
 
