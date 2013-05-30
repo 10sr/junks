@@ -2,14 +2,16 @@ CFLAGS = -Wall -g -O3
 LDFLAGS = -lpthread
 CC = gcc
 
-TARGET = main
+TARGET = main main2
 RESULT = result.txt
 
-OBJS = getcpu.o main.o
+OBJS = getcpu.o
 
 all : $(TARGET)
 
-$(TARGET) : $(OBJS)
+main : $(OBJS) main.o
+
+main2 : $(OBJS) main2.o
 
 asm : main.s
 
