@@ -127,10 +127,9 @@ double GetAvg(int *a, int len)
     return (double) sum / len;
 }
 
-int TryOnCPU(int cpuid)
+int TryOnCPU(int cpuid, int size)
 {
-    int try = 100;
-    int size = 100000;
+    int try = 1000;
 
     int result[try];
     int i;
@@ -155,18 +154,20 @@ int main(int argc, char **argv)
     int cpu;
     int num_cpu;
     int csize;
+    int data_size;
 
-    /* if (argc < 2) { */
-    /*     fprintf(stderr, "%s <cpunum>\n", argv[0]); */
-    /*     exit(1); */
-    /* } */
+    if (argc < 2) {
+        fprintf(stderr, "%s <data_size>\n", argv[0]);
+        exit(1);
+    }
+    data_size = atoi(argv[1]);
 
     csize = GetCacheLineSize();
 
     num_cpu = GetCPUNum();
 
-    for (cpu = 1; cpu < num_cpu; cpu++) {
-        TryOnCPU(cpu);
+    for (cpu = 0; cpu < num_cpu; cpu++) {
+        TryOnCPU(cpu, data_size);
     }
     /* printf("CacheLine Size: %dKB\n", csize); */
     return 0;
