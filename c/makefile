@@ -1,17 +1,17 @@
 CFLAGS = -Wall -g
 CC = gcc
-OBJS = debug deadlock forever alloc readline sizeof env
-ALLOBJS = $(OBJS) catstr invheader
+TARGET = debug deadlock forever alloc readline sizeof env
+ALLTARGET = $(TARGET) catstr invheader
 
 default : all
 
-all : $(OBJS)
+all : $(TARGET)
 
 clean :
-	$(RM) $(ALLOBJS)
+	$(RM) $(ALLTARGET)
 
 gitignore :
-	(for f in ${ALLOBJS}; \
+	(for f in ${ALLTARGET}; \
 		do \
 			grep "^$$f$$" .gitignore >/dev/null || echo "$$f"; \
 			grep "^$${f}.dSYM$$" .gitignore >/dev/null || echo "$${f}.dSYM"; \
