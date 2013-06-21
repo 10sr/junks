@@ -1,8 +1,8 @@
-OBJS = index.html test.html
+default : html
 
-default : all
+HTML_OBJS = index.html test.html
 
-all : ${OBJS}
+html : $(HTML_OBJS)
 
 %.html : %.md
 	markdown $< >$@
