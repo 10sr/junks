@@ -32,3 +32,13 @@ invheader.c
 -----------
 
 Trying to include invalid header file.
+
+getopt.c
+--------
+
+Sample program of `getopt'.
+
+### Refs
+
+* [getopt.c - おべんきょめも - study memo](http://studymemo.g.hatena.ne.jp/acotie/20090721/1248169037)
+* [getoptによるオプション解析](http://www.am.sanken.osaka-u.ac.jp/~mukaigaw/misc/getopt.html)

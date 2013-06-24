@@ -15,6 +15,8 @@ int main(int argc,char **argv){
     char *cmdname = argv[0];
 
 #ifndef __CYGWIN__
+    /* Without this guard errors like this happen on cygwin. */
+    /* 'optarg' redeclared without dllimport attribute: previous dllimport ignored */
     extern char *optarg;
     extern int optind, opterr;
 #endif
