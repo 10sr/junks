@@ -8,3 +8,4 @@ invheader
 invheader.dSYM
 forever
 forever.dSYM
+*.exe
