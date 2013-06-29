@@ -42,3 +42,5 @@ Sample program of `getopt'.
 
 * [getopt.c - おべんきょめも - study memo](http://studymemo.g.hatena.ne.jp/acotie/20090721/1248169037)
 * [getoptによるオプション解析](http://www.am.sanken.osaka-u.ac.jp/~mukaigaw/misc/getopt.html)
+* [getopt_long - 研究日誌。](http://blog.goo.ne.jp/u1low_cheap/e/fd1b21d10e15a330969bfc363a828f2d)
+* [C言語でコマンドを作るまで - ザリガニが見ていた...。](http://d.hatena.ne.jp/zariganitosh/20100208/1265618630)
