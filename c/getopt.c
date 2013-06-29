@@ -1,18 +1,24 @@
 #include<stdio.h>
 #include<unistd.h>
+#include<getopt.h>
 
 static void usage(char *cmdname){
-    fprintf(stderr,"%s: usage: %s [-a] [-b barg] arg1 arg2\n",
+    fprintf(stderr,"%s: usage: %s [-a|--aarg] [-b|--barg barg] arg1 arg2\n",
             cmdname, cmdname);
     return;
 }
 
 int main(int argc,char **argv){
 
+    char *cmdname = argv[0];
     int option;
     int a = 0;
     char *barg = NULL;
-    char *cmdname = argv[0];
+    struct option long_options[] = {
+        {"aarg", no_argument, NULL, 'a'},
+        {"barg", required_argument, NULL, 'b'},
+        {0, 0, 0, 0}
+    };
 
 #ifndef __CYGWIN__
     /* Without this guard errors like this happen on cygwin. */
@@ -22,7 +28,7 @@ int main(int argc,char **argv){
 #endif
 
     while (1) {
-        option = getopt(argc, argv, "ab:");
+        option = getopt_long(argc, argv, "ab:", long_options, NULL);
         if (option == -1) {
             break;
         }
