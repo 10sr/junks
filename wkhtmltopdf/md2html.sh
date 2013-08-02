@@ -1,5 +1,13 @@
 #!/bin/sh
 
+markdown=`which markdown 2>/dev/null`
+if test -z "$markdown"
+then
+    echo "$0: markdown not installed" 1>&2
+    echo "Abort" 1>&2
+    exit 1
+fi
+
 if test $# -eq 0
 then
     exec 3<&0
@@ -23,7 +31,7 @@ cat <<'__EOC__'
   <body class="content">
 __EOC__
 
-markdown 0<&3
+"$markdown" 0<&3
 
 cat <<'__EOC__'
 </body>

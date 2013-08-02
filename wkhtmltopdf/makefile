@@ -1,6 +1,11 @@
 H2P = /Applications/wkhtmltopdf.app/Contents/MacOS/wkhtmltopdf
 
+.PHONY : default clean
+
 default : main.pdf
+
+clean :
+	$(RM) main.pdf main.html
 
 main.pdf : main.html style.css slide.css makefile \
 	footer.html header.html slidevars.js
