@@ -1,4 +1,7 @@
-H2P = /Applications/wkhtmltopdf.app/Contents/MacOS/wkhtmltopdf
+H2P = wkhtmltopdf
+ifeq ($(shell uname),Darwin)
+	H2P = /Applications/wkhtmltopdf.app/Contents/MacOS/wkhtmltopdf
+endif
 
 default : main.pdf
 
