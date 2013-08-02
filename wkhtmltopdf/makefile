@@ -10,3 +10,6 @@ main.pdf : main.html style.css slide.css makefile \
 		--footer-html footer.html --header-html header.html \
 		$< $@
 #		--footer-right '[page] / [topage]' \
+
+main.html : main.md makefile
+	./md2html.sh $< >$@ || ( rm $@; false )
