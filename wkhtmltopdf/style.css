@@ -1,10 +1,7 @@
 body {
     font-family : Source Code Pro;
     font-size : 30pt;
-}
-
-.content {
-    margin : 60pt;
+    padding : 60pt;
 }
 
 .footer {
@@ -13,7 +10,11 @@ body {
     font-size : 20pt;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
+    font-size : 0;
+}
+
+.header {
     margin : 0;
     padding : 20pt;
     text-align : center;
