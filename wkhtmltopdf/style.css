@@ -3,19 +3,16 @@ body {
     font-size : 30pt;
 }
 
-hr {
-    page-break-before : always;
-    visibility : hidden;
-}
-
 .footer {
+    margin-right : 20pt;
     text-align : right;
     font-size : 20pt;
-    margin-bottom : 10pt;
 }
 
 h1, h2, h3, h4, h5, h6 {
+    margin : 0;
+    padding : 20pt;
     text-align : center;
-    font-size : 30pt;
-    border-bottom : 1px solid black;
+    font-size : 40pt;
+    border-right : 30pt solid #ddddff;
 }
