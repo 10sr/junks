@@ -1,23 +1,25 @@
 body {
     font-family : Source Code Pro;
     font-size : 30pt;
+}
+
+.content {
     padding : 60pt;
+    margin-top : 80pt;
 }
 
 .footer {
     margin-right : 20pt;
-    text-align : right;
     font-size : 20pt;
-}
-
-h1 {
-    font-size : 0;
+    text-align : right;
 }
 
 .header {
     margin : 0;
-    padding : 20pt;
+    padding-top : 30pt;
+    padding-bottom : 20pt;
     text-align : center;
+    font-weight : bold;
     font-size : 40pt;
     border-right : 30pt solid #ddddff;
 }
