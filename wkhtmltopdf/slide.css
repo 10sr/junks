@@ -1,8 +1,12 @@
-body {
+body.content {
     margin : 0;
 }
 
+h1 {
+    font-size : 0;
+}
+
 hr {
-    page-break-after : always;
+    page-break-before : always;
     visibility : hidden;
 }

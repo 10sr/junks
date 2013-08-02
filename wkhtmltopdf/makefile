@@ -5,9 +5,11 @@ endif
 
 default : main.pdf
 
-main.pdf : main.html style.css makefile footer.html
+main.pdf : main.html style.css slide.css makefile \
+	footer.html header.html slidevars.js
 	$(H2P) --page-size A4 --orientation Landscape \
-		--margin-top 0 --margin-right 0 --margin-left 0 --margin-bottom 20 \
-		--footer-html footer.html \
+		--margin-top 100pt --margin-right 0pt \
+		--margin-left 0pt --margin-bottom 40pt \
+		--footer-html footer.html --header-html header.html \
 		$< $@
 #		--footer-right '[page] / [topage]' \
