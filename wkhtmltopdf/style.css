@@ -1,6 +1,7 @@
 body {
     font-family : Source Code Pro;
     font-size : 30pt;
+    font-color : #444;
 }
 
 .content {
@@ -22,4 +23,15 @@ body {
     font-weight : bold;
     font-size : 40pt;
     border-right : 30pt solid #ddddff;
+}
+
+code {
+    background-color : #eee;
+    padding: 0.1em 0.2em;
+}
+
+pre {
+    background-color : #eee;
+    padding : 0.2em 0.4em;     /* topbuttom leftright*/
+    margin : 0 0.5em;
 }

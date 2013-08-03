@@ -1,3 +1,23 @@
+#!/bin/sh
+
+markdown=`which markdown 2>/dev/null`
+if test -z "$markdown"
+then
+    echo "$0: markdown not installed" 1>&2
+    echo "Abort" 1>&2
+    exit 1
+fi
+
+if test $# -eq 0
+then
+    exec 3<&0
+else
+    exec 3<<__EOC__
+`cat "$@"`
+__EOC__
+fi
+
+cat <<'__EOC__'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,32 +29,13 @@
     <title>main</title>
   </head>
   <body class="content">
-<h1>first page</h1>
+__EOC__
 
-<p>aaa
-bbb</p>
+"$markdown" 0<&3
 
-<ul>
-<li>list1</li>
-<li>list2</li>
-</ul>
-
-<hr />
-
-<h1>second page</h1>
-
-<p>before code block</p>
-
-<pre><code>code block
-aaa
-</code></pre>
-
-<p>after code block</p>
-
-<hr />
-
-<h1>third page</h1>
-
-<p>a</p>
+cat <<'__EOC__'
 </body>
 </html>
+__EOC__
+
+exec 3<&-
