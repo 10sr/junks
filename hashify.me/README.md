@@ -9,7 +9,7 @@ Developed by [10sr](https://github.com/10sr), at
 
 
 Usage
-=====
+-----
 
     $ hashify [<filename>]
 
@@ -18,7 +18,7 @@ read from stdin. Bitly-shortened URL will be printed out.
 
 
 bit.ly
-======
+------
 
 By default, my (10sr) account is used for shorten URLs.
 You can use your own access token if you want. Your access token is available
