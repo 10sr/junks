@@ -1,9 +1,10 @@
 var DMD = (function(){
     function init(){
-        window.onload = onLoadHandler;
-        window.onhashchange = onHashChangeHandler;
+        // window.onload = onLoadHandler;
+        // window.onhashchange = onHashChangeHandler;
         // or
-        // window.addEventListener("hashchange", onhash, false);
+        window.addEventListener("load", onLoadHandler, false);
+        window.addEventListener("hashchange", onHashChangeHandler, false);
     };
 
     function onLoadHandler(){
@@ -12,8 +13,11 @@ var DMD = (function(){
 
     function onHashChangeHandler(){
         var h = window.content.location.hash;
+        // alert(h);
         if (h) {
             loadContent(h.substr(1));
+        } else {
+            clearContent();
         }
     }
 
@@ -25,6 +29,11 @@ var DMD = (function(){
             var div = window.document.getElementById("dmd-content");
             div.innerHTML = marked(xhr.responseText);
         });
+    }
+
+    function clearContent(){
+        var div = window.document.getElementById("dmd-content");
+        div.innerHTML = "";
     }
 
     function dirName(str){
