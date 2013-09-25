@@ -51,3 +51,4 @@ Refs
 1. [Linuxで動的リンクライブラリ（.so）を作成する - 不定期日記](http://blog.livedoor.jp/ha_yshr/archives/51793675.html)
 1. [Linux の共有ライブラリを作るとき PIC でコンパイルするのはなぜか - bkブログ](http://0xcc.net/blog/archives/000107.html)
 1. [5.1.2. ライブラリ - まとめドキュメント - 試験運用中なLinux備忘録・別館](http://kakurasan.ehoh.net/summary/library.package.os.html)
+1. [gcc - LD_LIBRARY_PATH vs LIBRARY_PATH - Stack Overflow](http://stackoverflow.com/questions/4250624/ld-library-path-vs-library-path)
