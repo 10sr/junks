@@ -1,6 +1,6 @@
 CFLAGS = -Wall -g
 CC = gcc
-TARGET = debug deadlock forever alloc readline sizeof env getopt
+TARGET = debug deadlock forever alloc readline sizeof env getopt atomic_add
 ALLTARGET = $(TARGET) catstr invheader
 
 default : all
