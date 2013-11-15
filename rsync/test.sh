@@ -8,12 +8,17 @@ basedir="./rsynctest_base"
 
 show_dirtree(){
     # http://www.math.kobe-u.ac.jp/~kodama/tips-dirtree.html
-    echo ":: Dir tree of $1"
-    (
-        cd "$1" && \
-        find . | sort | \
-        sed -ne '1b;s/[^\/]*\//+--/g;s/+--+/|  +/g;s/+--+/|  +/g;s/+--|/|  |/g;p'
-    )
+    if test -f "$1"
+    then
+        echo ":: $1 is a file."
+    else
+        echo ":: Dir tree of $1"
+        (
+            cd "$1" && \
+                find . | sort | \
+                sed -ne '1b;s/[^\/]*\//+--/g;s/+--+/|  +/g;s/+--+/|  +/g;s/+--|/|  |/g;p'
+        )
+    fi
 }
 
 debug(){
