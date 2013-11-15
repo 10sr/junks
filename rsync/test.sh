@@ -16,9 +16,9 @@ show_dirtree(){
     )
 }
 
-rsync(){
-    echo :: rsync "$@"
-    command rsync "$@"
+debug(){
+    echo :: "$@"
+    "$@"
 }
 
 initialize(){
@@ -67,7 +67,7 @@ isdir(){
 test1(){
     echo "-----test1-------------------"
     # rsync -a dir1 dir2 where dir2 does not exists
-    rsync -a "$basedir/src" "$basedir/dst1"
+    debug rsync -a "$basedir/src" "$basedir/dst1"
 }
 
 test1_check(){
@@ -83,7 +83,7 @@ test1_check(){
 test2(){
     echo "-----test2-------------------"
     # rsync -a dir1/ dir2 where dir2 does not exists
-    rsync -a "$basedir/src/" "$basedir/dst2"
+    debug rsync -a "$basedir/src/" "$basedir/dst2"
 }
 
 test2_check(){
@@ -96,10 +96,46 @@ test2_check(){
     echo
 }
 
+test3(){
+    echo "-----test3-------------------"
+    # rsync -a dir1 dir3 where dir3 exists
+    debug mkdir -p "$basedir/dst3"
+    debug rsync -a "$basedir/src" "$basedir/dst3"
+}
+
+test3_check(){
+    echo "-----test3 check-------------"
+    isfile "$basedir/dst3/src/a.txt"
+    isfile "$basedir/dst3/src/b.txt"
+    isdir "$basedir/dst3/src/d"
+    isfile "$basedir/dst3/src/d/b.txt"
+    show_dirtree "$basedir/dst3"
+    echo
+}
+
+test4(){
+    echo "-----test4-------------------"
+    # rsync -a dir1/ dir4 where dir4 exists
+    debug mkdir -p "$basedir/dst4"
+    debug rsync -a "$basedir/src/" "$basedir/dst4"
+}
+
+test4_check(){
+    echo "-----test3 check-------------"
+    isfile "$basedir/dst4/a.txt"
+    isfile "$basedir/dst4/b.txt"
+    isdir "$basedir/dst4/d"
+    isfile "$basedir/dst4/d/b.txt"
+    show_dirtree "$basedir/dst4"
+    echo
+}
+
 main(){
     initialize
     test1 && test1_check
     test2 && test2_check
+    test3 && test3_check
+    test4 && test4_check
 }
 
 main
