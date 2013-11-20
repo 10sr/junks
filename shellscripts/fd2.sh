@@ -8,10 +8,11 @@ __EOC__
 
 exec 3<&-
 
+
+# not works
 # # replace stdout
-# exec 3<&1
-# 0<&3 perl -ne 'print $., ",", $_'
+# exec 4<&1
+# <&4 perl -ne 'print $., ",", $_'
 
 # echo abc
-# exec 3<&-
 # exec 1<&-
