@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# fd to modify comes first.
+
 # open input fd
 if test -n "$1"
 then
