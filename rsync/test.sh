@@ -1,5 +1,4 @@
 #!/bin/sh
-set -e
 
 # test.sh --- Test the usage of rsync
 
@@ -64,6 +63,7 @@ initialize(){
     # |  +--d
     # |  |  +--b.txt
 
+    set -e
     test -d "$basedir" && rm -r "$basedir"
     mkdir -p "$basedir"
     mkdir "$basedir/src"
@@ -73,6 +73,7 @@ initialize(){
     echo c >"$basedir/src/d/b.txt"
     show_dirtree "$basedir/src"
     echo
+    set +e
 }
 
 ######################################
