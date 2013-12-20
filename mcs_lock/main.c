@@ -65,20 +65,16 @@ mcs_lock_t *mcs_aquire(mcs_lock_t *me)
 
 mcs_lock_t *mcs_release(mcs_lock_t *me)
 {
-    printf("a\n");
     if (! me->next) {
         /* if last and me are same, set last to NULL and return */
-        printf("a\n");
         if (cas(&last, me, NULL) == me) {
             me->lock = 0;
             return me;
         }
-        printf("a\n");
         while (! me->next) {
             /* wait until me->next is set */
             continue;
         }
-        printf("a\n");
     }
 
     me->lock = 0;
@@ -96,11 +92,8 @@ int main(int argc, char **argv)
 
     start = rdtsc();
     for (i = 0; i < 10; i++) {
-        printf("mcs start aquire %d\n", i);
         mcs_aquire(&l);
-        printf("mcs finish aquire: start release %d\n", i);
         mcs_release(&l);
-        printf("mcs finish release %d\n", i);
     }
     end = rdtsc();
 
