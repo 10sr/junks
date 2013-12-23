@@ -8,5 +8,8 @@ class Test{
         int a = c.a;
         System.out.println("hello world");
         System.out.println(a);
+
+        AClass c2 = new AClass(4);
+        System.out.println(c.equals(c2));
     }
 }

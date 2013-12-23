@@ -7,14 +7,20 @@ public class AClass{
         a = b;
     }
 
-    public void met1(int b)
+    public void seta(int b)
     {
         a = b;
         return;
     }
 
-    public int met2()
+    public int geta()
     {
         return a;
+    }
+
+    // many classes have equals method
+    public boolean equals(AClass c)
+    {
+        return a == c.a;
     }
 }
