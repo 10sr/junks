@@ -7,15 +7,23 @@ public class AClass{
         AClass.s = 1;
     }
 
-    public static void sets(int b)
-    {
-        AClass.s = b;
-    }
-
     // met of same name as class name is constructor
     public AClass(int b)
     {
         this.a = b;
+        return;
+    }
+
+    public AClass()
+    {
+        // call AClass(int b)
+        this(9);
+        return;
+    }
+
+    public static void sets(int b)
+    {
+        AClass.s = b;
     }
 
     public void seta(int b)
