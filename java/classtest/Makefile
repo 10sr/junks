@@ -1,4 +1,4 @@
-target = Test AClass
+target = Test AClass BClass
 
 $(target) : % : %.java
-	javac $<
+	LC_ALL=C javac $<
