@@ -21,5 +21,10 @@ class Test{
         BClass d = new BClass();
         d.seta(0);
         System.out.println(d.a);
+
+        DerivClass dr = new DerivClass();
+        System.out.println(dr.met1());
+        System.out.println(dr.met1());
+        System.out.println(dr.met1());
     }
 }

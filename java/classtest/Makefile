@@ -1,6 +1,8 @@
-target = Test AClass BClass
+target = Test AClass BClass ABSClass DerivClass
 
 all : $(target)
 
-$(target) : % : %.java
+$(target) : % : %.class
+
+%.class : %.java
 	LC_ALL=C javac $<
