@@ -1,7 +1,14 @@
 #!/usr/bin/env python2
 
+"""TestFS --- Hell World Filesystem
+
+usage: ./main.py <mountpoint> [<opts>]
+"""
+
 import stat
+import os
 import errno
+from time import time
 
 import fuse
 fuse.fuse_python_api = (0, 2)
@@ -11,7 +18,7 @@ class TestStat(fuse.Stat):
         # http://docs.python.org/2.7/library/os.html#os.stat
 
         # protection bit
-        self.st_mode = stat.S_IFREG | 0755
+        self.st_mode = stat.S_IFREG | 0644
 
         # inode number
         self.st_ino = 0
@@ -24,8 +31,8 @@ class TestStat(fuse.Stat):
         self.st_nlink = 1
 
         # uid and gid of owner
-        self.st_uid = 0
-        self.st_gid = 0
+        self.st_uid = os.getuid()
+        self.st_gid = os.getgid()
 
         # size in bytes
         self.st_size = 0
@@ -36,7 +43,7 @@ class TestStat(fuse.Stat):
         self.st_ctime = 0
 
 class TestFS(fuse.Fuse):
-    # list of files in root directory
+    hw = "Hell, World!\n"
 
     # available attrs are (from fuse.py):
     _attrs = ['getattr', 'readlink', 'readdir', 'mknod', 'mkdir',
@@ -65,9 +72,11 @@ class TestFS(fuse.Fuse):
 
         if path == "/":
             # root directory
-            st.st_mode = stat.S_IFDIR
+            st.st_mode = stat.S_IFDIR | 0755
             st.st_nlink = 2
             st.st_size = 4096
+        else:
+            st.st_size = len(self.hw)
 
         return st
 
@@ -77,7 +86,7 @@ class TestFS(fuse.Fuse):
     def readdir(self, path, offset):
         """Return iterable of files in directory PATH."""
         # what is OFFSET?
-        return (fuse.Directory(r) for r in (".", "..", "a.txt"))
+        return (fuse.Direntry(r) for r in (".", "..", "a.txt"))
 
     def mknod(self, path, mode, dev):
         """Make node. MODE and DEV are used for stat object."""
@@ -93,7 +102,7 @@ class TestFS(fuse.Fuse):
         return len(buf)
 
     def read(self, path, size, offset):
-        return "Hell, world!"[offset:offset+size]
+        return self.hw[offset:offset+size]
 
     def release(self, path, flags):
         """close(2) file."""
@@ -122,12 +131,12 @@ class TestFS(fuse.Fuse):
 
 
 def main():
-    usage="""
-    TestFS: Helloworld filesystem
-    """ + fuse.Fuse.fusage
+    # usage="""
+    # TestFS: Helloworld filesystem
+    # """ + fuse.Fuse.fusage
 
     server = TestFS(version="%prog " + fuse.__version__,
-                    usage=usage, dash_s_do='setsingle')
+                    dash_s_do='setsingle')
     server.parse(errex=1)
     server.main()
 
