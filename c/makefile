@@ -1,7 +1,7 @@
 CFLAGS = -Wall -g
 CC = gcc
 TARGET = debug deadlock forever alloc readline sizeof env getopt atomic_add \
-	typedef thread cas
+	typedef thread cas pthread_key
 ALLTARGET = $(TARGET) catstr invheader
 
 default : all
