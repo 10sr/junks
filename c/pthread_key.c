@@ -4,6 +4,8 @@
 
 #define THREAD_NUM 3
 
+/* http://linuxgcc.sytes.net/sys020.php */
+
 pthread_key_t g_key;
 
 void _func_called_from_th(void)
