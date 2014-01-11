@@ -1,7 +1,7 @@
 ###########################
 # patsubpst
 
-# replace strings
+# Replace strings
 
 foo = a.o b.o
 bar = $(foo:%.o=%.c)
