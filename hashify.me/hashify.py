@@ -9,6 +9,7 @@ BITLY_API_HOST = "api-ssl.bitly.com"
 import sys
 
 def bitly(url):
+    print(url)
     assert bitly_id
     assert bitly_key
 
@@ -33,9 +34,16 @@ def bitly(url):
                                                 path="/v3/shorten",
                                                 params=params)
     res = urllib.request.urlopen(url)
-    assert res.status == 200
+    # assert res.status == 200
+    if res.status != 200:
+        print(res.reason)
+        sys.exit(1)
     resbody = json.loads(res.read().decode("utf-8"))
-    assert resbody["status_code"] == 200
+    # assert resbody["status_code"] == 200
+    if resbody["status_code"] != 200:
+        print(resbody)
+        print(url)
+        sys.exit(1)
     return resbody["data"]["url"]
 
 def hashify(infile=sys.stdin):
