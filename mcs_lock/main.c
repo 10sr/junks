@@ -1,6 +1,13 @@
 #include<stdio.h>
 #include<stdint.h>
+#include<pthread.h>
 
+#define THREAD_NUM 4
+
+
+/*********************************************
+ utils
+*********************************************/
 
 #define cas __sync_val_compare_and_swap
 
@@ -34,6 +41,10 @@ unsigned long long rdtsc() {
     return r;
 }
 
+
+/*********************************************
+ MCS Lock
+*********************************************/
 
 
 struct _mcs_lock_t {
@@ -83,8 +94,7 @@ mcs_lock_t *mcs_release(mcs_lock_t *me)
     return me;
 }
 
-
-int main(int argc, char **argv)
+int mcs_test()
 {
     uint64_t start, end;
     int i;
@@ -97,6 +107,42 @@ int main(int argc, char **argv)
     }
     end = rdtsc();
 
-    printf("%ld\n", end - start);
+    return end - start;
+}
+
+
+void *_thread_func(void *_arg){
+    int i;
+    intptr_t myidx = (intptr_t) _arg;
+    int totalcycle = 0;
+    for (i = 2; i >= THREAD_NUM; i++) {
+        pthread_barrier_waitls
+            ();
+        if (myidx < i) {
+            totalcycle += syscall(701);
+        }
+    }
+    printf("%ld: %d\n", myidx, totalcycle);
+    return NULL;
+}
+
+void mcs_main(){
+    pthread_t th[THREAD_NUM];
+    intptr_t i;
+
+    for (i = 0; i < THREAD_NUM; i++) {
+        pthread_create(&(th[i]), NULL, _thread_func, (void *)i);
+    }
+
+    for (i = 0; i < THREAD_NUM; i++){
+        pthread_join(th[i], NULL);
+    }
+    return;
+}
+
+int main(int argc, char **argv)
+{
+    mcs_main();
+    /* printf("%d\n", r); */
     return 0;
 }
