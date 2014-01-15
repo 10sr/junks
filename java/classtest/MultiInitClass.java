@@ -17,10 +17,16 @@ public class MultiInitClass{
         this.b = b;
     }
 
-    public void print()
+    private void _print()
     {
         System.out.println("a: " + this.a);
         System.out.println("b: " + this.b);
+        return;
+    }
+
+    public void print()
+    {
+        this._print();
         return;
     }
 }
