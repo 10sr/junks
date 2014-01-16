@@ -26,5 +26,12 @@ class Test{
         System.out.println(dr.met1());
         System.out.println(dr.met1());
         System.out.println(dr.met1());
+
+        MultiInitClass m1 = new MultiInitClass();
+        m1.print();
+        MultiInitClass m2 = new MultiInitClass(1);
+        m2.print();
+        MultiInitClass m3 = new MultiInitClass(1.1);
+        m3.print();
     }
 }
