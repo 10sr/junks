@@ -1,0 +1,25 @@
+#!/usr/bin/env emacs -Q --script
+
+;; http://cx4a.org/pub/emacs-lisp-for-scripting.ja.html
+
+(defun _main (file)
+  (with-current-buffer (find-file file)
+    ;; (insert-file-contents-literally file)
+    ;; (setq change-major-mode-with-file-name t)
+    ;; (set-visited-file-name file)
+    (goto-char (point-max))
+    (princ (buffer-substring (point-min)
+                             (point-max)))
+    ;; (set-buffer-major-mode (current-buffer))
+    (princ major-mode)
+    ))
+
+;; (main)
+
+(defun main (argv)
+  (setq-default vc-handled-backends nil)
+  (if (eq argv nil)
+      (message "usage: emacs --script process_main.el <file>")
+    (_main (car argv))))
+
+(main command-line-args-left)
