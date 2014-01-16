@@ -18,8 +18,10 @@
 
 (defun main (argv)
   (setq-default vc-handled-backends nil)
-  (if (eq argv nil)
-      (message "usage: emacs --script process_main.el <file>")
-    (_main (car argv))))
+  (if noninteractive
+      (if (eq argv nil)
+          (message "usage: emacs --script process_main.el <file>")
+        (_main (car argv)))
+    (message "Noninteractive usage only")))
 
 (main command-line-args-left)
