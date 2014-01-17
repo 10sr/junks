@@ -4,6 +4,12 @@ Small C Programs
 Some trys of c features.
 
 
+Try later
+---------
+
+* <http://kazmax.zpp.jp/cmd/g/getrusage.2.html>
+
+
 debug.c
 -------
 
