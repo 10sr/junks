@@ -7,6 +7,9 @@ p [1, 3, 4]
 p :abc
 p({:a => 1, :b => 2})
 
+str1 = "abc"
+p "str1: #{str1}"
+
 # toplevel method definition
 def met(a, b)
   p [a, b]
@@ -35,6 +38,7 @@ class AClass
   end
 
   def met1()
+    p self
     p "met1 of AClass"
     p "m1: " + @m1
   end
@@ -45,17 +49,24 @@ o1.met1()
 
 # inherit
 class BClass < AClass
+  private :met1
   def met2()
-    p "calling met1 two times"
+    p "call met1"
     # call met1 of AClass two times
     met1
-    self.met1
+    # self.met1
     p "done"
   end
 end
 
 o2 = BClass.new("def", 3)
 o2.met2
+begin
+  # try to call private method
+  o2.met1
+rescue NoMethodError => evar
+  p evar
+end
 
 # try to call nonexisting method
 begin
@@ -76,4 +87,59 @@ class BClass
 end
 
 o2.met3("ghi")
-o2.met1
+
+class CClass < BClass
+  def met3()
+    # call met3 of BClass
+    super("jkl")
+  end
+end
+
+o3 = CClass.new("mno", 2)
+o3.met3()
+
+
+i = 3
+
+puts "while loop"
+while i >= 0
+  p i
+  i -= 1
+end
+
+a = [1, 2, 3]
+
+puts "for loop"
+for i in a
+  p i
+end
+
+puts "each loop"
+a.each {|e|
+  p e
+}
+
+puts "times loop"
+3.times do |e|
+  p e
+end
+
+def ymet(idx)
+  puts "ymet start"
+  idx.times do |a|
+    yield a
+  end
+  puts "ymet end"
+end
+
+ymet(3) {|a1| p a1}
+
+def ymet2(idx, arg="def", *rest, &blk)
+  puts "ymet2 start"
+  idx.times do |i|
+    blk.call(arg + i.to_s + " " + rest.to_s)
+  end
+  puts "ymet2 end"
+end
+
+ymet2(3, "abc", 1, 2 ,3) {|a1| puts a1}
