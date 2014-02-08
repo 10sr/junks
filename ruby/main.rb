@@ -143,3 +143,15 @@ def ymet2(idx, arg="def", *rest, &blk)
 end
 
 ymet2(3, "abc", 1, 2 ,3) {|a1| puts a1}
+
+# proc object can be passed with &
+proc1 = proc {|b| puts "proc1:" + b}
+ymet2(3, &proc1)
+
+# pass multiple blocks
+def ymet3(arg, blk1, blk2)
+  blk1.call(arg)
+  blk2.call(arg)
+end
+
+ymet3("abc", proc1, proc {|b| puts "proc2: " + b})
