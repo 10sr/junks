@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby1.9
 
-# pretty print
+# https://www.ruby-lang.org/ja/documentation/
+# http://route477.net/d/?date=20100125
+# http://www.lab.ime.cmc.osaka-u.ac.jp/~kiyo/pub/lecture/unixpro/ruby/
+
+# debug print
 p "abc"
 p 1
 p [1, 3, 4]
@@ -127,12 +131,12 @@ end
 def ymet(idx)
   puts "ymet start"
   idx.times do |a|
-    yield a
+    yield a, "ymet "
   end
   puts "ymet end"
 end
 
-ymet(3) {|a1| p a1}
+ymet(3) {|a1, str| p str + a1.to_s}
 
 def ymet2(idx, arg="def", *rest, &blk)
   puts "ymet2 start"
