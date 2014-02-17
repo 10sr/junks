@@ -1,0 +1,22 @@
+set terminal postscript eps
+set output "a.eps"
+#set terminal png
+#set output "a.png"
+
+set style data lines
+
+plot \
+     '-' title "data1", \
+     '-' title "data2"
+
+1 2
+2 4
+3 6
+4 7
+e
+
+1 3
+2 3
+3 3
+4 6
+e
