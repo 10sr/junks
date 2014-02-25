@@ -6,7 +6,7 @@
 
 %% export functions
 -export([square/1, sum/1, main/0, main/1, sum_odd/1, fib/1, if_f/1, case_f/1,
-         use_for/0, use_map/0, use_map2/0, list_comp/0]).
+         use_for/0, use_map/0, use_map2/0, list_comp/0, trycatch/0]).
 
 square(X) ->
     X * X.
@@ -94,3 +94,10 @@ use_map2() ->
 %% list comprehension
 list_comp() ->
     [X * X || X <- [1,2,3,4,5], X rem 2 =:= 1].
+
+trycatch() ->
+    try
+        (1 + a)
+    catch _:Reason ->
+            io:format("1 + a failed. Reason: ~p~n", [Reason]) end.
+
