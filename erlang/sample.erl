@@ -6,7 +6,8 @@
 
 %% export functions
 -export([square/1, sum/1, main/0, main/1, sum_odd/1, fib/1, if_f/1, case_f/1,
-         use_for/0, use_map/0, use_map2/0, list_comp/0, trycatch/0]).
+         use_for/0, use_map/0, use_map2/0, list_comp/0, trycatch/0,
+         list_comp2/0]).
 
 square(X) ->
     X * X.
@@ -57,8 +58,8 @@ if_f(X) ->
       if X rem 6 == 0 -> "6\n";
          X rem 3 == 0 -> "3\n";
          X rem 2 == 0 -> "2\n";
-	     true         -> "None of them\n"
-	  end
+         true         -> "None of them\n"
+      end
      ).
 
 case_f(X) ->
@@ -94,6 +95,9 @@ use_map2() ->
 %% list comprehension
 list_comp() ->
     [X * X || X <- [1,2,3,4,5], X rem 2 =:= 1].
+
+list_comp2() ->
+    [{X, Y} || X <- [1,2,3,4,5], Y <- [3,4,5,6,7], X rem 2 =:= 1, X /= Y].
 
 trycatch() ->
     try
