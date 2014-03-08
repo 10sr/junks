@@ -6,7 +6,7 @@
   (print "hello world!")
   ; (if args (print (car args)))
   (while (pair? args)
-         (write (pop! args)))
+         (print (pop! args)))
   0)
 ;gauche #f
 
