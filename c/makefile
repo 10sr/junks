@@ -1,7 +1,7 @@
 CFLAGS = -Wall -g
 CC = gcc
 TARGET = debug deadlock forever alloc readline sizeof env getopt atomic_add \
-	typedef thread cas pthread_key
+	typedef thread cas pthread_key freelist swapcontext
 ALLTARGET = $(TARGET) catstr invheader
 
 default : all
@@ -19,9 +19,5 @@ gitignore :
 		done\
 	) >>.gitignore
 
-catstr : catstr.o
-
-invheader : invheader.o
-
-deadlock : deadlock.c
-	$(CC) $(CFLAGS) -o $@ -pthread $<
+deadlock thread pthread_key : % : %.c
+	$(CC) $(CFLAGS) -o $@ -lpthread $<
