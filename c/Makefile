@@ -2,7 +2,7 @@ CFLAGS = -Wall -g
 CC = gcc
 TARGET = debug deadlock forever alloc readline sizeof env getopt atomic_add \
 	typedef thread cas pthread_key freelist swapcontext swapcontext2 \
-	struct_pointer
+	struct_pointer print_struct
 ALLTARGET = $(TARGET) catstr invheader
 
 default : all
