@@ -26,7 +26,7 @@ void set_func(char *fname)
     err = dlerror();
     if (err) {
         /* dlsym error */
-        printf("dlsym: %s\n", err);
+        printf("dlsym error: %s\n", err);
     } else {
         g_func = f;
     }
@@ -40,5 +40,6 @@ int main(void)
     r = g_func(1);
     set_func("func2");
     r = g_func(2);
+    set_func("func3");
     return 0;
 }
