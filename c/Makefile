@@ -2,7 +2,7 @@ CFLAGS = -Wall -g
 CC = gcc
 TARGET = debug deadlock forever alloc readline sizeof env getopt atomic_add \
 	typedef thread cas pthread_key freelist swapcontext swapcontext2 \
-	struct_pointer print_struct
+	struct_pointer print_struct dlsym
 ALLTARGET = $(TARGET) catstr invheader
 
 default : all
@@ -22,3 +22,6 @@ gitignore :
 
 deadlock thread pthread_key : % : %.c
 	$(CC) $(CFLAGS) -o $@ -lpthread $<
+
+dlsym : % : %.c
+	$(CC) -rdynamic $(CFLAGS) -o $@ -ldl $<
