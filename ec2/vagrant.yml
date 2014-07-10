@@ -1,0 +1,8 @@
+- hosts: all
+  sudo: yes
+  vars:
+  tasks:
+  - name: install vagrant
+    yum: name=https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.rpm state=present
+  - name: install virtualbox
+    yum: pkg=virtualbox state=present

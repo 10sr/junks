@@ -1,0 +1,13 @@
+---
+- hosts: all
+  sudo: yes
+  vars:
+  tasks:
+  - name: enable epel
+    yum: name=http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/beta/7/x86_64/epel-release-7-0.2.noarch.rpm state=present
+  - name: install docker
+    yum: pkg=docker-io state=present
+  - name: start and enable docker
+    service: name=docker enabled=yes state=started
+  - name: run nginx docker
+    docker: image=nginx ports=80
