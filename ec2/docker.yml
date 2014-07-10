@@ -9,5 +9,3 @@
     yum: pkg=docker-io state=present
   - name: start and enable docker
     service: name=docker enabled=yes state=started
-  - name: run nginx docker
-    docker: image=nginx ports=80
