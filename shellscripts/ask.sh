@@ -1,6 +1,9 @@
 #!/bin/sh
 
 _ask(){
+    # _ask msg default
+    # _ask use input with prompt MSG
+    # DEFAULT must be y or n
     printf "$1 "
     read reply
     test -n "$reply" || reply="$2"
