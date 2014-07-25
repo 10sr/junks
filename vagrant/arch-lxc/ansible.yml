@@ -1,0 +1,30 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+  - name: Install packages for lxc
+    pacman: pkg={{ item }} state=installed
+    with_items:
+      - lxc
+      - bridge-utils
+      - arch-install-scripts
+      - netctl
+      - rsync
+  - name: Put netctl for lxc bridge
+    copy: src=lxcbridge.netctl dest=/etc/netctl/lxcbridge
+
+  - name: Install docker
+    pacman: pkg=docker state=installed
+  - name: start and enable docker
+    service: name=docker enabled=yes state=started
+  - name: Add user to docker group
+    user: name=vagrant groups=docker append=yes
+
+  - name: Install git
+    pacman: pkg=git state=installed
+  - name: Create ssh key
+    user: name=vagrant generate_ssh_key=yes
+
+  handlers:
+  - name: restart ntpd
+    action: service name=ntpd state=restarted
