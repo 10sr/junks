@@ -3,6 +3,10 @@
   vars:
   tasks:
   - name: install vagrant
-    yum: name=https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.rpm state=present
+    yum: >
+      name=https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.rpm
+      state=present
   - name: install virtualbox
-    yum: pkg=virtualbox state=present
+    yum: >
+      name=http://download.virtualbox.org/virtualbox/4.3.14/VirtualBox-4.3-4.3.14_95030_el7-1.x86_64.rpm
+      state=present
