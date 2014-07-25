@@ -5,20 +5,3 @@
     yum: name=https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.rpm
          state=present
     sudo: yes
-  - name: install dkms
-    yum: name=dkms state=present
-    sudo: yes
-  - name: install kernel-devel
-    yum: name=kernel-devel state=present
-    sudo: yes
-  - name: adhoc kernel source path fix
-    file: path=/usr/src/kernels/3.10.0-123.el7.x86_64 
-          state=link src=3.10.0-123.4.4.el7.x86_64
-    sudo: yes
-  - name: install virtualbox
-    yum: name=http://download.virtualbox.org/virtualbox/4.3.14/VirtualBox-4.3-4.3.14_95030_el7-1.x86_64.rpm
-         state=present
-    sudo: yes
-  - name: copy vagrant files
-    copy: src=vagrant/{{item}} dest={{ansible_env.HOME}}/vagr/
-    with_items: [Vagrantfile, ansible.yml]
