@@ -13,4 +13,7 @@
     yum: name=git state=present
   - name: clone my vagrant repo
     git: repo=https://github.com/10sr/vagrant_boxes.git
-         dest={{ansible_env.HOME}}/vagr
+         dest={{ansible_env.HOME}}/vagr-git
+  - name: copy vagrant files
+    copy: src=vagrant/{{item}} dest={{ansible_env.HOME}}/vagr/
+    with_items: [Vagrantfile, ansible.yml]
