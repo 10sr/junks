@@ -24,7 +24,3 @@
     pacman: pkg=git state=installed
   - name: Create ssh key
     user: name=vagrant generate_ssh_key=yes
-
-  handlers:
-  - name: restart ntpd
-    action: service name=ntpd state=restarted

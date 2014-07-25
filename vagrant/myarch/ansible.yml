@@ -9,6 +9,3 @@
       - git
   - name: Enable and start docker
     action: service name=docker enabled=yes state=started
-  handlers:
-    - name: restart ntpd
-      action: service name=ntpd state=restarted
