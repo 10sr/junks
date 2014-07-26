@@ -1,0 +1,29 @@
+---
+- hosts: all
+  vars:
+  sudo: yes
+  tasks:
+  - name: install lxc
+    yum: name=lxc state=present
+    # installing lxc-templates somehow fails
+  # - name: install lxc-templates
+  #   yum: name=lxc-templates state=present
+  - name: adhoc lxc-centos template install
+    copy: src=lxc-centos.template dest=/usr/share/lxc/templates/lxc-centos
+          mode=755
+  - name: install brctl
+    yum: name=bridge-utils state=present
+  - name: put network scripts
+    copy: src=network-scripts/{{item}} dest=/etc/sysconfig/network-scripts
+    with_items: [ifcfg-virbr0]
+    notify:
+    - setup iptables
+    - setup ipforward
+
+  handlers:
+  - name: setup iptables
+    command: iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+    sudo: yes
+  - name: setup ipforward
+    command: sysctl -w net.ipv4.ip_forward=1
+    sudo : yes
