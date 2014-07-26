@@ -18,12 +18,19 @@
     with_items: [ifcfg-virbr0]
     notify:
     - setup iptables
+  - name: put sysctl for ipforward
+    copy: src=ip_forward.sysctl.conf dest=/etc/sysctl.d/90-ip_forward.conf
+    notify:
     - setup ipforward
 
   handlers:
   - name: setup iptables
     command: iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     sudo: yes
+    notify:
+    - save iptables
   - name: setup ipforward
     command: sysctl -w net.ipv4.ip_forward=1
     sudo : yes
+  - name: save iptables
+    shell: iptables-save >/etc/sysconfig/iptables
