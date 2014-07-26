@@ -241,14 +241,20 @@ configure_centos()
     fi
 
     # configure the network using the dhcp
+    # NOTE: ipaddr is fixed to 3.2: this should be updated for each create
     cat <<EOF > ${rootfs_path}/etc/sysconfig/network-scripts/ifcfg-eth0
 DEVICE=eth0
-BOOTPROTO=dhcp
+#BOOTPROTO=dhcp
 ONBOOT=yes
 HOSTNAME=${UTSNAME}
 NM_CONTROLLED=no
 TYPE=Ethernet
 MTU=${MTU}
+
+BOOTPROTO=static
+IPADDR=192.168.3.2
+NETMASK=255.255.255.0
+GATEWAY=192.168.3.1
 EOF
 
     # set the hostname
