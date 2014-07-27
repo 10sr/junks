@@ -37,7 +37,7 @@
   - name: Prepare vagrant directory
     file: path={{vagr_dir}}/trusty64-lxc state=directory
     sudo: no
-  - name: init trusty64-lxc
+  - name: Vagrant init trusty64-lxc
     command: vagrant init fgrehm/trusty64-lxc
              chdir={{vagr_dir}}/trusty64-lxc
              creates={{vagr_dir}}/trusty64-lxc/Vagrantfile
