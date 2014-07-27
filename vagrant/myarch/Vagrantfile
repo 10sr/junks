@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "myarch3"
+  config.vm.box = "myarch"
   config.vm.box_url = "http://www.eidos.ic.i.u-tokyo.ac.jp/~yuk/archlinux-x86_64.box"
 
   # Disable automatic box update checking. If you disable this, then
