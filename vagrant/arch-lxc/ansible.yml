@@ -1,6 +1,8 @@
 ---
 - hosts: all
   sudo: yes
+  vars:
+  - vagr_dir: /home/vagrant/vagr
   tasks:
   - name: Install packages for lxc
     pacman: pkg={{ item }} state=installed
@@ -13,6 +15,7 @@
   - name: Put netctl for lxc bridge
     copy: src=lxcbridge.netctl dest=/etc/netctl/lxcbridge
 
+  # setup docker
   - name: Install docker
     pacman: pkg=docker state=installed
   - name: start and enable docker
@@ -20,7 +23,27 @@
   - name: Add user to docker group
     user: name=vagrant groups=docker append=yes
 
+  # setup git
   - name: Install git
     pacman: pkg=git state=installed
   - name: Create ssh key
     user: name=vagrant generate_ssh_key=yes
+
+  # setup vagrant and vagrant-lxc
+  - name: Install vagrant
+    pacman: pkg=vagrant state=installed
+    notify:
+    - Install vagrant-lxc plugin
+  - name: Prepare vagrant directory
+    file: path={{vagr_dir}}/trusty64-lxc state=directory
+    sudo: no
+  - name: init trusty64-lxc
+    command: vagrant init fgrehm/trusty64-lxc
+             chdir={{vagr_dir}}/trusty64-lxc
+             creates={{vagr_dir}}/trusty64-lxc/Vagrantfile
+    sudo: no
+
+  handlers:
+  - name: Install vagrant-lxc plugin
+    command: vagrant plugin install vagrant-lxc --plugin-version 1.0.0.alpha.2
+    sudo: no
