@@ -17,12 +17,12 @@
   - name: install brctl
     yum: name=bridge-utils state=present
   - name: put network scripts for virtual bridge
-    copy: src=network-scripts/{{item}} dest=/etc/sysconfig/network-scripts
+    copy: src=lxc.network-scripts/{{item}} dest=/etc/sysconfig/network-scripts
     with_items: [ifcfg-virbr0]
     notify:
     - setup iptables
   - name: put sysctl for ipforward
-    copy: src=ip_forward.sysctl.conf dest=/etc/sysctl.d/90-ip_forward.conf
+    copy: src=lxc.ip_forward.sysctl.conf dest=/etc/sysctl.d/90-ip_forward.conf
     notify:
     - setup ipforward
 
