@@ -38,6 +38,16 @@
   #   notify:
   #   - mount cgroup
 
+  - name: install dnsmasq
+    yum: name=dnsmasq state=present
+  - name: install dhclient config
+    copy: src=lxc.dhclient.conf dest=/etc/dhcp/dhclient.d/lxc.conf
+    notify: renew DHCP lease
+  - name: enable dnsmasq
+    service: name=dnsmasq enabled=yes state=started
+  - name: install dnsmasq config
+    copy: src=lxc.dnsmasq.conf dest=/etc/dnsmasq.d/lxc.conf
+    notify: reload dnsmasq confs
 
   handlers:
   - name: setup iptables
@@ -50,3 +60,7 @@
     shell: iptables-save >/etc/sysconfig/iptables
   - name: mount cgroup
     command: mount -a
+  - name: reload dnsmasq confs
+    service: name=dnsmasq state=restarted
+  - name: renew DHCP lease
+    command: dhclient -e IF_METRIC=100 -pf /var/run/dhclient-eth0.pid -lf /var/lib/dhclient/dhclient.eth0.leases eth0
