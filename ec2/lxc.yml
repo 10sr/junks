@@ -19,8 +19,13 @@
   - name: put network scripts for virtual bridge
     copy: src=lxc.network-scripts/{{item}} dest=/etc/sysconfig/network-scripts
     with_items: [ifcfg-virbr0]
+  - name: mkdir for iptabels
+    file: path=/etc/iptables state=directory
+  - name: setup iptables
+    command: iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+             creates=/etc/iptables/rules
     notify:
-    - setup iptables
+    - save iptables
   - name: put sysctl for ipforward
     copy: src=lxc.ip_forward.sysctl.conf dest=/etc/sysctl.d/90-ip_forward.conf
     notify:
@@ -50,14 +55,10 @@
     notify: reload dnsmasq confs
 
   handlers:
-  - name: setup iptables
-    command: iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-    notify:
-    - save iptables
   - name: setup ipforward
     command: sysctl -w net.ipv4.ip_forward=1
   - name: save iptables
-    shell: iptables-save >/etc/sysconfig/iptables
+    shell: iptables-save >/etc/iptables/rules
   - name: mount cgroup
     command: mount -a
   - name: reload dnsmasq confs
