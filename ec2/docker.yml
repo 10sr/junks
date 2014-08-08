@@ -15,3 +15,11 @@
     pip: name=docker-py
   - name: run nginx docker
     docker: image=nginx ports=8080
+
+- hosts: all
+  vars:
+    user: "{{ansible_env.USER}}"
+  tasks:
+  - name: add {{user}} to docker group
+    user: name={{user}} groups=docker append=yes
+    sudo: yes
