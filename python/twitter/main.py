@@ -13,9 +13,11 @@ def main(argv):
         tw.oauth_dance("j/python/twitter", CONSUMER_KEY, CONSUMER_SECRET,
                        TOKEN_FILE)
 
-    oauth_token, oauth_secret = tw.read_token_files(TOKEN_FILE)
+    oauth_token, oauth_secret = tw.read_token_file(TOKEN_FILE)
 
-    tw.statuses.update("@tos j/p/t test")
+    t = tw.Twitter(auth=tw.OAuth(oauth_token, oauth_secret,
+                                 CONSUMER_KEY, CONSUMER_SECRET))
+    t.statuses.update(status="@tos j/p/t test")
     return 0
 
 if __name__ == "__main__":
