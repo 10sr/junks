@@ -12,5 +12,5 @@ All code licensed under
 [CC0](http://creativecommons.org/publicdomain/zero/1.0/) unless explicitly
 specified.
 
-Please tell me for any license bugs. This repository contains many many
-copies from other softwares and websites !
+Please tell me for any license bugs: this repository contains many many
+lines from other softwares and websites !
