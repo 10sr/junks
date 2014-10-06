@@ -23,3 +23,4 @@ Refs
 -----
 * [Nodeビギナーズブック » Node.jsチュートリアル » Node.js 教程](http://www.nodebeginner.org/index-jp.html)
 * [npm と Node.js 上で require を使ったモジュール読み込みの仕組みについてメモ | TM Life](http://tmlife.net/programming/javascript/npm-node-js-require-module-memo.html)
+* [Node.jsのmoduleの書き方の基本: 別のファイルのオブジェクトや関数をrequireして使う方法 - memo.yomukaku.net](http://memo.yomukaku.net/entries/jbjiYnP)
