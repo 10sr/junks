@@ -16,13 +16,13 @@ io.sockets.on('connection', function(socket){
 
     // custom event
     socket.on('C_to_S_message', function(data){
-        // all including me
+        // all including the client sent the message
         io.sockets.emit('S_to_C_message', {value: data.value});
     });
 
     // custom event
     socket.on('C_to_S_broadcast', function(data){
-        // all except me (use obj passed throug arg of io.sockets.on)
+        // all except the client (use obj passed throug arg of io.sockets.on)
         socket.broadcast.emit('S_to_C_message', {value: data.value});
     });
 
