@@ -5,15 +5,21 @@ var expect = require('chai').expect
 
 describe('testest', function(){
     describe('nesttest', function(){
-        expect(1+0).to.be.equal(1);
+        it('should be 1', function(){
+            expect(1+0).to.be.equal(1);
+        });
+    });
 
-        describe('nestnesttest', function(){
+    describe('nestnesttest', function(){
+        it('should be 1 #2', function(){
             expect(1-0).to.be.equal(1);
         });
 
         describe('nestnestest2', function(){
-            //expect(1+1).to.be.equal(1);
+            it('(fail) should be 1 #3', function(){
+                expect(1-1).to.be.equal(1);
+            });
         });
-});
+    });
 });
 
