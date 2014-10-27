@@ -31,3 +31,20 @@ BClass.prototype.m2 = function(){
 
 var b = new BClass();
 b.m2();
+
+// add instance as a object member
+// http://taiju.hatenablog.com/entry/20100515/1273903873
+
+var CClass = function(){
+    this.a = new AClass();
+};
+
+CClass.prototype.m1 = function(arg1, arg2){
+    // arguments[0] === arg1, arguments[1] === arg2
+    console.log(arguments);
+    // call this.a.m1
+    this.a.m1.apply(this.a, arguments);
+}
+
+var c = new CClass();
+c.m1("abc", "def");
