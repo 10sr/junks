@@ -15,7 +15,6 @@ AClass.prototype.m1 = function(arg1, arg2){
 var a = new AClass();
 a.m1('222', '444');
 
-
 // inherit aclass to make bclass
 
 var BClass = function(){
@@ -44,7 +43,7 @@ CClass.prototype.m1 = function(arg1, arg2){
     console.log(arguments);
     // call this.a.m1
     this.a.m1.apply(this.a, arguments);
-}
+};
 
 var c = new CClass();
 c.m1("abc", "def");
