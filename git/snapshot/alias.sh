@@ -11,4 +11,4 @@ git config --local alias.snapshot '! gitdir="`git rev-parse --git-dir`" && expor
 # snapshot which utilizes git stash create
 # Problem: git stash create do not index untracked files
 
-git config --local alias.stashsnap '! gitdir="`git rev-parse --git-dir`" && : >>"$gitdir"/logs/refs/snapshot && git update-ref refs/snapshot $(git stash create)'
+git config --local alias.stashsnap '! gitdir="`git rev-parse --git-dir`" && : >>"$gitdir"/logs/refs/snapshot && cmt=`git stash create` && test -n "$cmt" && git update-ref refs/snapshot $cmt && echo Snapshot created: $cmt'
