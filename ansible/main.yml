@@ -11,4 +11,8 @@
     debug: var=helloworld
 
   - name: Try timetest.py
-    timetest.py: arg1="{{ helloworld }}"
+    timetest.py:
+
+  - name: Try alwaysfail.py
+    alwaysfail.py: arg1="{{ helloworld }}"
+    ignore_errors: true
