@@ -9,3 +9,6 @@
 
   - name: Print hello world with var option
     debug: var=helloworld
+
+  - name: Try timetest.py
+    timetest.py: arg1="{{ helloworld }}"
