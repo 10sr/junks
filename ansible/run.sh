@@ -14,4 +14,4 @@ then
     exit 1
 fi
 
-ansible-playbook -i local.hosts "$@"
+ansible-playbook "$@"
