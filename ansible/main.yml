@@ -1,0 +1,11 @@
+---
+- hosts: all
+  vars:
+    helloworld: Hell, world!
+
+  tasks:
+  - name: Print hello world
+    debug: msg="{{ helloworld }}"
+
+  - name: Print hello world with var option
+    debug: var=helloworld
