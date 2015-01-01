@@ -4,29 +4,21 @@ j/automake
 A clean automake example with `src` subdirectory.
 
 
-Prepare
--------
 
-* `configure.ac`
-
-  Copy of `configure.scan`, which will be generated automatically by `autoscan`
-  (Can be go with `configure.in` too, but using `configure.ac` seems to be a newer way).
-
-* `NEWS`, `README`, `AUTHORS` and `ChangeLog`
-
-  These files must be created by hand.
-
-
-Modify
+Files to edit
 ------
 
 * `configure.ac`
+
+  A Template can be obtained by cp `configure.scan`, which will be generated automatically by `autoscan`
+  (Can be go with `configure.in` too, but using `configure.ac` seems to be a newer way).
 
   * Modify args of `AC_INIT`
   * Add line `AM_INIT_AUTOMAKE`
   * Add `AC_CONFIG_FILES([Makefile src/Makefile])`
 
 * `Makefile.am` and `src/Makefile.am`
+* `NEWS`, `README`, `AUTHORS` and `ChangeLog`
 
 
 Generate Files for Distribution
