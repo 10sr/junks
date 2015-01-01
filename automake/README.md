@@ -44,3 +44,19 @@ Generate Files for Distribution
   * install-sh
   * src/Makefile.in
   * src/config.h.in
+
+
+
+Reference
+----------
+
+* [autoconfの使用方法- hippos-lab::net](http://homepage2.nifty.com/hippos/autoconf/index.html)
+* [all](http://www.spa.is.uec.ac.jp/~kinuko/slidemaker/autotools/)
+* [Autoconf](http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.69/html_node/index.html)
+* [Autoconf:](http://www.spa.is.uec.ac.jp/~kinuko/slidemaker/autotools/autoconf.html)
+* [configureの作り方(autotoolsの使い方） - メモ。。メモ。。](http://nopipi.hatenablog.com/entry/2013/01/14/025509)
+* [autoreconfを使って簡単にビルド環境を作る - にたまごほうれん草](http://d.hatena.ne.jp/emergent/20081106/1225896312)
+* [autoconf & automake](http://www.jaist.ac.jp/~kiyoshiy/memo/autoconf.html)
+* [初心者への GNU autoconf のススメ](http://sharl.haun.org/autoconf.html)
+* [Automakeでmakeする](http://www.02.246.ne.jp/~torutk/cxx/automake/automake.html)
+* [automake: `<TT>configure.ac</TT>'のスキャン](http://www.bookshelf.jp/texi/automake-ja/automake-ja_5.html)
