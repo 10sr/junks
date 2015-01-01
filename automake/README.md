@@ -10,15 +10,18 @@ Files to edit
 
 * `configure.ac`
 
-  A Template can be obtained by cp `configure.scan`, which will be generated automatically by `autoscan`
-  (Can go with `configure.in` too, but using `configure.ac` seems to be a newer way).
+  A Template can be obtained by cp `configure.scan`, which will be generated
+  automatically by `autoscan`
+  (Can go with `configure.in` too, but using `configure.ac` seems to be a newer
+  way).
 
   * Modify args of `AC_INIT`
-  * Add line `AM_INIT_AUTOMAKE`
+  * Add line `AM_INIT_AUTOMAKE([foreign])`
+    * Without `foreign` argument, some files includeing `README` must be
+      included
   * Add `AC_CONFIG_FILES([Makefile src/Makefile])`
 
 * `Makefile.am` and `src/Makefile.am`
-* `NEWS`, `README`, `AUTHORS` and `ChangeLog`
 
 
 Generate Files for Distribution
@@ -37,7 +40,7 @@ Generate Files for Distribution
   * src/Makefile.in
   * src/config.h.in
   * missing
-  
+
 
 `make dist`
 ------------

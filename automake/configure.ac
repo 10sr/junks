@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT(hello, 0.1, 8slashes+j@gmail.com)
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([foreign])
 AC_CONFIG_SRCDIR([src/hello.c])
 AC_CONFIG_HEADERS([src/config.h])
 
