@@ -10,7 +10,7 @@ Prepare
 * `configure.ac`
 
   Copy of `configure.scan`, which will be generated automatically by `autoscan`
-  (Can be go with `configure.in` too, but `configure.ac` seems to be newer).
+  (Can be go with `configure.in` too, but using `configure.ac` seems to be a newer way).
 
 * `NEWS`, `README`, `AUTHORS` and `ChangeLog`
 
