@@ -36,7 +36,7 @@ Generate Files for Distribution
   * install-sh
   * src/Makefile.in
   * src/config.h.in
-  * 
+  * missing
   
 
 `make dist`
