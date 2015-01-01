@@ -36,6 +36,13 @@ Generate Files for Distribution
   * install-sh
   * src/Makefile.in
   * src/config.h.in
+  * 
+  
+
+`make dist`
+------------
+
+This command creates tarball to distribute.
 
 
 
