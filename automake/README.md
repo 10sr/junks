@@ -11,7 +11,7 @@ Files to edit
 * `configure.ac`
 
   A Template can be obtained by cp `configure.scan`, which will be generated automatically by `autoscan`
-  (Can be go with `configure.in` too, but using `configure.ac` seems to be a newer way).
+  (Can go with `configure.in` too, but using `configure.ac` seems to be a newer way).
 
   * Modify args of `AC_INIT`
   * Add line `AM_INIT_AUTOMAKE`
