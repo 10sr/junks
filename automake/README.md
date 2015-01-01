@@ -5,7 +5,7 @@ A clean automake example with `src` subdirectory.
 
 
 
-Files to edit
+Files to Edit
 ------
 
 * `configure.ac`
@@ -45,3 +45,9 @@ Reference
 * [初心者への GNU autoconf のススメ](http://sharl.haun.org/autoconf.html)
 * [Automakeでmakeする](http://www.02.246.ne.jp/~torutk/cxx/automake/automake.html)
 * [automake: `<TT>configure.ac</TT>'のスキャン](http://www.bookshelf.jp/texi/automake-ja/automake-ja_5.html)
+
+### `make check` ###
+
+* [corbieのブログ:automakeの使い方 (6) - make check](http://blog.livedoor.jp/corbie/archives/3898817.html)
+* [corbieのブログ:automakeの使い方 (7) - make check (2)](http://blog.livedoor.jp/corbie/archives/3933512.html)
+* [corbieのブログ:automakeの使い方 (8) - make check (3)](http://blog.livedoor.jp/corbie/archives/3940445.html)
