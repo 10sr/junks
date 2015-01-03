@@ -2,8 +2,6 @@
 set -e
 
 pwd="`dirname "$0"`"
-echo $pwd
-
 cd "$pwd/.."
 
 git submodule update --init
