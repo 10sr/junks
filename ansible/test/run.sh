@@ -20,5 +20,5 @@ sed -ie 's/python setup.py egg_info/python2 setup.py egg_info/' \
 set -x
 for f in library/*
 do
-    python2 ansible/hacking/test-module -m "$f"
+    python2 ansible/hacking/test-module -m "$f" -a "arg1=true arg2=def"
 done
