@@ -1,0 +1,3 @@
+---
+- name: debug in role1
+  debug: msg="debug in role1 {{ debugmsg }}"

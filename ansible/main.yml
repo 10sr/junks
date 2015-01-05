@@ -3,6 +3,9 @@
   vars:
     helloworld: Hell, world!
 
+  roles:
+  - { role: role1, debugmsg: "def" }
+
   tasks:
   - name: Print hello world
     debug: msg="{{ helloworld }}"
