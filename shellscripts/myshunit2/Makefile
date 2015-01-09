@@ -18,8 +18,8 @@ $(test_run_targets): %.run: test/%.sh $(shunit2_path)
 	SHUNIT2_MAIN_PATH=$(shunit2_main_path) sh $<
 
 $(shunit2_path): $(shunit2_tarball_path)
-	tar -xf $< -C `dirname $(shunit2_path)`
-	touch $(shunit2_path)
+	tar -xf $< -C `dirname $@`
+	touch $@
 
 $(shunit2_tarball_path):
 	mkdir -p `dirname $@`
