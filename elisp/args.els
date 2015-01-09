@@ -1,5 +1,23 @@
 #!/usr/bin/env emacs -batch -Q -l
 
+;; args.els --- emacs script argument handling example
+;;
+;; Run:
+;;     emacs --script args.els abc def
+;; to get result as:
+;; nil
+;; ("/usr/bin/emacs" "-scriptload" "args.els" "abc" "def")
+;; func2: left: ("def")
+;; func2: argi: "abc"
+;; func2: left: nil
+;; func1: left: nil
+;; func1: argi: "def"
+
+;; In summary: command-line-functions are called from the beginning of list
+;; If the first function returns non-nil, rest functions wont be called
+;; Otherwise, the next function will be called, and so on.
+
+
 (defun main (argv)
   (message "%S"
            command-line-args-left)
@@ -8,7 +26,18 @@
 
 (add-to-list 'command-line-functions
              (lambda ()
-               (message "%S"
+               (message "func1: left: %S"
+                        command-line-args-left)
+               (message "func1: argi: %S"
                         argi)))
+
+(add-to-list 'command-line-functions
+             (lambda ()
+               (message "func2: left: %S"
+                        command-line-args-left)
+               (and (equal argi
+                        "abc")
+                    (message "func2: argi: %S"
+                             argi))))
 
 (main nil)
