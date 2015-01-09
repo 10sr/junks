@@ -1,0 +1,14 @@
+#!/usr/bin/env emacs -batch -Q -l
+
+(defun main (argv)
+  (message "%S"
+           command-line-args-left)
+  (message "%S"
+           command-line-args))
+
+(add-to-list 'command-line-functions
+             (lambda ()
+               (message "%S"
+                        argi)))
+
+(main nil)
