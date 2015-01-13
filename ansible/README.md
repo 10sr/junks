@@ -4,7 +4,7 @@ j/ansible
 
 Some ansible examples.
 
-Directory `vagrant` has some more examples.
+Directories `vagrant` and `ec2` have some more examples.
 
 
 Library
