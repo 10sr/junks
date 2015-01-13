@@ -2,7 +2,9 @@ j/ansible
 ==========
 
 
-Ansible.
+Some ansible examples.
+
+Directory `vagrant` has some more examples.
 
 
 Library
