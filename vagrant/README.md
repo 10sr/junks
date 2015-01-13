@@ -13,6 +13,11 @@ Basic Setup
     vagrant up
 
 
+Note
+----
+
+* `VAGRANT_LOG=info` to print some debug log when running vagrant.
+
 
 Porpose of this Repository
 --------------------------
