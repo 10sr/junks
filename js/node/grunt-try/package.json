@@ -1,7 +1,7 @@
 {
-  "name": "trygrunt",
+  "name": "grunt-try",
   "version": "1.0.0",
-  "description": "Grunt ======",
+  "description": "Grunt",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
