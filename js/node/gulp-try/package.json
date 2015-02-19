@@ -1,0 +1,14 @@
+{
+  "name": "gulp-try",
+  "version": "1.0.0",
+  "description": "Gulp Try",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "10sr",
+  "license": "Unlicense",
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  }
+}
