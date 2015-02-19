@@ -5,6 +5,14 @@ Try gulp.js features.
 
 
 
+Run
+----
+
+```sh
+npm install -g gulp && npm install && gulp
+```
+
+
 References
 -----------
 
