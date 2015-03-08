@@ -3,6 +3,9 @@ j/c/recentf
 
 Record recently `open`ed files.
 
+This library can be referenced as an example to hack the behaivor of system
+calls.
+
 
 Usage
 -----
