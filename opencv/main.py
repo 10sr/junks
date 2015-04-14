@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
-# This script outputs two images:
-# * detected.jpg
-# * onlyface.jpg
+# This script load the file named "pic.jpg" and ouputs two images:
+# * detected.jpg: Image with face squared
+# * onlyface.jpg: Trimmed image that prints only face
 
 import cv2
 
