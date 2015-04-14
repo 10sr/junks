@@ -1,6 +1,10 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
+# This script outputs two images:
+# * detected.jpg
+# * onlyface.jpg
+
 import cv2
 
 #HAAR分類器の顔検出用の特徴量
@@ -34,12 +38,17 @@ facerect = cascade.detectMultiScale(image_gray, scaleFactor=1.1, minNeighbors=1,
 #facerect = cascade.detectMultiScale(image_gray, scaleFactor=1.1, minNeighbors=3, minSize=(10, 10), flags = cv2.cv.CV_HAAR_SCALE_IMAGE)
 
 print "face rectangle"
+
+# forecast is a list of [x, y, width, height]
 print facerect
+
 
 if len(facerect) > 0:
     #検出した顔を囲む矩形の作成
     for rect in facerect:
         cv2.rectangle(image, tuple(rect[0:2]),tuple(rect[0:2]+rect[2:4]), color, thickness=2)
+        image_face = image[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]]
 
     #認識結果の保存
     cv2.imwrite("detected.jpg", image)
+    cv2.imwrite("onlyface.jpg", image_face)
