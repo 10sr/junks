@@ -1,8 +1,11 @@
 target = Test
 
-all : $(target)
+all: $(target)
 
-$(target) : % : %.class
+run: $(target)
+	java $<
 
-%.class : %.java
+$(target): %: %.class
+
+%.class: %.java
 	LC_ALL=C javac $<
