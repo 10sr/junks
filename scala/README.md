@@ -49,7 +49,8 @@ sbt
     * 長さゼロのリスト
   * null
     * Null クラスのオブジェクト
-    * AnyRef の変数にいれられる
+      * AnyRef の 子クラス全ての子クラス
+      * AnyRef の変数にいれられる
     * http://www.ne.jp/asahi/hishidama/home/tech/scala/any.html
   * Nothing クラス
     * 値が*本当に*ない
