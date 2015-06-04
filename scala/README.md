@@ -63,14 +63,16 @@ sbt
 
 関数、メソッド
 -----
-[Scala 関数メモ(Hishidama's Scala Function Memo)](http://www.ne.jp/asahi/hishidama/home/tech/scala/function.html) [Scalaメソッド定義メモ(Hishidama's Scala def Memo)](http://www.ne.jp/asahi/hishidama/home/tech/scala/def.html)
+[Scala 関数メモ(Hishidama's Scala Function Memo)](http://www.ne.jp/asahi/hishidama/home/tech/scala/function.html) [Scalaメソッド定義メモ(Hishidama's Scala def Memo)](http://www.ne.jp/asahi/hishidama/home/tech/scala/def.html) [Scalaのメソッドと関数は違うもの？ - Togetterまとめ](http://togetter.com/li/154007)
 
 * 関数
   * `FunctionN` トレイトの無名サブクラスのインスタンス
   * `apply()` メソッドに手続きは存在
+  * 関数リテラルは、関数オブジェクトのインスタンス化（？）へのシンタックスシュガーとかんがえればよい？
 
 * メソッド
   * クラスにぶら下がってるやつ
+  * `method _` とやると関数オブジェクトに変換できる
   * オブジェクトとメソッドの間の `.` は省略できる
     * 正気とは思えない
     * この時、引数が一つならカッコも省略できる
@@ -85,3 +87,15 @@ sbt
       "aa" +: list
       ```
       * まじかよ
+* Pimp My Library, implicit class
+  * http://kmizu.hatenablog.com/entry/20120506/1336302407 
+  * なんで引数に自オブジェクトを取るような書き方をしてるのかよくわかってない
+
+
+Misc
+-----
+
+* implicit parameter
+  * implicit val とやっておくと、必要な時に関数呼び出しの引数に勝手につっこんでくれるやつ
+  * 型が違えば複数置ける
+  * スコープはその変数内でよさげ
