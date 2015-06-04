@@ -15,16 +15,15 @@ sbt
 * *Typesafe Activator は activator ui と activator new という 2つのコマンドを追加するカスタム版の sbt だ。 つまり、activator は sbt のスーパーセットであると言える*
   * http://www.scala-sbt.org/0.13/tutorial/ja/Activator-Installation.html
 
-* なるほど！
-  * Maven と同じディレクトリ構造らしい
+* Maven と同じディレクトリ構造がつかえるらしい
 
-> sbt は以下のものを自動的に検知する:
+  > sbt は以下のものを自動的に検知する:
 
-> * ベースディレクトリにあるソースファイル　
-> * src/main/scala か src/main/java 内のソースファイル
-> * src/test/scala か src/test/java 内のテストソースファイル
-> * src/main/resources か src/test/resources 内のデータファイル
-> * lib 内の jar ファイル
+  > * ベースディレクトリにあるソースファイル　
+  > * src/main/scala か src/main/java 内のソースファイル
+  > * src/test/scala か src/test/java 内のテストソースファイル
+  > * src/main/resources か src/test/resources 内のデータファイル
+  > * lib 内の jar ファイル
 
 
 * build.sbt はビルドファイルというよりコンフィグファイルっぽい
@@ -59,3 +58,30 @@ sbt
     * 値を返す必要のないメソッドとかで使われる
     * 唯一の値 `()` を持つ
       * 空のタプルらしい
+
+
+
+関数、メソッド
+-----
+[Scala 関数メモ(Hishidama's Scala Function Memo)](http://www.ne.jp/asahi/hishidama/home/tech/scala/function.html) [Scalaメソッド定義メモ(Hishidama's Scala def Memo)](http://www.ne.jp/asahi/hishidama/home/tech/scala/def.html)
+
+* 関数
+  * `FunctionN` トレイトの無名サブクラスのインスタンス
+  * `apply()` メソッドに手続きは存在
+
+* メソッド
+  * クラスにぶら下がってるやつ
+  * オブジェクトとメソッドの間の `.` は省略できる
+    * 正気とは思えない
+    * この時、引数が一つならカッコも省略できる
+
+    ```scala
+    str eq "abc"
+    ```
+      * 中置記法に見せかける感じ
+      * この時、メソッドが `:` で終わるなら前後を反転させる
+
+      ```scala
+      "aa" +: list
+      ```
+        * まじかよ
