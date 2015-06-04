@@ -84,4 +84,5 @@ sbt
       ```scala
       "aa" +: list
       ```
+
         * まじかよ
