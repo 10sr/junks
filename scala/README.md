@@ -89,6 +89,10 @@ sbt
     * `add(_, 1): Int => Int`
     * 引数を一つ取る関数になる
     * 便利さげ
+ 
+* メソッドを関数に変換できる
+  * `println _` 後ろにアンスコをつける
+  * これは実際には部分適用と同じ記法ぽい？
 
 * Pimp My Library, implicit class
   * http://kmizu.hatenablog.com/entry/20120506/1336302407 
