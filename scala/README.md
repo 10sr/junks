@@ -113,4 +113,5 @@ Misc
 * 重要なのはファイル内に記述したパッケージ名で、ディレクトリ名は無関係？
   * 試そう
   * [AProject](AProject)
+* ここも見る http://www.ne.jp/asahi/hishidama/home/tech/scala/package.html
 
