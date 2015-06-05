@@ -1,8 +1,9 @@
-// import apackage
+import apackage._
 
 object AProject {
   def main(args: Array[String]): Unit = {
     println("abc")
-    // apackage.show()
+    val a = new apackage.A("DDD")
+    a.show
   }
 }
