@@ -106,6 +106,9 @@ Misc
   * implicit val とやっておくと、必要な時に関数呼び出しの引数に勝手につっこんでくれるやつ
   * 型が違えば複数置ける
   * スコープはその変数内でよさげ
+* case class
+  * ただの便利機能ぽい？
+  * http://www.ne.jp/asahi/hishidama/home/tech/scala/class.html#h_case_class
 
 型
 ----
