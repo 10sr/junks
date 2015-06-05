@@ -152,6 +152,37 @@ public class apackage.B {
   * バイトコード（インストラクションコード？）が読める
     * アセンブリ言語のようなもの
  
+
+```java
+:: 2015/06/05 15:54 $ javap -c AProject
+Compiled from "A.scala"
+public class apackage.A {
+  public void show();
+    Code:
+       0: getstatic     #18                 // Field scala/Predef$.MODULE$:Lscala/Predef$;
+       3: new           #20                 // class scala/collection/mutable/StringBuilder
+       6: dup
+       7: invokespecial #23                 // Method scala/collection/mutable/StringBuilder."<init>":()V
+      10: ldc           #25                 // String A:
+      12: invokevirtual #29                 // Method scala/collection/mutable/StringBuilder.append:(Ljava/lang/Object;)Lscala/collection/mutable/StringBuilder;
+      15: aload_0
+      16: getfield      #31                 // Field str:Ljava/lang/String;
+      19: invokevirtual #29                 // Method scala/collection/mutable/StringBuilder.append:(Ljava/lang/Object;)Lscala/collection/mutable/StringBuilder;
+      22: invokevirtual #35                 // Method scala/collection/mutable/StringBuilder.toString:()Ljava/lang/String;
+      25: invokevirtual #39                 // Method scala/Predef$.println:(Ljava/lang/Object;)V
+      28: return
+
+  public apackage.A(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #31                 // Field str:Ljava/lang/String;
+       5: aload_0
+       6: invokespecial #43                 // Method java/lang/Object."<init>":()V
+       9: return
+}
+```
+
 ```java
 :: 2015/06/05 15:48 $ javap -c apackage.B
 Compiled from "A.scala"
@@ -169,7 +200,22 @@ public class apackage.B {
       19: invokevirtual #29                 // Method scala/collection/mutable/StringBuilder.append:(Ljava/lang/Object;)Lscala/collection/mutable/StringBuilder;
       22: invokevirtual #35                 // Method scala/collection/mutable/StringBuilder.toString:()Ljava/lang/String;
       25: invokevirtual #39                 // Method scala/Predef$.println:(Ljava/lang/Object;)V
-      28: return
+      28: new           #41                 // class apackage/A
+      31: dup
+      32: new           #20                 // class scala/collection/mutable/StringBuilder
+      35: dup
+      36: invokespecial #23                 // Method scala/collection/mutable/StringBuilder."<init>":()V
+      39: ldc           #25                 // String B:
+      41: invokevirtual #29                 // Method scala/collection/mutable/StringBuilder.append:(Ljava/lang/Object;)Lscala/collection/mutable/StringBuilder;
+      44: aload_0
+      45: getfield      #31                 // Field str:Ljava/lang/String;
+      48: invokevirtual #29                 // Method scala/collection/mutable/StringBuilder.append:(Ljava/lang/Object;)Lscala/collection/mutable/StringBuilder;
+      51: invokevirtual #35                 // Method scala/collection/mutable/StringBuilder.toString:()Ljava/lang/String;
+      54: invokespecial #44                 // Method apackage/A."<init>":(Ljava/lang/String;)V
+      57: astore_1
+      58: aload_1
+      59: invokevirtual #46                 // Method apackage/A.show:()V
+      62: return
 
   public apackage.B(java.lang.String);
     Code:
@@ -177,7 +223,7 @@ public class apackage.B {
        1: aload_1
        2: putfield      #31                 // Field str:Ljava/lang/String;
        5: aload_0
-       6: invokespecial #43                 // Method java/lang/Object."<init>":()V
+       6: invokespecial #51                 // Method java/lang/Object."<init>":()V
        9: return
 }
 ```
