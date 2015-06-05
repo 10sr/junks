@@ -9,5 +9,7 @@ class A(str: String){
 class B(str: String){
   def show = {
     println("B: " + str)
+    val a = new A("B: " + str)
+    a.show
   }
 }
