@@ -152,8 +152,8 @@ public class apackage.B {
   * バイトコード（インストラクションコード？）が読める
     * アセンブリ言語のようなもの
  
- ```java
- :: 2015/06/05 15:45  $$$$ javap -c apackage.B
+```java
+:: 2015/06/05 15:45  $$$$ javap -c apackage.B
 Compiled from "A.scala"
 public class apackage.B {
   public void show();
