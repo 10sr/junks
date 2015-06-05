@@ -2,6 +2,12 @@ package apackage
 
 class A(str: String){
   def show = {
-    println(str)
+    println("A: " + str)
+  }
+}
+
+class B(str: String){
+  def show = {
+    println("B: " + str)
   }
 }
