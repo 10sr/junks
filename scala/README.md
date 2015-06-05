@@ -138,7 +138,7 @@ Java バイトコード・逆コンパイル・逆アセンブル
       * scala で実装したものであっても！
 
 ```java
-:: 2015/06/05 15:45  $$$$ javap apackage.B
+:: 2015/06/05 15:45 $ javap apackage.B
 Compiled from "A.scala"
 public class apackage.B {
   public void show();
@@ -153,31 +153,22 @@ public class apackage.B {
     * アセンブリ言語のようなもの
  
 ```java
-:: 2015/06/05 15:45  $$$$ javap -c apackage.B
+:: 2015/06/05 15:48 $ javap -c apackage.B
 Compiled from "A.scala"
 public class apackage.B {
   public void show();
     Code:
-       0: getstatic     #18                 // Field scala/Predef$.MODULE$:Lsca
-la/Predef$;                                                                   
-       3: new           #20                 // class scala/collection/mutable/S
-tringBuilder                                                                  
+       0: getstatic     #18                 // Field scala/Predef$.MODULE$:Lscala/Predef$;
+       3: new           #20                 // class scala/collection/mutable/StringBuilder
        6: dup
-       7: invokespecial #23                 // Method scala/collection/mutable/
-StringBuilder."<init>":()V                                                    
+       7: invokespecial #23                 // Method scala/collection/mutable/StringBuilder."<init>":()V
       10: ldc           #25                 // String B:
-      12: invokevirtual #29                 // Method scala/collection/mutable/
-StringBuilder.append:(Ljava/lang/Object;)Lscala/collection/mutable/StringBuilde
-r;                                                                            
+      12: invokevirtual #29                 // Method scala/collection/mutable/StringBuilder.append:(Ljava/lang/Object;)Lscala/collection/mutable/StringBuilder;
       15: aload_0
       16: getfield      #31                 // Field str:Ljava/lang/String;
-      19: invokevirtual #29                 // Method scala/collection/mutable/
-StringBuilder.append:(Ljava/lang/Object;)Lscala/collection/mutable/StringBuilde
-r;                                                                            
-      22: invokevirtual #35                 // Method scala/collection/mutable/
-StringBuilder.toString:()Ljava/lang/String;                                   
-      25: invokevirtual #39                 // Method scala/Predef$.println:(Lj
-ava/lang/Object;)V                                                            
+      19: invokevirtual #29                 // Method scala/collection/mutable/StringBuilder.append:(Ljava/lang/Object;)Lscala/collection/mutable/StringBuilder;
+      22: invokevirtual #35                 // Method scala/collection/mutable/StringBuilder.toString:()Ljava/lang/String;
+      25: invokevirtual #39                 // Method scala/Predef$.println:(Ljava/lang/Object;)V
       28: return
 
   public apackage.B(java.lang.String);
@@ -186,8 +177,7 @@ ava/lang/Object;)V
        1: aload_1
        2: putfield      #31                 // Field str:Ljava/lang/String;
        5: aload_0
-       6: invokespecial #43                 // Method java/lang/Object."<init>"
-:()V                                                                          
+       6: invokespecial #43                 // Method java/lang/Object."<init>":()V
        9: return
 }
 ```
