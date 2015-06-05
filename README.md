@@ -7,6 +7,18 @@ Some other junks are found at [10sr - codepad](http://codepad.org/users/10sr).
 
 
 
+TODO
+----
+
+Migrate some document from other places:
+
+* http://10sr-p.hateblo.jp/
+* https://gist.github.com/10sr
+
+どのドキュメントをどこに置くのかについて明確な基準が欲しい。
+メモ書きが分散してしまってる。
+
+
 License
 -------
 
