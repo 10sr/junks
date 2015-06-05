@@ -125,3 +125,11 @@ Misc
   * [AProject](AProject)
 * ここも見る http://www.ne.jp/asahi/hishidama/home/tech/scala/package.html
 
+
+
+逆コンパイル
+------------------
+
+* http://www.ne.jp/asahi/hishidama/home/tech/java/application.html#class_file
+  * javap <classname>
+    * クラスを逆コンパイルした結果が*出力*される
