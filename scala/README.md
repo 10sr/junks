@@ -232,6 +232,7 @@ public class apackage.B {
   * http://www.ne.jp/asahi/hishidama/home/tech/java/bytecode.html#h2_instruction
   * http://ja.wikipedia.org/wiki/Java%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3
   * http://ja.wikipedia.org/wiki/Java%E3%83%90%E3%82%A4%E3%83%88%E3%82%B3%E3%83%BC%E3%83%89
+  * http://d.hatena.ne.jp/Nagise/20100207/1265522562
     * スタック型
     * 所属するオブジェクトはメソッドの第一引数として渡されるし、わりと普通っぽい
     * オブジェクト指向と強く結びついてるというわけではなさそうに見える
