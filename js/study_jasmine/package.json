@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "karma start --single-run karma.conf.js"
+    "_test": "karma start --single-run karma.conf.js",
+    "test": "gulp default"
   },
   "author": "10sr",
   "license": "Unlisence",
   "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jasmine": "^2.0.1",
+    "gulp-karma": "0.0.4",
     "jasmine": "^2.3.1",
     "jasmine-core": "^2.3.4",
     "karma": "^0.12.36",

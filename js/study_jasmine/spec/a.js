@@ -4,6 +4,6 @@ describe('Hello test', function(){
   });
 
   it('should fail for add function', function(){
-    expect(add(1,2)).toEqual(2);
+    expect(src.add(1,2)).toEqual(2);
   });
 });
