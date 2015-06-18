@@ -6,6 +6,7 @@ gulp.task('default', function(){
   return gulp.src(['spec/*.js', 'src/*.js']).
     //pipe(jasmine());
     pipe(karma({
-      action: 'start'
+      action: 'start',
+      configFile: 'karma.conf.js'
     }));
 })
