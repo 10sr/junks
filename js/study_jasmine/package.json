@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "_test": "karma start --single-run karma.conf.js",
+    "_test": "karma start karma.conf.js",
     "test": "gulp default"
   },
   "author": "10sr",
