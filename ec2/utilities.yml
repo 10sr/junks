@@ -1,9 +1,0 @@
----
-- hosts: all
-  vars:
-  tasks:
-  - name: install packages
-    yum: name={{item}}
-         state=present
-    with_items: [tmux]
-    sudo: yes
