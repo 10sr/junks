@@ -1,0 +1,14 @@
+---
+- hosts: all
+  vars:
+    url: http://download.oracle.com/otn-pub/java/jdk/7u55-b13/jdk-7u55-linux-x64.rpm
+    dest: ./
+
+  tasks:
+    - name: Download OracleJDK
+      uri:
+        HEADER_Cookie="oraclelicense=a"
+        dest={{dest}}
+        follow_redirects=all
+        method=GET
+        url={{url}}
