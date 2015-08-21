@@ -7,7 +7,7 @@ Usage
 
 To mount, issue
 
-    ./main.py <mountpoint>
+    ./main.py <target_dir> <mountpoint>
 
 To umount, issue
 
