@@ -1,6 +1,19 @@
 Python FUSE Test
 ================
 
+
+Usage
+-----
+
+To mount, issue
+
+    ./main.py <mountpoint>
+
+To umount, issue
+
+    fusermount -u <mountpoint>
+
+
 Refs
 ----
 
