@@ -17,6 +17,7 @@ To umount, issue
 Refs
 ----
 
+* <http://www.stavros.io/posts/python-fuse-filesystem/>
 * <http://sourceforge.net/apps/mediawiki/fuse/index.php?title=Main_Page>
 * <http://blog.koshigoe.jp/archives/2007/04/fuse.html>
 * <http://d.hatena.ne.jp/lolloo-htn/20091014/1255540299>
