@@ -1,144 +1,136 @@
 #!/usr/bin/env python2
 
-"""TestFS --- Hell World Filesystem
+# http://www.stavros.io/posts/python-fuse-filesystem/
 
-usage: ./main.py <mountpoint> [<opts>]
-"""
+from __future__ import with_statement
 
-import stat
 import os
+import sys
 import errno
-from time import time
 
-import fuse
-fuse.fuse_python_api = (0, 2)
+from fuse import FUSE, FuseOSError, Operations
 
-class TestStat(fuse.Stat):
-    def __init__(self):
-        # http://docs.python.org/2.7/library/os.html#os.stat
 
-        # protection bit
-        self.st_mode = stat.S_IFREG | 0644
+class Passthrough(Operations):
+    def __init__(self, root):
+        self.root = root
 
-        # inode number
-        self.st_ino = 0
-        # device
-        self.st_dev = 0
-        # st_ino and st_dev can be ignored: FUSE will handle these
+    # Helpers
+    # =======
 
-        # number of hard links: directories have at reast two
-        # 1 for usual files
-        self.st_nlink = 1
+    def _full_path(self, partial):
+        if partial.startswith("/"):
+            partial = partial[1:]
+        path = os.path.join(self.root, partial)
+        return path
 
-        # uid and gid of owner
-        self.st_uid = os.getuid()
-        self.st_gid = os.getgid()
+    # Filesystem methods
+    # ==================
 
-        # size in bytes
-        self.st_size = 0
+    def access(self, path, mode):
+        full_path = self._full_path(path)
+        if not os.access(full_path, mode):
+            raise FuseOSError(errno.EACCES)
 
-        # access, modify, and create time
-        self.st_atime = 0
-        self.st_mtime = 0
-        self.st_ctime = 0
+    def chmod(self, path, mode):
+        full_path = self._full_path(path)
+        return os.chmod(full_path, mode)
 
-class TestFS(fuse.Fuse):
-    hw = "Hell, World!\n"
+    def chown(self, path, uid, gid):
+        full_path = self._full_path(path)
+        return os.chown(full_path, uid, gid)
 
-    # available attrs are (from fuse.py):
-    _attrs = ['getattr', 'readlink', 'readdir', 'mknod', 'mkdir',
-              'unlink', 'rmdir', 'symlink', 'rename', 'link', 'chmod',
-              'chown', 'truncate', 'utime', 'open', 'read', 'write', 'release',
-              'statfs', 'fsync', 'create', 'opendir', 'releasedir', 'fsyncdir',
-              'flush', 'fgetattr', 'ftruncate', 'getxattr', 'listxattr',
-              'setxattr', 'removexattr', 'access', 'lock', 'utimens', 'bmap',
-              'fsinit', 'fsdestroy']
+    def getattr(self, path, fh=None):
+        full_path = self._full_path(path)
+        st = os.lstat(full_path)
+        return dict((key, getattr(st, key)) for key in ('st_atime', 'st_ctime',
+                     'st_gid', 'st_mode', 'st_mtime', 'st_nlink', 'st_size', 'st_uid'))
 
-    def __init__(self, *args, **kargs):
-        fuse.Fuse.__init__(self, *args, **kargs)
-        return
+    def readdir(self, path, fh):
+        full_path = self._full_path(path)
 
-    def getattr(self, path):
-        """Return stat object for file specified by PATH."""
-        if len(path.split("/")) > 2:
-            # includes subdirectories like "/abc/def"
-            # emit "no such file or directory" error
-            return -errno.ENOENT
+        dirents = ['.', '..']
+        if os.path.isdir(full_path):
+            dirents.extend(os.listdir(full_path))
+        for r in dirents:
+            yield r
 
-        st = TestStat()
-        st.st_atime = int(time())
-        st.st_mtime = st.st_atime
-        st.st_ctime = st.st_atime
-
-        if path == "/":
-            # root directory
-            st.st_mode = stat.S_IFDIR | 0755
-            st.st_nlink = 2
-            st.st_size = 4096
+    def readlink(self, path):
+        pathname = os.readlink(self._full_path(path))
+        if pathname.startswith("/"):
+            # Path name is absolute, sanitize it.
+            return os.path.relpath(pathname, self.root)
         else:
-            st.st_size = len(self.hw)
-
-        return st
-
-    # filesystem implementations
-    # For minimum read-only system, readdir, open and read are required
-
-    def readdir(self, path, offset):
-        """Return iterable of files in directory PATH."""
-        # what is OFFSET?
-        return (fuse.Direntry(r) for r in (".", "..", "a.txt"))
+            return pathname
 
     def mknod(self, path, mode, dev):
-        """Make node. MODE and DEV are used for stat object."""
-        # silently ignore
-        return 0
-
-    def unlink(self, path):
-        """Remove node."""
-        return 0
-
-    def write(self, path, buf, offset):
-        """Write to file. Return length of data that was written."""
-        return len(buf)
-
-    def read(self, path, size, offset):
-        return self.hw[offset:offset+size]
-
-    def release(self, path, flags):
-        """close(2) file."""
-        return 0
-
-    def open(self, path, flags):
-        return 0
-
-    def truncate(self, path, size):
-        return 0
-
-    def utime(self, path, times):
-        return 0
-
-    def mkdir(self, path, mode):
-        return 0
+        return os.mknod(self._full_path(path), mode, dev)
 
     def rmdir(self, path):
-        return 0
+        full_path = self._full_path(path)
+        return os.rmdir(full_path)
 
-    def rename(self, pathfrom, pathto):
-        return 0
+    def mkdir(self, path, mode):
+        return os.mkdir(self._full_path(path), mode)
 
-    def fsync(self, path, isfsyncfile):
-        return 0
+    def statfs(self, path):
+        full_path = self._full_path(path)
+        stv = os.statvfs(full_path)
+        return dict((key, getattr(stv, key)) for key in ('f_bavail', 'f_bfree',
+            'f_blocks', 'f_bsize', 'f_favail', 'f_ffree', 'f_files', 'f_flag',
+            'f_frsize', 'f_namemax'))
+
+    def unlink(self, path):
+        return os.unlink(self._full_path(path))
+
+    def symlink(self, name, target):
+        return os.symlink(name, self._full_path(target))
+
+    def rename(self, old, new):
+        return os.rename(self._full_path(old), self._full_path(new))
+
+    def link(self, target, name):
+        return os.link(self._full_path(target), self._full_path(name))
+
+    def utimens(self, path, times=None):
+        return os.utime(self._full_path(path), times)
+
+    # File methods
+    # ============
+
+    def open(self, path, flags):
+        full_path = self._full_path(path)
+        return os.open(full_path, flags)
+
+    def create(self, path, mode, fi=None):
+        full_path = self._full_path(path)
+        return os.open(full_path, os.O_WRONLY | os.O_CREAT, mode)
+
+    def read(self, path, length, offset, fh):
+        os.lseek(fh, offset, os.SEEK_SET)
+        return os.read(fh, length)
+
+    def write(self, path, buf, offset, fh):
+        os.lseek(fh, offset, os.SEEK_SET)
+        return os.write(fh, buf)
+
+    def truncate(self, path, length, fh=None):
+        full_path = self._full_path(path)
+        with open(full_path, 'r+') as f:
+            f.truncate(length)
+
+    def flush(self, path, fh):
+        return os.fsync(fh)
+
+    def release(self, path, fh):
+        return os.close(fh)
+
+    def fsync(self, path, fdatasync, fh):
+        return self.flush(path, fh)
 
 
-def main():
-    # usage="""
-    # TestFS: Helloworld filesystem
-    # """ + fuse.Fuse.fusage
-
-    server = TestFS(version="%prog " + fuse.__version__,
-                    dash_s_do='setsingle')
-    server.parse(errex=1)
-    server.main()
+def main(mountpoint, root):
+    FUSE(Passthrough(root), mountpoint, nothreads=True, foreground=True)
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[2], sys.argv[1])
