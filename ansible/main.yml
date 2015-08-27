@@ -4,18 +4,18 @@
     helloworld: Hell, world!
 
   roles:
-  - { role: role1, debugmsg: "def" }
+    - { role: role1, debugmsg: "def" }
 
   tasks:
-  - name: Print hello world
-    debug: msg="{{ helloworld }}"
+    - name: Print hello world
+      debug: msg="{{ helloworld }}"
 
-  - name: Print hello world with var option
-    debug: var=helloworld
+    - name: Print hello world with var option
+      debug: var=helloworld
 
-  - name: Try timetest.py
-    timetest.py:
+    - name: Try timetest.py
+      timetest.py:
 
-  - name: Try alwaysfail.py
-    alwaysfail.py: arg1="{{ helloworld }}"
-    ignore_errors: true
+    - name: Try alwaysfail.py
+      alwaysfail.py: arg1="{{ helloworld }}"
+      ignore_errors: true
