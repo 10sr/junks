@@ -5,6 +5,8 @@
 
   roles:
     - { role: role1, debugmsg: "def" }
+    - role: role1
+      debugmsg: "eeeeeeee"
 
   tasks:
     - name: Print hello world
