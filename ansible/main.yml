@@ -15,9 +15,22 @@
     - name: Print hello world with var option
       debug: var=helloworld
 
+    - name: Print ansible_hostname
+      debug: var=ansible_hostname
+
     - name: Try timetest.py
       timetest.py:
 
     - name: Try alwaysfail.py
       alwaysfail.py: arg1="{{ helloworld }}"
       ignore_errors: true
+
+    - name: Install libselinux
+      yum: name=libselinux-python state=present
+      become: yes
+      when: ansible_hostname == "vagr-centos66"
+
+    - name: Disable SELinux
+      selinux: state=disabled
+      become: yes
+      when: ansible_hostname == "vagr-centos66"
