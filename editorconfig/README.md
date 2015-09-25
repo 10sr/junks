@@ -43,3 +43,27 @@ indent_size = 2
 indent_style = space
 indent_size = 2
 ```
+
+
+
+Output of EditorConfig
+-----------------------
+
+`make ed` to print properties for `a.c`
+
+```
+fuafua=2
+indent_style=tab
+indent_size=4
+hoehoe=1
+tab_width=4
+```
+
+
+It means that:
+
+* Basically the order of properties will be preserved
+* Even when some properties is overwritten, the order will not change:
+  only updating the values
+* `tab_width` properties will be automatically appended at the end
+  if `indent_style=tab` (?)
