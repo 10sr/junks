@@ -13,5 +13,15 @@ class Test{
         for (int e: a) {
             System.out.println(e);
         }
+
+        String str3 = "abc def ghe";
+        String[] strList = str3.split(" ");
+        System.out.println(strList[0]);
+        try {
+            System.out.println(strList[-1]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Out of Range Error Detected:");
+            e.printStackTrace();
+        }
     }
 }
