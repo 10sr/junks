@@ -8,4 +8,4 @@ run: $(target)
 $(target): %: %.class
 
 %.class: %.java
-	LC_ALL=C javac $<
+	LC_ALL=C javac -J-Dfile.encoding=UTF8 $<
