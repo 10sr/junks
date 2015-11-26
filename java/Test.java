@@ -23,5 +23,8 @@ class Test{
             System.out.println("Out of Range Error Detected:");
             e.printStackTrace();
         }
+
+        System.out.println(null + ":");
+        System.out.println(null != null);
     }
 }
