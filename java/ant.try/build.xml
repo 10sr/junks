@@ -1,0 +1,5 @@
+<project name="ant.try" default="compile">
+  <target name="compile">
+    <javac srcdir="." destdir="." />
+  </target>
+</project>
