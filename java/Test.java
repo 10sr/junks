@@ -26,5 +26,8 @@ class Test{
 
         System.out.println(null + ":");
         System.out.println(null != null);
+
+        System.out.println(EnumsTry.AEnum.E2.getVal());
     }
+
 }
