@@ -13,4 +13,4 @@ References
 
 * http://asciidoc.org/[Official]
 ** http://asciidoc.org/userguide.html
-* http://powerman.name/doc/asciidoc
+* http://powerman.name/doc/asciidoc[Cheat Sheet]
