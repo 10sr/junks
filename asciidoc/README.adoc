@@ -1,15 +1,15 @@
 j/asciidoc
-----------
+==========
 
 
 Examples
-~~~~~~~~
+--------
 
 
 
 
 References
-~~~~~~~~~~
+----------
 
 * http://asciidoc.org/
 ** http://asciidoc.org/userguide.html
