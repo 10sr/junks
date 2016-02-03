@@ -11,6 +11,6 @@ Examples
 References
 ----------
 
-* http://asciidoc.org/
+* http://asciidoc.org/[Official]
 ** http://asciidoc.org/userguide.html
 * http://powerman.name/doc/asciidoc
