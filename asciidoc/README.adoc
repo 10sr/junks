@@ -1,6 +1,9 @@
 j/asciidoc
 ==========
-
+:author: 10sr
+:toc:
+:lang: en
+:encoding: utf-8
 
 Examples
 --------
