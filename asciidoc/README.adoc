@@ -6,6 +6,15 @@ Examples
 --------
 
 
+Code block
+~~~~~~~~~~
+
+
+----
+int main(void){
+    return 0;
+}
+----
 
 
 References
