@@ -25,4 +25,5 @@ References
 
 * http://asciidoc.org/[Official]
 ** http://asciidoc.org/userguide.html
-* http://powerman.name/doc/asciidoc[Cheat Sheet]
+* http://powerman.name/doc/asciidoc
+* http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
