@@ -1,7 +1,7 @@
 j/asciidoc
 ==========
 10sr <8slashes+git@gmail.com>
-v0.0.1, February 2016:
+v0.0.1, 2016/02/05:
 :toc:
 :numbered:
 
