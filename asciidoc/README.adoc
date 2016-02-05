@@ -5,6 +5,9 @@ v0.0.1, February 2016:
 :toc:
 :numbered:
 
+Asciidoc cheatsheet and example.
+
+
 Examples
 --------
 
