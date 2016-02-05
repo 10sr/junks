@@ -3,6 +3,7 @@ j/asciidoc
 10sr <8slashes+git@gmail.com>
 v0.0.1, February 2016:
 :toc:
+:numbered:
 
 Examples
 --------
