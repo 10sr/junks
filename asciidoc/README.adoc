@@ -15,6 +15,7 @@ Examples
 Code block
 ~~~~~~~~~~
 
+.Code block example
 ----
 int main(void){
     return 0;
