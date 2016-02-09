@@ -1,4 +1,4 @@
 [submodule "ansible/ansible"]
-	path = ansible/ansible
+	path = ansible/ansible_src
 	url = git@github.com:ansible/ansible.git
 	ignore = dirty
