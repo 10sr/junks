@@ -1,4 +1,7 @@
-import java.io.*;
+//import java.io.*;
+
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 class Test{
     public static void main(String arg[])
@@ -28,6 +31,12 @@ class Test{
         System.out.println(null != null);
 
         System.out.println(EnumsTry.AEnum.E2.getVal());
+
+        Map<String, String> m1 = new LinkedHashMap();
+        Map<String, String> m2 = new LinkedHashMap();
+        m1.put("key", "value");
+        m2.put("key", "value");
+        System.out.println("Comparing map: " + m1.equals(m2));
     }
 
 }
