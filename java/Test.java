@@ -1,10 +1,13 @@
 //import java.io.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.Map;
 import java.util.LinkedHashMap;
 
 class Test{
-    public static void main(String arg[])
+    public static void main(String arg[]) throws Exception
     {
         System.out.println("hello world");
 
@@ -37,6 +40,12 @@ class Test{
         m1.put("key", "value");
         m2.put("key", "value");
         System.out.println("Comparing map: " + m1.equals(m2));
+
+        BufferedReader r = new BufferedReader(new FileReader(new File("./a.txt")));
+        String line = null;
+        while ((line = r.readLine()) != null) {
+            System.out.println("./a.txt: " + line);
+        }
     }
 
 }
