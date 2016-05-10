@@ -8,4 +8,12 @@ def main():
         "def"
     print(b)
 
+    he = True
+    if he:
+        ge = "a"
+    else:
+        ge = "b"
+
+    print(ge)
+
 main()
