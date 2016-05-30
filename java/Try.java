@@ -53,6 +53,11 @@ class Try{
         System.out.println("a" + 'b');
         // stdout: b
         System.out.println('b');
+
+        Boolean flag = true;
+        // stdout:
+        // No output. Why?
+        flag ? System.out.println("2") : System.out.println("3");
     }
 
 }
