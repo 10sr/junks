@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.util.Map;
 import java.util.LinkedHashMap;
 
-class Test{
+class Try{
     public static void main(String arg[]) throws Exception
     {
         System.out.println("Hell, world!");
