@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 class Test{
     public static void main(String arg[]) throws Exception
     {
-        System.out.println("hello world");
+        System.out.println("Hell, world!");
 
         String str = "abcde";
         char str2 = str.charAt(2);
@@ -30,6 +30,7 @@ class Test{
             e.printStackTrace();
         }
 
+        // stdout: null:
         System.out.println(null + ":");
         System.out.println(null != null);
 
@@ -39,6 +40,7 @@ class Test{
         Map<String, String> m2 = new LinkedHashMap();
         m1.put("key", "value");
         m2.put("key", "value");
+        // stdout: Comparing map: true
         System.out.println("Comparing map: " + m1.equals(m2));
 
         BufferedReader r = new BufferedReader(new FileReader(new File("./a.txt")));
@@ -46,6 +48,11 @@ class Test{
         while ((line = r.readLine()) != null) {
             System.out.println("./a.txt: " + line);
         }
+
+        // stdout: ab
+        System.out.println("a" + 'b');
+        // stdout: b
+        System.out.println('b');
     }
 
 }
