@@ -16,4 +16,8 @@ def main():
 
     print(ge)
 
+    # No error
+    if False and hoge:
+        print("abc")
+
 main()
