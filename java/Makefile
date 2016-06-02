@@ -1,4 +1,5 @@
-target = Test
+target := Test
+javac := LC_ALL=C javac -J-Dfile.encoding=UTF8 -J-Duser.language=en
 
 #all: $(target)
 
@@ -8,4 +9,4 @@ run: $(target)
 $(target): %: %.class
 
 %.class: %.java
-	LC_ALL=C javac -J-Dfile.encoding=UTF8 -J-Duser.language=en $<
+	$(javac)$<
