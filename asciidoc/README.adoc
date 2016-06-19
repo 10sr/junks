@@ -33,3 +33,4 @@ References
 ** http://asciidoc.org/userguide.html
 * http://powerman.name/doc/asciidoc
 * http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
+* https://gist.github.com/powerman/d56b2675dfed38deb298
