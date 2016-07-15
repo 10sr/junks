@@ -1,0 +1,54 @@
+---
+# http://magazine.rubyist.net/?0009-YAML
+basics:
+  abc:
+    - hoge: fuga
+      fuga: piyo
+      piyo: hoge
+    - hoe: hoe
+  def: 123
+
+float_syntax:
+  floatarray: [1, 3, 4]
+  floatdict: { x: 1, y: 2 }
+
+
+types:
+  strvalue: "123"
+  nullvalue: null
+  booleanvalue: true
+  datevalue: 2016-07-15
+
+multiline_values:
+  preserve_each_newlines: |
+    abc
+    def
+    ghi
+  preserve_each_newline_and_last_ones: |+
+    aaa
+    bbb
+    ccc
+
+
+  preserve_all_but_last_newline: |-
+    hoge
+    fuga
+    piyo
+
+
+  replace_all_but_last_newline_into_space: >
+    asd
+    fhj
+    jkl
+
+
+  replace_all_newline_into_space_but_preserve_last_ones: >+
+    zaq
+    xsw
+    cde
+
+
+  replace_all_newlineinto_space_and_strip_last_newline: >-
+    eee
+    ddd
+    fff
