@@ -2,3 +2,6 @@
 	path = ansible/ansible_src
 	url = git@github.com:ansible/ansible.git
 	ignore = dirty
+[submodule "tensorflow/fizz-buzz-tensorflow"]
+	path = tensorflow/fizz-buzz-tensorflow
+	url = https://github.com/joelgrus/fizz-buzz-tensorflow
