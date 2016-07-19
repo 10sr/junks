@@ -7,4 +7,4 @@ TF_BINARY_URL := https://storage.googleapis.com/tensorflow/mac/tensorflow-0.9.0-
 all:
 
 install:
-	./vexec.sh pip3 install $(TF_BINARY_URL)
+	./vexec3.sh pip3 install $(TF_BINARY_URL)
