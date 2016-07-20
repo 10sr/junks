@@ -1,6 +1,6 @@
 .PHONY: printflags
 
-target := Test
+target := Try
 javac := LC_ALL=C javac -J-Dfile.encoding=UTF8 -J-Duser.language=en
 java := java
 
@@ -12,7 +12,7 @@ run: $(target)
 $(target): %: %.class
 
 %.class: %.java
-	$(javac)$<
+	$(javac) $<
 
 printflags:
 	$(java) -XX:+PrintFlagsFinal 2>/dev/null || true

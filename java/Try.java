@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Map;
 import java.util.LinkedHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class Try{
     public static void main(String arg[]) throws Exception
@@ -57,7 +59,14 @@ class Try{
         Boolean flag = true;
         // stdout:
         // No output. Why?
-        flag ? System.out.println("2") : System.out.println("3");
+        // Compile error on another environment
+        // flag ? System.out.println("2") : System.out.println("3");
+
+        Pattern p = Pattern.compile("^[\\?&]");
+        System.out.println(p.matcher("hoge").find());
+        System.out.println(p.matcher("\\oge").find());
+        System.out.println(p.matcher("?oge").find());
+        System.out.println(p.matcher("&oge").find());
     }
 
 }
