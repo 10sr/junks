@@ -15,6 +15,7 @@ float_syntax:
 
 types:
   strvalue: "123"
+  strvalue2: "null"
   nullvalue: null
   booleanvalue: true
   datevalue: 2016-07-15
