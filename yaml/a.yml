@@ -21,35 +21,46 @@ types:
   datevalue: 2016-07-15
 
 multiline_values:
+  # 'abc\ndef\nghi\n'
   preserve_each_newlines: |
     abc
     def
     ghi
+
+
+  # 'aaa\nbbb\nccc\n\n\n'
   preserve_each_newline_and_last_ones: |+
     aaa
     bbb
     ccc
 
 
+  # 'hoge\nfuga\npiyo'
   preserve_all_but_last_newline: |-
     hoge
     fuga
     piyo
 
 
+  # 'asd fhj jkl\n'
   replace_all_but_last_newline_into_space: >
     asd
     fhj
     jkl
 
 
+  # 'zaq xsw cde\n\n\n'
   replace_all_newline_into_space_but_preserve_last_ones: >+
     zaq
     xsw
     cde
 
 
+# 'eee ddd fff'
   replace_all_newlineinto_space_and_strip_last_newline: >-
     eee
     ddd
     fff
+
+
+hoge: fuga
