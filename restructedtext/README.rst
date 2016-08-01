@@ -2,6 +2,42 @@
 j/restructedtext
 ================
 
+Examples
+========
+
+
+List
+----
+
+- a
+- b
+- c
+
+1. first
+2. second
+
+
+
+Inline Markup
+-------------
+
+*Italic*
+
+**Emphasis**
+
+``Inline literal``
+
+Code block
+----------
+
+
+::
+   1 + 1 = 3
+
+
+Another code example::
+  1 + 2 = 5
+
 Refs
 ====
 
