@@ -17,6 +17,8 @@ List
 2. second
 
 
+.. _amarker:
+
 
 Inline Markup
 -------------
@@ -42,9 +44,13 @@ Another code example::
 Link
 ----
 
-Link: `Link1`_
+Link: Link1_
+
+Backquotes are required when link text has spaces: `Link 2`_
 
 Link to a section: `Inline Markup`_
+
+Link to marker: amarker_
 
 
 Refs
@@ -55,4 +61,5 @@ Refs
 - http://www.planewave.org/translations/rst/quickref.html
 - http://www.planewave.org/translations/rst/quickstart.ja.html
 
-.. _`Link1`: http://google.com/
+.. _Link1: http://google.com/
+.. _`Link 2`: http://yahoo.com/
