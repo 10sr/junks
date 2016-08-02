@@ -34,10 +34,12 @@ Code block
 
 
 ::
+
    1 + 1 = 3
 
 
 Another code example::
+
   1 + 2 = 5
 
 
