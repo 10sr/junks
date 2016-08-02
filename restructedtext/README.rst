@@ -44,6 +44,8 @@ Link
 
 Link: `Link1`_
 
+Link to a section: `Inline Markup`_
+
 
 Refs
 ====
