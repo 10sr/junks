@@ -43,7 +43,9 @@ Another code example::
   1 + 2 = 5
 
 
-  > Quoted lines
+Quoted lines
+
+> This line is quoted
 
 
 
