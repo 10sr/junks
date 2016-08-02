@@ -38,6 +38,13 @@ Code block
 Another code example::
   1 + 2 = 5
 
+
+Link
+----
+
+Link: `Link1`_
+
+
 Refs
 ====
 
@@ -45,3 +52,5 @@ Refs
 - http://sphinx-users.jp/articles/expertpython/restructuredtext.html
 - http://www.planewave.org/translations/rst/quickref.html
 - http://www.planewave.org/translations/rst/quickstart.ja.html
+
+.. _`Link1`: http://google.com/
