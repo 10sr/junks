@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 println "this is groovy script!"
 println("this also prints a string")
 
@@ -22,3 +24,17 @@ a = [
 println a.name
 println a.name3
 println a["name3"]
+
+
+b = [
+    "hoge",
+    "fuga"
+]
+
+println b
+println b.join("\n")
+
+println ([
+             "fuag",
+             "hlehle"
+         ].join("\n"))
