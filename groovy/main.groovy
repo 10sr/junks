@@ -34,7 +34,16 @@ b = [
 println b
 println b.join("\n")
 
-println ([
-             "fuag",
-             "hlehle"
-         ].join("\n"))
+println (
+    [
+        "fuag",
+        "hlehle"
+    ].join("\n")
+)
+
+
+println """${b}
+"""
+
+println """hoge"\${b}"
+"""
