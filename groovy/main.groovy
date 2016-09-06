@@ -47,3 +47,12 @@ println """${b}
 
 println """hoge"\${b}"
 """
+
+String hoehoe = null
+
+println hoehoe
+try {
+    Objects.requireNonNull(hoehoe);
+} catch (e) {
+    println e
+}
