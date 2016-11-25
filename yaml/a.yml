@@ -19,6 +19,7 @@ types:
   nullvalue: null
   booleanvalue: true
   datevalue: 2016-07-15
+  empty:
 
 multiline_values:
   # 'abc\ndef\nghi\n'
