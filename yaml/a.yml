@@ -14,6 +14,7 @@ float_syntax:
 
 
 types:
+  num: 0500
   strvalue: "123"
   strvalue2: "null"
   nullvalue: null
