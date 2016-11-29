@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
+"fmt"
 	"path/filepath"
 )
 
-func main(){
+func main() {
 	fmt.Printf("hello, world\n")
 
 	p, e := filepath.Abs("")
