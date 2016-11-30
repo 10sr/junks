@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"path/filepath"
+	"os"
 )
 
 func main() {
@@ -12,4 +13,10 @@ func main() {
 
 	fmt.Printf("%v\n", p)
 	fmt.Printf("%v\n", e)
+
+	stat, _ := os.Stat("parent")
+	if stat != nil {
+		fmt.Printf("Stat name: %s", stat.Name())
+		fmt.Printf("Stat isdir: %v", stat.IsDir())
+	}
 }
