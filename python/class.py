@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 class MyClass:
 
     @staticmethod
@@ -33,3 +34,25 @@ c2 = MyClass2()
 MyClass2.met_outside = met_outside
 
 c2.met_outside("ab")
+
+
+class MyClass3:
+    def met1(self):
+        print("MyClass3.met1")
+        return
+
+    def __getattr__(self, name):
+        print("MyClass3.__getattr__: {} searched".format(name))
+        def g(*args, **kargs):
+            print("from g #1: {}, {}".format(args, kargs))
+            print("from g #2: {}, {}".format(args, kargs))
+            return 1
+        if name == "f":
+            return g
+        return "__getattr__ non function return value"
+
+
+c3 = MyClass3()
+
+print(c3.eee)
+print(c3.f(1))
