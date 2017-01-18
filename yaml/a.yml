@@ -20,6 +20,7 @@ types:
   strvalue2: "null"
   nullvalue: null
   booleanvalue: true
+  offvalue: off
   datevalue: 2016-07-15
   empty:
 
