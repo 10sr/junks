@@ -2,6 +2,7 @@
 - hosts: all
   vars:
     helloworld: Hell, world!
+    lastone: "{{ 'hogehoge' | lastone }}"
 
   roles:
     - { role: role1, debugmsg: "def" }
@@ -17,6 +18,10 @@
 
     - name: Print ansible_hostname
       debug: var=ansible_hostname
+
+    - name: debug lastone
+      debug:
+        var: lastone
 
     - name: Try timetest.py
       timetest.py:
