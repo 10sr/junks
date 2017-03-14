@@ -3,6 +3,7 @@
   vars:
     helloworld: Hell, world!
     lastone: "{{ 'hogehoge' | lastone }}"
+    idx: "{{ 'hoehoe' | idx(3) }}"
 
   roles:
     - { role: role1, debugmsg: "def" }
@@ -22,6 +23,10 @@
     - name: debug lastone
       debug:
         var: lastone
+
+    - name: debug idx
+      debug:
+        var: idx
 
     - name: Try timetest.py
       timetest.py:
