@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+<title>applications | Arch Linux Memo</title>
+</head>
+<body>
+<h1 class="title">applications | <a href="index.html">archlinux</a></h1>
+
+<ul class="menu">
+<li><a href="index.html">index</a></li>
+<li><a href="android-sdk.html">android-sdk</a></li>
+<li><a href="applications.html">applications</a></li>
+<li><a href="network.html">network</a></li>
+</ul>
+
+
+<div class="page">
+<div class="content">
+<p><a href="https://wiki.archlinux.org/index.php/List_of_Applications">https://wiki.archlinux.org/index.php/List_of_Applications</a></p>
+<h1>daemons</h1>
+<p>systemdに移行したあたりで変わった部分があるかも</p>
+<h2>acpid</h2>
+<p>電源の動作を設定するデーモン。電源ボタンの動作、ノートPCを閉じたときの動作とかも設定できる。</p>
+<h2>pm-utils</h2>
+<p>suspend, hibernateなどの動作を細かく設定できる。pm-suspendとかの動作には管理者権限が必要。</p>
+<h2>cpufrequtils</h2>
+<p>cpuの周波数を操作するデーモン</p>
+<h2>dbus</h2>
+<p>なんかいろんなアプリケーションで使われるメッセージシステム。</p>
+<h2>udev</h2>
+<p>ユーザによるディスクのマウント (HALはobsolete)</p>
+<h2>policykit</h2>
+<h2>upower</h2>
+<p>一般ユーザが電源落とすのに必要かも</p>
+<h2>locate</h2>
+<p><a href="http://carolina.mff.cuni.cz/~trmac/blog/mlocate/">mlocate</a>
+をインストールする</p>
+<h2>laptop-mode tools</h2>
+<p>ノートPCでの省電力とかの設定をうまくやるもの？
+acpidとかcpufrequtilsとかと連携する</p>
+<h2><a href="https://wiki.archlinux.org/index.php/Secure_Shell">Secure Shell</a></h2>
+<ul>
+<li>pacman -S openssh</li>
+<li>systemctl enable sshd.service</li>
+<li>
+<p>PasswordAuthentication yes</p>
+</li>
+<li>
+<p>→ <a href="wlan">wlan</a></p>
+</li>
+<li><a href="https://bbs.archlinux.org/viewtopic.php?pid=1066184#p1066184">[SOLVED]laptop-mode: failed - udev not active? (Page 1) / Laptop Issues / Arch Linux Forums</a>
+のとおりに、<code>/usr/share/laptop-mode-tools/modules/hdparm</code>のはじめの辺りにある<code>/sbin/udevadm</code>を<code>/usr/bin/udevadm</code>に書き換え</li>
+<li>
+<p>/etc/laptop-mode/conf.d/dpms-standby.conf で</p>
+<pre><code>BATT_DPMS_STANDBY=300
+LM_AC_DPMS_STANDBY=1800
+NOLM_AC_DPMS_STANDBY=1800
+</code></pre>
+<p>を設定</p>
+</li>
+</ul>
+<h2>cron</h2>
+<ul>
+<li>はじめから入ってる</li>
+<li>ローカルでメール送りつけるようなのは多分<a href="https://wiki.archlinux.org/index.php/Local_Mail_Delivery_with_Postfix">ここらへん</a>参照。</li>
+</ul>
+<h1>テキスト系の</h1>
+<ul>
+<li>bash-completion</li>
+<li>links</li>
+<li>htop</li>
+<li>unp</li>
+<li>convmv</li>
+<li>archey / alsi</li>
+<li>vlock</li>
+<li>sl</li>
+<li>e3</li>
+<li>slurm</li>
+<li>glances</li>
+<li>ncdu</li>
+<li><a href="http://www.geocities.jp/harddiskdive/source-highlight/">source-highlight</a><ul>
+<li><a href="http://judsonsnotes.com/notes/index.php?option=com_content&amp;view=article&amp;id=564:syntax-highlighting-in-less&amp;catid=37:tech-notes&amp;Itemid=59">Syntax highlighting in LESS</a></li>
+</ul>
+</li>
+</ul>
+<h2>player</h2>
+<ul>
+<li>moc xmms2</li>
+<li>cmus</li>
+<li>mpg123</li>
+</ul>
+<h1>desktop applications</h1>
+<p>基本的にあんまり大きくないもの</p>
+<ul>
+<li>wicd : see <a href="wlan">wlan</a></li>
+<li>libnotify notify-sendがある</li>
+<li><a href="https://wiki.archlinux.org/index.php/Wireshark">Wireshark</a></li>
+<li>gksu</li>
+<li>gpicview</li>
+<li>gthumb</li>
+<li>baobab</li>
+<li>leafpad</li>
+<li>evince</li>
+<li>file-roller</li>
+<li>audacious / deadbeef</li>
+<li>gstreamer0.10-plugins</li>
+<li>udisks - udevのラッパーみたいなもの？よく分かってない。
+とりあえずこれ入れると、pcmanfmとかでディスクの一般ユーザでのマウントができるようになる</li>
+<li>pcmanfm<ul>
+<li><a href="https://wiki.archlinux.org/index.php/Pcmanfm#Trashcan_not_working.3F">PCManFM Trashcan not working? - ArchWiki</a><ul>
+<li>gvfsをインストール</li>
+<li>~/.xinitrc に <code>exec ck-launch-session dbus-launch openbox-session</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dropbox<ul>
+<li>設定でシステム起動時に起動を有効にすると、~/.config/autostart/dropbox.desktopが生成される</li>
+</ul>
+</li>
+<li>pinta</li>
+<li>mtpaint</li>
+<li>rubyroom</li>
+</ul>
+<h2>openbox</h2>
+<ul>
+<li>lxappearance<ul>
+<li>simple-icon-theme</li>
+</ul>
+</li>
+<li>tint2<ul>
+<li><a href="https://github.com/dmedvinsky/gsimplecal">gsimplecal</a></li>
+<li>volumeicon</li>
+</ul>
+</li>
+<li>dmenu</li>
+<li>feh</li>
+<li>obmenugen-bin<ul>
+<li>インストールしたら既存のmenu.xmlをバックアップしておく。</li>
+<li><code>$ obmenugen</code> とすればmenu.xmlがpipeを使ってメニューを自動生成するように書き換えられる。</li>
+<li><a href="https://wiki.archlinux.org/index.php/Openbox_Themes_and_Apps#Logout_dialog">wiki</a>
+からコピーしたexit-menuを付け加える。</li>
+<li>最終的な状態：
+<a href="https://gist.github.com/2101119#comments">obmenugen generated menu for openbox — Gist</a></li>
+<li>rc.xmlにはこう：
+<a href="https://gist.github.com/1998681">openbox configuration newly added codes — Gist</a></li>
+</ul>
+</li>
+<li><a href="https://wiki.archlinux.org/index.php/Xcompmgr">Xcompmgr - ArchWiki</a><ul>
+<li>xcompmgrを入れて、xcompmgr -cするだけ。</li>
+<li>とりあえず起動時に設定したけど常用するかは様子見</li>
+</ul>
+</li>
+</ul>
+<h2>fonts</h2>
+<ul>
+<li>日本語フォント monapo</li>
+<li>その他、
+ttf-freebanglafont
+ttf-myanmar3
+ttf-khmer
+ttf-malayalam-fonts
+ttf-lklug
+ttf-tamil
+ttf-tlwg
+ttf-tibetan-machine
+opendesktop-fonts
+ttf-baekmuk</li>
+<li>~/.fonts.conf　に　<a href="https://gist.github.com/2051565">my font config — Gist</a>　のように書いた。</li>
+</ul>
+<h2><a href="https://wiki.archlinux.org/index.php/Xdg-open">Xdg-open - ArchWiki</a></h2>
+<p>多分普通はpcmanfmで開いたほうが良い</p>
+<p>まず、 xdg-mime query filetype a.txt と xdg-mime query default text/plain を調べる。
+それがないと、mimeopenを使う。設定はxdg-mimeよりmimeopenのほうがずっと楽。</p>
+<ol>
+<li><code>perl-file-mimeinfo</code>をインストール</li>
+<li>パスが通ってないので、ログアウトするかmimeopenを探す。</li>
+<li><code>$ mimeopen -d file.ext</code> で開くプログラムが設定できる。</li>
+<li>これ以降は、xdg-openでも上で設定したプログラムで開かれるようになる。</li>
+</ol>
+<h2>python-gtk</h2>
+<h3>python-gtk2</h3>
+<ul>
+<li>python2 じゃないと使えない？</li>
+</ul>
+<h3>gtk3 (gobject)</h3>
+<p>gtk3, python-gobject を入れる。</p>
+<p>gobject, gobject2 があり、それぞれ py2, py3k のパッケージがある（計４つ）。普通は gobject を使えば良い？</p>
+<hr />
+<h1>入れるか迷ってるもの</h1>
+<ul>
+<li>prey</li>
+<li>kupfer</li>
+<li>bmon</li>
+<li>furiusisomount</li>
+<li>acetoneiso</li>
+<li><a href="http://endoh-namazu.tierra.ne.jp/xfumble/about_xfumble.html">xfumble</a></li>
+<li>speedometer</li>
+<li>nmon</li>
+<li>dstat</li>
+</ul>
+<h2><a href="http://kkovacs.eu/cool-but-obscure-unix-tools">Cool, but obscure unix tools :: Software architect Kristof Kovacs</a></h2>
+</div>
+
+<div class="footer">
+<p class="time">Page generated from <a href="applications.md">applications.md</a> at Wed, 27 Feb 2013 14:44:55 +0900.</p>
+</div>
+</div>
+</body>
+</html>
+<!-- Last update : Wed, 27 Feb 2013 14:44:55 +0900 -->

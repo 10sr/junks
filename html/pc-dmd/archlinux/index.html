@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+<title>index | Arch Linux Memo</title>
+</head>
+<body>
+<h1 class="title">index | <a href="index.html">archlinux</a></h1>
+
+<ul class="menu">
+<li><a href="index.html">index</a></li>
+<li><a href="archlinux-bak/index.html">archlinux-bak/</a></li>
+<li><a href="softs.html">softs</a></li>
+</ul>
+
+
+<div class="page">
+<div class="content">
+<h1>Package</h1>
+<h2>makepkg</h2>
+<ol>
+<li>Download PKGBUILD from <a href="https://aur.archlinux.org/">https://aur.archlinux.org/</a> or somewhere.</li>
+<li>Install by <code>makepkg -si</code></li>
+</ol>
+<h1>Prefs</h1>
+<h2>brightness</h2>
+<p><a href="https://wiki.archlinux.org/index.php/Backlight">Backlight - ArchWiki</a></p>
+<ul>
+<li><code>$ cd /sys/class/backlight</code></li>
+<li>
+<p>なんか適当に探す。 <code>max_brightness</code> を見つつ <code>brightness</code> を設定。</p>
+<pre><code># echo 20 &gt;/sys/class/backlight/acpi_video0/brightness
+</code></pre>
+</li>
+</ul>
+<h2>system</h2>
+<ul>
+<li>sysstat</li>
+</ul>
+<h2>Startup</h2>
+<p><a href="https://wiki.archlinux.org/index.php/Systemd_FAQ#Q:_How_can_I_make_a_script_start_during_the_boot_process.3F">systemd FAQ - ArchWiki</a></p>
+<p>次のようなファイルを作り、 <code>/etc/systemd/system/myrc.service</code> として保存</p>
+<pre><code>[Unit]
+Description=My script
+
+[Service]
+ExecStart=/usr/local/bin/myrc.sh
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>Enable it.</p>
+<pre><code># systemctl enable myrc.service
+</code></pre>
+<p>Create script file and chmod +x.</p>
+<h2>acpi 周りの設定とか</h2>
+<p>現状、 acpi に関わるのは <code>acpid</code>, <code>systemd-logind</code>, <code>laptop-mode-tools</code> がある？</p>
+<p>フタを閉じるとサスペンドするのは <code>/etc/systemd/logind.conf</code> に設定されてるせい。 <code>HandleLidSwitch=ignore</code> にすることで無効にする。</p>
+<h2>network</h2>
+<p>無線を使うわけでなく、ネットワークが突然切れる可能性があるサーバなので、 wicd やめて ifplugd 使うことにした</p>
+<p><a href="https://wiki.archlinux.org/index.php/Network_Configuration">Network Configuration - ArchWiki</a></p>
+<pre><code>$ sudo pacman -S ifplugd
+$ sudo systemctl enable ifplugd@eth0.service
+$ sudo systemctl enable dhcpcd@eth0
+$ sudo systemctl disable wicd.service
+</code></pre>
+</div>
+
+<div class="footer">
+<p class="time">Page generated from <a href="index.md">index.md</a> at Fri, 16 Aug 2013 21:40:35 +0900.</p>
+</div>
+</div>
+</body>
+</html>
+<!-- Last update : Fri, 16 Aug 2013 21:40:35 +0900 -->

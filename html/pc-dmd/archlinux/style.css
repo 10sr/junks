@@ -1,0 +1,54 @@
+body {
+    margin : 0;
+    background-color : #eeeeee;
+    font-size : smaller;
+}
+
+a {
+    color : #0000ff;
+}
+
+h1.title, h2.subtitle {
+    margin : 0;
+    border : 0;
+    background : #220088;
+    color : #ffffff;
+}
+
+h1.title {
+    padding : 0.5% 0 0 4%;
+}
+
+h2.subtitle {
+    padding : 0 0 0.5% 4%;
+    font-size : smaller;
+}
+
+ul.menu {
+    float : right;
+    width : 15%;
+
+    padding-top : 1%;
+
+    list-style-type : none;
+}
+
+div.page {
+    align : left;
+    margin : 1% 1% 1% 4%;
+    width : 80%;
+}
+
+div.content {
+    padding : 2%;
+    background-color : #ffffff;
+    border-color : #cccccc;
+    border-width : 1px;
+    border-style : solid;
+}
+
+p.time, p.time a {
+    font-size : smaller;
+    color : #999999;
+    text-align : center;
+}

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+<title>network | Arch Linux Memo</title>
+</head>
+<body>
+<h1 class="title">network | <a href="index.html">archlinux</a></h1>
+
+<ul class="menu">
+<li><a href="index.html">index</a></li>
+<li><a href="android-sdk.html">android-sdk</a></li>
+<li><a href="applications.html">applications</a></li>
+<li><a href="network.html">network</a></li>
+</ul>
+
+
+<div class="page">
+<div class="content">
+<h1>aspireone</h1>
+
+<ul>
+<li><code>$ lspci -nn | grep Broadcom</code></li>
+</ul>
+
+<blockquote>
+  <p><code>01:00.0 Network controller [0280]: Broadcom Corporation BCM4312 802.11b/g LP-PHY [14e4:4315] (rev 01)</code></p>
+</blockquote>
+
+<ul>
+<li>b43-fwcutterとb43-firmwareを入れる</li>
+<li><code>/etc/modprobe.d/b43.conf</code> を作成し <code>blacklist wl</code> と <code>blacklist b43legacy</code> と書く</li>
+<li><code>/etc/rc.conf</code> の MODULES に b43 を追加。</li>
+<li>wicd を使っていて、 wl から b43 に変えた場合、インターフェイスの設定がずれてるのでip linkとか見ながら書き換える</li>
+</ul>
+
+<hr />
+
+<ul>
+<li>pm-utils
+<ul>
+<li>/etc/pm/power.d/wireless.sh というファイルを作り、 /usr/sbin/iwconfig wlan0 power off と書いて実行権限を付与</li>
+</ul></li>
+<li>wicd
+<ul>
+<li>Acer AspireOneにおいて問題がある模様 → <a href="https://gist.github.com/2133000">wicd before connecting reload wlan module — Gist</a></li>
+<li>→ ドライバを b43 にしたら不要になった気がするので無効にしてみる</li>
+</ul></li>
+<li><p>laptop-mode tools</p>
+
+<ul>
+<li>無線LANがつながらなくなったので、/etc/laptop-mode/conf.d内にあるwireless系の3つの設定を無効</li>
+<li>→ ドライバを wl から b43 に変えたら動くようになったので、３つをautoに戻す。</li>
+<li>→ やっぱりダメかも。 0 にする。</li>
+</ul></li>
+<li><p>ipv6 が原因かもしれないという記述を見たので、 /boot/grub/menu.lst に ipv6.disable=1 を追加してみる</p></li>
+</ul>
+
+<h3>wlan0: deauthenticating from by local choice (reason=3)</h3>
+
+<p><a href="https://wiki.archlinux.org/index.php/Wicd#Random_disconnecting">Random disconnecting | Wicd - ArchWiki</a></p>
+
+<hr />
+
+<p>参考</p>
+
+<p><a href="http://linuxwireless.org/en/users/Drivers/b43">b43 - Linux Wireless</a></p>
+
+<h3>forum</h3>
+
+<p><a href="https://bbs.archlinux.org/viewtopic.php?id=139265&amp;p=2">wicd doesn't scan for network, last resort. (Page 2) / Newbie Corner / Arch Linux Forums</a></p>
+
+<p><a href="https://bbs.archlinux.org/viewtopic.php?id=117035">[SOLVED] not sure where i'm going wrong with broadcom-wl drivers... (Page 1) / Laptop Issues / Arch Linux Forums</a></p>
+
+<h3>wiki</h3>
+
+<p><a href="https://wiki.archlinux.org/index.php/Broadcom_wireless">Broadcom wireless - ArchWiki</a></p>
+
+<p><a href="https://wiki.archlinux.org/index.php/Wicd">Wicd - ArchWiki</a></p>
+
+<p><a href="https://wiki.archlinux.org/index.php/Acer_Aspire_One">Acer Aspire One - ArchWiki</a></p>
+
+<p><a href="https://wiki.archlinux.org/index.php/Acer_Aspire_One_D250">Acer Aspire One D250 - ArchWiki</a></p>
+
+<p>[14e4:4315]</p>
+
+<h1>lets note</h1>
+
+<h2>wired</h2>
+
+<ol>
+<li>ip link set eth0 up</li>
+<li>dhcpcd eth0</li>
+</ol>
+
+<h2>wireless</h2>
+
+<ul>
+<li>インテル® Centrino® Advanced-N + WiMAX 6250</li>
+<li>wlp2s0</li>
+<li>wireless_tools, iw</li>
+<li>lspci -v すると、 Kernel driver に iwlwifi が使われてて、なんかできてるように見える？</li>
+<li>ip link set wlp2s0 up しても UP にはならない。そのまま dhcpcd wlp2s0 すれば良い。</li>
+<li><a href="https://wiki.archlinux.org/index.php/Wicd">Wicd - ArchWiki</a></li>
+</ul>
+
+<p>wifi-menu するとなんかできる？</p>
+
+</div>
+
+<div class="footer">
+<p class="time">Page generated from <a href="network.md">network.md</a> at Fri, 08 Feb 2013 17:38:44 +0900.</p>
+</div>
+</div>
+</body>
+</html>
+<!-- Last update : Fri, 08 Feb 2013 17:38:44 +0900 -->

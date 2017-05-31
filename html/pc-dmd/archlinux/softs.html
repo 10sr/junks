@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+<title>softs | Arch Linux Memo</title>
+</head>
+<body>
+<h1 class="title">softs | <a href="index.html">archlinux</a></h1>
+
+<ul class="menu">
+<li><a href="index.html">index</a></li>
+<li><a href="archlinux-bak/index.html">archlinux-bak/</a></li>
+<li><a href="softs.html">softs</a></li>
+</ul>
+
+
+<div class="page">
+<div class="content">
+<h1>vsftpd</h1>
+<p><a href="https://gist.github.com/10sr/6249459">vsftpd.conf for anonymous read-write access without any security configurations</a></p>
+<h1><a href="https://github.com/falconindy/cower">cower</a></h1>
+<ul>
+<li><code>cower -s &lt;name&gt;</code> to search aur</li>
+<li><code>cower -d</code> to download</li>
+</ul>
+<h1><a href="https://wiki.archlinux.org/index.php/Reflector">Reflector</a></h1>
+<h1>Arandr</h1>
+<ul>
+<li>GUI frontend for xrandr</li>
+</ul>
+<h1><a href="http://www.gnu.org/software/src-highlite/source-highlight.html">source-highlight</a></h1>
+<p>ソースに色つけできる。 LESS で使うには以下。</p>
+<pre><code>_src_hilite_lp_path="`which src-hilite-lesspipe.sh 2&gt;/dev/null`"
+if test -n "$_src_hilite_lp_path"
+then
+    export LESSOPEN="| $_src_hilite_lp_path %s"
+fi
+</code></pre>
+<h2>Change Colors</h2>
+<p>/usr/bin/src_hilite_lesspipe.sh を見るとわかるように、 style ファイルは esc.style に決め打ちになっている。そのため、 /usr/share/source-highlight/esc.style を直接編集する。</p>
+<h1>wireshark</h1>
+<p><a href="http://www.itbook.info/study/wireshark1.html">パケットキャプチャツール「Wireshark」 - Wiresharkって？ - ネットワークエンジニアを目指して</a></p>
+<p><a href="http://homepage2.nifty.com/protocol/tshark/index.html">Tshark（キャプチャツール）</a></p>
+<h1>Memo</h1>
+<p><a href="http://qiita.com/items/f570f057a0ff927b47dc">【まとめ】これ知らないプログラマって損してんなって思う汎用的なツール 100超 #PHP #JavaScript #Python #Ruby #HTML - Qiita [キータ]</a></p>
+<ul>
+<li>munin</li>
+<li>mutt</li>
+</ul>
+</div>
+
+<div class="footer">
+<p class="time">Page generated from <a href="softs.md">softs.md</a> at Fri, 16 Aug 2013 22:05:31 +0900.</p>
+</div>
+</div>
+</body>
+</html>
+<!-- Last update : Fri, 16 Aug 2013 22:05:31 +0900 -->
