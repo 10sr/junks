@@ -4,6 +4,9 @@
     helloworld: Hell, world!
     lastone: "{{ 'hogehoge' | lastone }}"
     idx: "{{ 'hoehoe' | idx(3) }}"
+    # Hide this for production!
+    encrypt_key: secret_key
+    decrypted_message: "{{ 'gAAAAABYy4KB8lRgVJXCTHQORp5U1cgKWk2DnhQvMRohee77-JpzKRSPQSxwn_AJe5Ts7ECgWq6O08JA0cHMBhxzLN1eSLcwRg==' | decrypt(encrypt_key) }}"
 
   roles:
     - { role: role1, debugmsg: "def" }
@@ -44,3 +47,7 @@
       selinux: state=disabled
       become: yes
       when: ansible_hostname == "vagr-centos66"
+
+    - name: encryption_test
+      debug:
+        msg: "{{ decrypted_message }}"

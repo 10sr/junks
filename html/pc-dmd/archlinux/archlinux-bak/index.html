@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+<title>index | Arch Linux Memo</title>
+</head>
+<body>
+<h1 class="title">index | <a href="index.html">archlinux</a></h1>
+
+<ul class="menu">
+<li><a href="index.html">index</a></li>
+<li><a href="android-sdk.html">android-sdk</a></li>
+<li><a href="applications.html">applications</a></li>
+<li><a href="network.html">network</a></li>
+</ul>
+
+
+<div class="page">
+<div class="content">
+<p><a href="../index.html">../index.html</a></p>
+<h2><a href="https://wiki.archlinux.org/index.php/Main_Page">Arch</a></h2>
+<p><a href="http://togetter.com/li/269698">http://togetter.com/li/269698</a></p>
+<p>古いの：<a href="https://www.jottit.com/z45qk/">https://www.jottit.com/z45qk/</a></p>
+<hr />
+<h2><a href="https://wiki.archlinux.org/index.php/AUR">AUR</a> からのインストール</h2>
+<p>ダウンロードしたパッケージを展開し、PKGBUILDとinstallを編集。</p>
+<pre><code>$ makepkg -s
+# pacman -U package.pkg.tar.gz
+</code></pre>
+<ul>
+<li><a href="http://d.hatena.ne.jp/sr10/20120317/1331960857">http://d.hatena.ne.jp/sr10/20120317/1331960857</a></li>
+</ul>
+<hr />
+<h2>tips</h2>
+<h3>ディスプレイを30minアイドルでブランクに</h3>
+<ul>
+<li><code>xset s 1800</code></li>
+<li><code>xset dpms 1810 1820 1830</code></li>
+<li>この4つの違いが分からない。見た目では変わらないけど違いあるんだろうか？</li>
+</ul>
+<h3>コンソールのキーマップ</h3>
+<p><code>/usr/share/kbd/keymaps</code>あたりのファイルを編集し、<code>/etc/vconsole.conf</code>に設定</p>
+<ul>
+<li>capslockをctrlに : change the line <code>keycode 58 = Caps_Lock</code> to <code>keycode 58 = Control</code></li>
+<li>backspaceがemacsで動くように修正</li>
+<li>結果→<a href="https://gist.github.com/2007521">capslock as ctrl, fix backspace for emacs — Gist</a></li>
+<li>showkey を使うことで、キーコードみたいなのを調べられる</li>
+</ul>
+<h3><code># gpasswd -a yourusername group</code></h3>
+<ul>
+<li>gid=100(users)</li>
+<li>groups=100(users),7(lp),10(wheel),19(log),50(games),91(video),92(audio),
+93(optical),95(storage),96(scanner),98(power),108(vboxusers)</li>
+</ul>
+<h3><code>/etc/rc.local.shutdown</code></h3>
+<p><code>pacman-optimize</code>を追加？</p>
+<h3><a href="https://wiki.archlinux.org/index.php/Disable_Clearing_of_Boot_Messages#Disable_clearing_by_getty">Disable Clearing of Boot Messages - ArchWiki</a></h3>
+<p><code>/etc/inittab</code>のagettyに<code>--noclear</code>オプションを加える。<code>/etc/issue</code>の変更は不要だった。</p>
+<h3>pacman</h3>
+<ul>
+<li>pacman-color</li>
+<li><a href="http://kmkeen.com/pacmatic/index.html">Pacmatic: Get emails about pending system updates with cron-pacmatic</a></li>
+<li><a href="http://d.hatena.ne.jp/sr10/20120311/1331446584">pacmanのキーサーバを設定する - 冷凍庫</a></li>
+<li>pacman.conf<ul>
+<li>uncomment UseSyslog</li>
+<li>ILiveCandy</li>
+</ul>
+</li>
+<li>yaourt<ul>
+<li>/tmpをtmpfsでマウントしてたりすると領域が足りなかったりするのでそのときは--tmp <dir>とかつける</li>
+</ul>
+</li>
+</ul>
+<h3>syslog-ng.conf</h3>
+<ul>
+<li>log everything to tty12</li>
+</ul>
+<h3><a href="http://satospo.sakura.ne.jp/blog_archives/tech/linux/tmp.html">tmpディレクトリの自動掃除 - satospo</a></h3>
+<ul>
+<li>必要なんだろうか？様子見</li>
+</ul>
+<h3>マジックsysrq</h3>
+<ul>
+<li>まず、 /etc/sysctl.conf で kernel.sysrq = 1 に書き換える</li>
+<li>alt+sysrqを押しながら、reisubで再起動</li>
+</ul>
+<h3>swap file <a href="https://wiki.archlinux.org/index.php/Swap#Swap_file">Swap - ArchWiki</a></h3>
+<ul>
+<li><code># fallocate -l 2G /2g.swap</code></li>
+<li><code># chmod 600 /2g.swap</code></li>
+<li><code># mkswap /2g.swap</code></li>
+<li><code># swapon /2g.swap</code> で終了するまでスワップが有効になる</li>
+<li><code>/etc/fstab</code> に <code>/2g.swap none swap defaults 0 0</code> を追記。</li>
+</ul>
+<h3>sudo</h3>
+<ol>
+<li>visudo で <code>%wheel      ALL=(ALL) ALL</code> を有効化</li>
+<li><code>gpasswd -a usename wheel</code></li>
+</ol>
+<h3><a href="https://wiki.archlinux.org/index.php/Fonts#Console_fonts">コンソールフォント</a> # なんかできない…</h3>
+<p><code>/etc/vconsole.conf</code> に以下を記述</p>
+<pre><code>FONT="LatGrkCyr-8x16"
+</code></pre>
+<p><code>/etc/mkinitcpio.conf</code> の HOOKS に consolemap を追</p>
+<p><code>#mkinitcpio -p linux</code></p>
+<hr />
+<h2>memo</h2>
+<ul>
+<li><code>/usr/local</code>は基本的に使われない。だいたい<code>/usr</code>以下に配置される</li>
+</ul>
+</div>
+
+<div class="footer">
+<p class="time">Page generated from <a href="index.md">index.md</a> at Wed, 13 Feb 2013 13:31:00 +0900.</p>
+</div>
+</div>
+</body>
+</html>
+<!-- Last update : Wed, 13 Feb 2013 13:31:00 +0900 -->
