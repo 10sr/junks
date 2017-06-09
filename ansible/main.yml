@@ -51,3 +51,13 @@
     - name: encryption_test
       debug:
         msg: "{{ decrypted_message }}"
+
+    - name: yaml_file test
+      yaml_file:
+        path: /tmp/j_ansible_yaml_file_test.yaml
+        data:
+          - 1
+          - 2
+          - key1: 2
+            key2: true
+            key4: null
