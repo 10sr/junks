@@ -19,28 +19,81 @@
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
+import yaml
+# import module snippets
+from ansible.module_utils.basic import AnsibleModule
+
 ANSIBLE_METADATA = {'metadata_version': '1.0',
                     'status': ['preview'],
                     'supported_by': 'community'}
 
-# import module snippets
-from ansible.module_utils.basic import AnsibleModule
+
+class _TaskFailedException(Exception):
+    def __init__(self, rc, msg):
+        self.rc = rc
+        self.msg = msg
+        return
+
+
+def do_yaml(module, filename, data, indent_size=2, backup=False, create=False):
+    orig_data = None
+    if not os.path.exists(filename):
+        if not create:
+            raise _TaskFailedException(
+                257, 'Destination {} does not exist !'.format(filename)
+            )
+        destdir = os.path.dirname(filename)
+        if not os.path.exists(destdir) and not module.check_mode:
+            os.makedirs(destdir)
+    else:
+        try:
+            with open(filename) as f:
+                orig_data = yaml.safe_load(f)
+        except yaml.error.YAMLError:
+            # Ignore parse error (and possibly overwrite its content)
+            pass
+
+    if orig_data == data:
+        changed = False
+        msg = "OK"
+    else:
+        changed = True
+        msg = "Data changed"
+
+    backup_file = None
+    if changed and not module.check_mode:
+        if backup:
+            backup_file = module.backup_local(filename)
+        with open(filename, "w") as f:
+            yaml.dump(
+                data, f,
+                explicit_start=True,
+                default_flow_style=False,
+                indent=indent_size
+            )
+
+    return {
+        'changed': changed,
+        'msg': msg,
+        'backup_file': backup_file
+    }
 
 # ==============================================================
 # main
 
-def main():
 
+def main():
     module = AnsibleModule(
-        argument_spec = dict(
-            path = dict(required=True, aliases=['dest'], type='path'),
-            data = dict(required=True, aliases=['content'], type='raw'),
-            indent_size = dict(default=2, type='int'),
-            backup = dict(default='no', type='bool'),
+        argument_spec=dict(
+            path=dict(required=True, aliases=['dest'], type='path'),
+            data=dict(required=True, aliases=['content'], type='raw'),
+            indent_size=dict(default=2, type='int'),
+            backup=dict(default=False, type='bool'),
             create=dict(default=True, type='bool')
         ),
-        add_file_common_args = True,
-        supports_check_mode = True
+        add_file_common_args=True,
+        supports_check_mode=True
     )
 
     path = module.params['path']
@@ -49,28 +102,35 @@ def main():
     backup = module.params['backup']
     create = module.params['create']
 
-    (changed, backup_file, diff, msg) = do_yaml(
-        module=module,
+    try:
+        result = do_yaml(
+            module=module,
+            filename=path,
+            data=data,
+            indent_size=indent_size,
+            backup=backup,
+            create=create
+        )
+        if not module.check_mode and os.path.exists(path):
+            file_args = module.load_file_common_arguments(module.params)
+            result['changed'] = module.set_fs_attributes_if_different(
+                file_args, result['changed']
+            )
+
+    except _TaskFailedException as e:
+        module.fail_json(
+            rc=e.rc,
+            msg=e.msg
+        )
+        return
+
+    module.exit_json(
+        changed=result['changed'],
+        msg=result['msg'],
         path=path,
-        data=data,
-        indent_size=indent_size,
-        backup=backup,
-        create=create
+        backup_file=result['backup_file']
     )
-
-    if not module.check_mode and os.path.exists(path):
-        file_args = module.load_file_common_arguments(module.params)
-        changed = module.set_fs_attributes_if_different(file_args, changed)
-
-    result = {
-        'changed': changed,
-        'msg': msg,
-        'path': path,
-        'diff': diff,
-        'backup_file': backup_file
-    }
-
-    module.exit_json(**result)
+    return
 
 if __name__ == '__main__':
     main()
