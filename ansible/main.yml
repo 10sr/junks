@@ -8,6 +8,15 @@
     encrypt_key: secret_key
     decrypted_message: "{{ 'gAAAAABYy4KB8lRgVJXCTHQORp5U1cgKWk2DnhQvMRohee77-JpzKRSPQSxwn_AJe5Ts7ECgWq6O08JA0cHMBhxzLN1eSLcwRg==' | decrypt(encrypt_key) }}"
 
+    yaml_data:
+      - 1
+      - 2
+      - key1: 2
+        key2: true
+        key4: null
+        key5: ["hoge", null, 1, false]
+
+
   roles:
     - { role: role1, debugmsg: "def" }
     - role: role1
@@ -55,9 +64,4 @@
     - name: yaml_file test
       yaml_file:
         path: /tmp/j_ansible_yaml_file_test.yaml
-        data:
-          - 1
-          - 2
-          - key1: 2
-            key2: true
-            key4: null
+        data: "{{ yaml_data }}"
