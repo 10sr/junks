@@ -19,14 +19,11 @@
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
-import yaml
-# import module snippets
 from ansible.module_utils.basic import AnsibleModule
 
-ANSIBLE_METADATA = {'metadata_version': '1.0',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
+ANSIBLE_METADATA = {'status': ['preview'],
+                    'supported_by': 'community',
+                    'metadata_version': '1.0'}
 
 
 class _TaskFailedException(Exception):
@@ -36,51 +33,129 @@ class _TaskFailedException(Exception):
         return
 
 
-def do_yaml(module, filename, data, indent_size=2, backup=False, create=False):
-    orig_data = None
-    if not os.path.exists(filename):
-        if not create:
-            raise _TaskFailedException(
-                257, 'Destination {} does not exist !'.format(filename)
-            )
-        destdir = os.path.dirname(filename)
-        if not os.path.exists(destdir) and not module.check_mode:
-            os.makedirs(destdir)
-    else:
+class _Pm2(object):
+    def __init__(self, module, name, pm2_executable):
+        self.module = module
+        self.name = name
+        if pm2_executable is None:
+            self.pm2_executable = module.get_bin_path("pm2", required=True)
+        else:
+            self.pm2_executable = pm2_executable
+
+        rc, out, err = self._run_pm2(["-v"])
+        if rc != 0:
+            # raise _TaskFailedException(rc=rc, msg=err.strip())
+            raise _TaskFailedException(rc=rc, msg=out.strip())
+
+        return
+
+    def start(self, config=None, script=None, chdir=None):
+        "startOrReload"
+        return {
+            "msg": "started"
+        }
+
+    def stop(self, config=None, script=None, chdir=None):
+        return {
+            "msg": "stopped"
+        }
+
+    def delete(self, config=None, script=None, chdir=None):
+        return {
+            "msg": "deleted"
+        }
+
+    def restart(self, config=None, script=None, chdir=None):
+        "startOrReload"
+        return {
+            "msg": "restarted"
+        }
+
+    def reload(self, config=None, script=None, chdir=None):
+        "startOrReload"
+        return {
+            "msg": "reloaded"
+        }
+
+    def is_started(self):
+        status = self.get_status()
+        return status is not None and status == "online"
+
+    def exists(self):
+        return self.get_status() is not None
+
+    def get_status(self):
+        rc, out, err = self._run_pm2(["jlist"], check_rc=True)
         try:
-            with open(filename) as f:
-                orig_data = yaml.safe_load(f)
-        except yaml.error.YAMLError:
-            # Ignore parse error (and possibly overwrite its content)
-            pass
-
-    if orig_data == data:
-        changed = False
-        msg = "OK"
-    else:
-        changed = True
-        msg = "Data changed"
-
-    backup_file = None
-    if changed and not module.check_mode:
-        if backup:
-            backup_file = module.backup_local(filename)
-        with open(filename, "w") as f:
-            yaml.dump(
-                data, f,
-                explicit_start=True,
-                default_flow_style=False,
-                indent=indent_size
+            apps = self.module.from_json(out)
+        except ValueError as e:
+            raise _TaskFailedException(rc=1, msg=e.args[0])
+        try:
+            for app in apps:
+                if app["name"] == self.name:
+                    return app["pm2_env"]["status"]
+        except KeyError as e:
+            raise _TaskFailedException(
+                rc=1,
+                msg="Unexpected pm2 jlist output: {}".format(out)
             )
+        return None
 
-    return {
-        'changed': changed,
-        'msg': msg,
-        'backup_file': backup_file
-    }
+    def _run_pm2(self, args, check_rc=False):
+        # return self.module.run_command(args, executable=self.pm2_executable,
+        #                                check_rc=check_rc)
+        return self.module.run_command(args=([self.pm2_executable] + args),
+                                       check_rc=check_rc)
 
-# ==============================================================
-# main
+
+def do_pm2(module, name, config, script, state, chdir, executable):
+    pm2 = _Pm2(module, name, executable)
+    if state == "running" or state == "started":
+        if pm2.is_started():
+            return {
+                "changed": False,
+                "msg": "{} already started".format(name)
+            }
+        result = pm2.start(config=config, script=script, chdir=chdir)
+        return {
+            "changed": True,
+            "msg": result["msg"]
+        }
+    elif state == "stopped":
+        if pm2.is_started():
+            result = pm2.stop()
+            return {
+                "changed": True,
+                "msg": result["msg"]
+            }
+        return {
+            "changed": False,
+            "msg": "{} already stopped/absent".format(name)
+        }
+    elif state == "restarted":
+        result = pm2.restart(config=config, script=script, chdir=chdir)
+        return {
+            "changed": True,
+            "msg": result["msg"]
+        }
+    elif state == "reloaded":
+        result = pm2.reload(config=config, script=script, chdir=chdir)
+        return {
+            "changed": True,
+            "msg": result["msg"]
+        }
+    elif state == "absent" or state == "deleted":
+        if pm2.exists():
+            result = pm2.delete()
+            return {
+                "changed": True,
+                "msg": result["msg"]
+            }
+        return {
+            "changed": False,
+            "msg": "{} not exists".format(name)
+        }
+    raise _TaskFailedException(msg="Unknown state: {]".format(state), rc=1)
 
 
 def main():
@@ -88,34 +163,28 @@ def main():
         argument_spec=dict(
             config=dict(type='path'),
             script=dict(type='path'),
-            chdir=dict(default='/', type='path'),
-            state=dict(choices=['running', 'started', 'stopped', 'restarted', 'reloaded']),
-            name=dict(required=False)
+            executable=dict(type='path'),
+            chdir=dict(type='path'),
+            state=dict(choices=['running', 'started',
+                                'stopped',
+                                'restarted', 'reloaded',
+                                'absent', 'deleted']),
+            name=dict(required=True)
         ),
         supports_check_mode=True,
-        required_one_of=[['config', 'script']],
+        mutually_exclusive=[['config', 'script']],
     )
 
-    config = module.params['config']
-    script = module.params['script']
-    chdir = module.params['chdir']
-    state = module.params['state']
-    name = module.params['name']
-
     try:
-        result = do_yaml(
+        result = do_pm2(
             module=module,
-            filename=path,
-            data=data,
-            indent_size=indent_size,
-            backup=backup,
-            create=create
+            config=module.params['config'],
+            script=module.params['script'],
+            executable=module.params['executable'],
+            chdir=module.params['chdir'],
+            state=module.params['state'],
+            name=module.params['name']
         )
-        if not module.check_mode and os.path.exists(path):
-            file_args = module.load_file_common_arguments(module.params)
-            result['changed'] = module.set_fs_attributes_if_different(
-                file_args, result['changed']
-            )
 
     except _TaskFailedException as e:
         module.fail_json(
@@ -127,10 +196,13 @@ def main():
     module.exit_json(
         changed=result['changed'],
         msg=result['msg'],
-        path=path,
-        backup_file=result['backup_file']
+        rc=0,
+        failed=False
+        # stderr=result['stderr'],
+        # stdout=result['stdout']
     )
     return
+
 
 if __name__ == '__main__':
     main()

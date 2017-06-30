@@ -13,3 +13,11 @@
       pm2:
         config: pm2.json
         state: started
+        name: "app0"
+
+    - name: pm2 no executable
+      pm2:
+        config: pm2.json
+        state: started
+        name: "app0"
+        executable: "__NONEXIST"
