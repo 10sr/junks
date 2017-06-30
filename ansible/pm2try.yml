@@ -9,11 +9,17 @@
     decrypted_message: "{{ 'gAAAAABYy4KB8lRgVJXCTHQORp5U1cgKWk2DnhQvMRohee77-JpzKRSPQSxwn_AJe5Ts7ECgWq6O08JA0cHMBhxzLN1eSLcwRg==' | decrypt(encrypt_key) }}"
 
   tasks:
-    - name: pm2 start
+    - name: pm2 stopped
       pm2:
         config: pm2.json
-        state: started
+        state: stopped
         name: "app0"
+
+    - name: pm2 deleted
+      pm2:
+        config: pm2.json
+        state: deleted
+        name: "app1"
 
     - name: pm2 no executable
       pm2:
@@ -21,3 +27,4 @@
         state: started
         name: "app0"
         executable: "__NONEXIST"
+      failed_when: false

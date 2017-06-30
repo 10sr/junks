@@ -65,14 +65,18 @@ class _Pm2(object):
             "msg": out
         }
 
-    def stop(self, config=None, script=None, chdir=None):
+    def stop(self):
+        rc, out, err = self._run_pm2(["stop", self.name],
+                                     check_rc=True)
         return {
-            "msg": "stopped"
+            "msg": out
         }
 
-    def delete(self, config=None, script=None, chdir=None):
+    def delete(self):
+        rc, out, err = self._run_pm2(["delete", self.name],
+                                     check_rc=True)
         return {
-            "msg": "deleted"
+            "msg": out
         }
 
     def restart(self, config=None, script=None, chdir=None):
