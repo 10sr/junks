@@ -19,6 +19,7 @@
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 from ansible.module_utils.basic import AnsibleModule
 
 ANSIBLE_METADATA = {'status': ['preview'],
@@ -50,9 +51,18 @@ class _Pm2(object):
         return
 
     def start(self, config=None, script=None, chdir=None):
-        "startOrReload"
+        target = config or script
+        if target is None:
+            raise _TaskFailedException(
+                rc=1,
+                msg="Neigher config nor script args is given for start command"
+            )
+        if chdir is None:
+            chdir = os.path.dirname(target)
+        rc, out, err = self._run_pm2(["start", target, "--name", self.name],
+                                     check_rc=True, cwd=chdir)
         return {
-            "msg": "started"
+            "msg": out
         }
 
     def stop(self, config=None, script=None, chdir=None):
@@ -101,11 +111,9 @@ class _Pm2(object):
             )
         return None
 
-    def _run_pm2(self, args, check_rc=False):
-        # return self.module.run_command(args, executable=self.pm2_executable,
-        #                                check_rc=check_rc)
+    def _run_pm2(self, args, check_rc=False, cwd=None):
         return self.module.run_command(args=([self.pm2_executable] + args),
-                                       check_rc=check_rc)
+                                       check_rc=check_rc, cwd=cwd)
 
 
 def do_pm2(module, name, config, script, state, chdir, executable):
