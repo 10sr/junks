@@ -50,14 +50,9 @@ class _Pm2(object):
 
         return
 
-    def start(self, config=None, script=None, chdir=None):
-        target = config or script
-        if target is None:
-            raise _TaskFailedException(
-                rc=1,
-                msg="Neigher config nor script args is given for start command"
-            )
+    def start(self, target, chdir=None):
         if chdir is None:
+            target = os.path.abspath(target)
             chdir = os.path.dirname(target)
         rc, out, err = self._run_pm2(["start", target, "--name", self.name],
                                      check_rc=True, cwd=chdir)
@@ -79,13 +74,36 @@ class _Pm2(object):
             "msg": out
         }
 
-    def restart(self, config=None, script=None, chdir=None):
-        "startOrReload"
+    def restart(self, target=None, chdir=None):
+        if target is None:
+            rc, out, err = self._run_pm2(["restart", self.name],
+                                         check_rc=True)
+            return {
+                "msg": out
+            }
+        if chdir is None:
+            target = os.path.abspath(target)
+            chdir = os.path.dirname(target)
+        rc, out, err = self._run_pm2(["restart", target, "--name", self.name],
+                                     check_rc=True, cwd=chdir)
         return {
-            "msg": "restarted"
+            "msg": out
         }
 
-    def reload(self, config=None, script=None, chdir=None):
+    def reload(self, config=None, chdir=None):
+        if config is None:
+            raise _TaskFailedException(
+                rc=1,
+                msg="config args is given for reload command"
+            )
+        if chdir is None:
+            config = os.path.abspath(config)
+            chdir = os.path.dirname(config)
+        rc, out, err = self._run_pm2(["startOrReload", config, "--name", self.name],
+                                     check_rc=True, cwd=chdir)
+        return {
+            "msg": out
+        }
         "startOrReload"
         return {
             "msg": "reloaded"
@@ -128,7 +146,13 @@ def do_pm2(module, name, config, script, state, chdir, executable):
                 "changed": False,
                 "msg": "{} already started".format(name)
             }
-        result = pm2.start(config=config, script=script, chdir=chdir)
+        target = config or script
+        if target is None:
+            raise _TaskFailedException(
+                rc=1,
+                msg="Neigher config nor script args is given for start command"
+            )
+        result = pm2.start(target=target, chdir=chdir)
         return {
             "changed": True,
             "msg": result["msg"]
@@ -145,13 +169,14 @@ def do_pm2(module, name, config, script, state, chdir, executable):
             "msg": "{} already stopped/absent".format(name)
         }
     elif state == "restarted":
-        result = pm2.restart(config=config, script=script, chdir=chdir)
+        target = config or script
+        result = pm2.restart(target=target, chdir=chdir)
         return {
             "changed": True,
             "msg": result["msg"]
         }
     elif state == "reloaded":
-        result = pm2.reload(config=config, script=script, chdir=chdir)
+        result = pm2.reload(config=config, chdir=chdir)
         return {
             "changed": True,
             "msg": result["msg"]
