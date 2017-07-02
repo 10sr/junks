@@ -9,9 +9,24 @@
     decrypted_message: "{{ 'gAAAAABYy4KB8lRgVJXCTHQORp5U1cgKWk2DnhQvMRohee77-JpzKRSPQSxwn_AJe5Ts7ECgWq6O08JA0cHMBhxzLN1eSLcwRg==' | decrypt(encrypt_key) }}"
 
   tasks:
+    - name: copy myhttp
+      copy:
+        src: ./myhttp.js
+        dest: /tmp/myhttp.js
+
+    - name: pm2 started
+      pm2:
+        script: /tmp/myhttp.js
+        state: started
+        name: "app0"
+
+    - name: pm2 restarted
+      pm2:
+        state: restarted
+        name: "app0"
+
     - name: pm2 stopped
       pm2:
-        config: pm2.json
         state: stopped
         name: "app0"
 

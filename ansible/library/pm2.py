@@ -57,21 +57,24 @@ class _Pm2(object):
         rc, out, err = self._run_pm2(["start", target, "--name", self.name],
                                      check_rc=True, cwd=chdir)
         return {
-            "msg": out
+            "stdout": out,
+            "stderr": err
         }
 
     def stop(self):
         rc, out, err = self._run_pm2(["stop", self.name],
                                      check_rc=True)
         return {
-            "msg": out
+            "stdout": out,
+            "stderr": err
         }
 
     def delete(self):
         rc, out, err = self._run_pm2(["delete", self.name],
                                      check_rc=True)
         return {
-            "msg": out
+            "stdout": out,
+            "stderr": err
         }
 
     def restart(self, target=None, chdir=None):
@@ -79,7 +82,8 @@ class _Pm2(object):
             rc, out, err = self._run_pm2(["restart", self.name],
                                          check_rc=True)
             return {
-                "msg": out
+                "stdout": out,
+                "stderr": err
             }
         if chdir is None:
             target = os.path.abspath(target)
@@ -87,7 +91,8 @@ class _Pm2(object):
         rc, out, err = self._run_pm2(["restart", target, "--name", self.name],
                                      check_rc=True, cwd=chdir)
         return {
-            "msg": out
+            "stdout": out,
+            "stderr": err
         }
 
     def reload(self, config=None, chdir=None):
@@ -102,11 +107,8 @@ class _Pm2(object):
         rc, out, err = self._run_pm2(["startOrReload", config, "--name", self.name],
                                      check_rc=True, cwd=chdir)
         return {
-            "msg": out
-        }
-        "startOrReload"
-        return {
-            "msg": "reloaded"
+            "stdout": out,
+            "stderr": err
         }
 
     def is_started(self):
@@ -153,17 +155,15 @@ def do_pm2(module, name, config, script, state, chdir, executable):
                 msg="Neigher config nor script args is given for start command"
             )
         result = pm2.start(target=target, chdir=chdir)
-        return {
-            "changed": True,
-            "msg": result["msg"]
-        }
+        return dict(result,
+                    changed=True,
+                    msg="Started {}".format(name))
     elif state == "stopped":
         if pm2.is_started():
             result = pm2.stop()
-            return {
-                "changed": True,
-                "msg": result["msg"]
-            }
+            return dict(result,
+                        changed=True,
+                        msg="Stopped {}".format(name))
         return {
             "changed": False,
             "msg": "{} already stopped/absent".format(name)
@@ -171,23 +171,20 @@ def do_pm2(module, name, config, script, state, chdir, executable):
     elif state == "restarted":
         target = config or script
         result = pm2.restart(target=target, chdir=chdir)
-        return {
-            "changed": True,
-            "msg": result["msg"]
-        }
+        return dict(result,
+                    changed=True,
+                    msg="Restarted {}".format(name))
     elif state == "reloaded":
         result = pm2.reload(config=config, chdir=chdir)
-        return {
-            "changed": True,
-            "msg": result["msg"]
-        }
+        return dict(result,
+                    changed=True,
+                    msg="Reloaded {}".format(name))
     elif state == "absent" or state == "deleted":
         if pm2.exists():
             result = pm2.delete()
-            return {
-                "changed": True,
-                "msg": result["msg"]
-            }
+            return dict(result,
+                        changed=True,
+                        msg="Deleted {}".format(name))
         return {
             "changed": False,
             "msg": "{} not exists".format(name)
@@ -231,12 +228,9 @@ def main():
         return
 
     module.exit_json(
-        changed=result['changed'],
-        msg=result['msg'],
         rc=0,
-        failed=False
-        # stderr=result['stderr'],
-        # stdout=result['stdout']
+        failed=False,
+        **result
     )
     return
 
