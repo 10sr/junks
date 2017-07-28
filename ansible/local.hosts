@@ -1,1 +1,1 @@
-localhost ansible_connection=local ansible_python_interpreter=python2
+localhost ansible_connection=local ansible_python_interpreter=python2 host_var1=True host_var2=2

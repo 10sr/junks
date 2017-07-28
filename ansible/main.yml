@@ -36,6 +36,14 @@
       debug:
         var: lastone
 
+    - name: debug host_var1
+      debug:
+        var: host_var1
+
+    - name: debug host_var2
+      debug:
+        var: host_var2
+
     - name: debug idx
       debug:
         var: idx
