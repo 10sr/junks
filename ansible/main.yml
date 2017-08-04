@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: localhost
   vars:
     helloworld: Hell, world!
     lastone: "{{ 'hogehoge' | lastone }}"
@@ -73,3 +73,14 @@
       yaml_file:
         path: /tmp/j_ansible_yaml_file_test.yaml
         data: "{{ yaml_data }}"
+
+    - name: "add and remove file: add"
+      lineinfile:
+        dest: /tmp/__j_ansible.txt
+        line: abc
+        create: yes
+
+    - name: "add and remove file: remove"
+      file:
+        dest: /tmp/__j_ansible.txt
+        state: absent
