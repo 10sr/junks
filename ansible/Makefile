@@ -1,5 +1,5 @@
 play: venv
-	. venv/bin/activate && ansible-playbook main.yml
+	. venv/bin/activate && ansible-playbook -vvv main.yml --diff
 
 
 venv:
