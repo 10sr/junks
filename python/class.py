@@ -56,3 +56,26 @@ c3 = MyClass3()
 
 print(c3.eee)
 print(c3.f(1))
+
+
+class MyParent(object):
+    def met1(self):
+        print("MyParent")
+        return
+
+
+class MyChild1(MyParent):
+    def met1(self):
+        # Cause infinit loop in MyChild2.met1
+        super(self.__class__, self).met1()
+        return
+
+
+class MyChild2(MyChild1):
+    def met1(self):
+        super(self.__class__, self).met1()
+        return
+
+
+o = MyChild2()
+# o.met1()
