@@ -20,5 +20,15 @@ object AProject {
       }
     }
     println(m1)
+
+    val r = "hoehoe_fuefue".split("_").toSeq match {
+      case Seq(token0, token1) => {
+        println(s"token0: ${token0}")
+        println(s"token1: ${token1}")
+        token0
+      }
+      case _ => "none"
+    }
+    println(r)
   }
 }
