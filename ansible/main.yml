@@ -84,3 +84,16 @@
       file:
         dest: /tmp/__j_ansible.txt
         state: absent
+
+    - name: Blockinfile test
+      blockinfile:
+        path: ./a.txt
+        create: yes
+        block: |
+          hoe
+          {% for e in list %}
+          e: {{ e }}
+          {% endfor %}
+          fue
+      vars:
+        list: [1, 2, 5, 4]
