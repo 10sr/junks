@@ -97,3 +97,8 @@
           fue
       vars:
         list: [1, 2, 5, 4]
+
+    - name: ansible_processor_cores test
+      debug:
+        msg: "Can compare str with num!"
+      when: ansible_processor_cores >= 2
