@@ -116,6 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
   chrome.tabs.executeScript({
     code: 'console.log("chrome.tabs: ' + Object.keys(chrome.tabs).toString() + '")'
   });
+  chrome.tabs.query({}, (tabs) => {
+    var tabUrls = tabs.map((tab) => tab.url);
+    chrome.tabs.executeScript({
+      code: 'console.log("tabs: ' + tabUrls.toString() + '")'
+    });
+  });
 
   getCurrentTabUrl((url) => {
     var dropdown = document.getElementById('dropdown');
