@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "event page example",
+  "description": "Event page example.",
+  "version": "0.0.1",
+
+  "background": {
+    "scripts": ["scripts/background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage"
+  ]
+}
