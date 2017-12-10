@@ -103,7 +103,8 @@ function createBookmark(parentDirectory, title, url) {
 function getBookmarkTree(){
   return new Promise((resolve, reject) => {
     chrome.bookmarks.getTree(r => {
-      resolve(r[0])
+      // resolve(r[0].children[0])
+      resolve(r[0].children[0])
     });
   });
 }
