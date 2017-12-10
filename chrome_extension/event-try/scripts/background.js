@@ -1,3 +1,5 @@
+const baseBookmarkDirectoryName = "EventPageExample";
+
 chrome.runtime.onStartup.addListener(() => {
   console.log("onStartup");
   run();
@@ -25,10 +27,100 @@ chrome.tabs.onReplaced.addListener((addedTabId, removedTabId) => {
   run();
 });
 
-function run(){
+async function run(){
   console.log("run() called!!!!");
-  chrome.tabs.query({}, (tabs) => {
-    let tabUrls = tabs.map(tab => tab.url);
-    console.log(`Tabs: ${tabUrls}`)
+  const allTabs = await getAllTabs();
+
+  let tabUrls = allTabs.map(tab => tab.url);
+  console.log(`Tabs: num: ${tabUrls.length}, ${tabUrls}`);
+
+  const bookmarkTree = await getBookmarkTree();
+  console.log(`${bookmarkTree.id}`)
+
+  let baseBookmarkDirectory = getChildDirectory(bookmarkTree, baseBookmarkDirectoryName);
+  if (!baseBookmarkDirectory) {
+    baseBookmarkDirectory = await createDirectory(bookmarkTree, baseBookmarkDirectoryName)
+  }
+
+  for (let tab of allTabs) {
+    await createBookmark(baseBookmarkDirectory, tab.title, tab.url)
+  }
+}
+
+// async function getChildDirectoryOrCreate(parentDirectory, name) {
+//   let target = getChildDirectory();
+//   if (target) {
+//     return target;
+//   }
+
+//   const make1 = (parentDirectory, name) => {
+//   };
+
+//   return await make1(parentDirectory, name);
+// }
+
+function getChildDirectory(parentDirectory, name) {
+  if (!parentDirectory.children) {
+    return null;
+  }
+  for (let i of parentDirectory.children) {
+    if (i.url) {
+      continue;
+    }
+    if (i.title == name) {
+      return i;
+    }
+  }
+  return null;
+}
+
+//Promise
+function createDirectory(parentDirectory, name) {
+  console.log(parentDirectory.id)
+  return new Promise(ok => {
+    chrome.bookmarks.create({
+      parentId: parentDirectory.id,
+      title: name,
+      url: null
+    }, r => {
+      ok(r);
+    });
   })
+}
+
+function createBookmark(parentDirectory, title, url) {
+  return new Promise((resolve, reject) => {
+    chrome.bookmarks.create({
+      parentId: parentDirectory.id,
+      title: title,
+      url: url
+    }, r => {
+      resolve(r);
+    });
+  });
+}
+
+function getBookmarkTree(){
+  return new Promise((resolve, reject) => {
+    chrome.bookmarks.getTree(r => {
+      resolve(r[0])
+    });
+  });
+}
+
+// function createBookmark(obj){
+//   console.info(`createBookMark ${JSON.stringify(obj)}`);
+//   return new Promise((resolve, reject) => {
+//     chrome.bookmarks.create(obj, r => {
+//       resolve(r);
+//     });
+//   });
+// }
+
+function getAllTabs(){
+  return new Promise(ok => {
+    chrome.tabs.query({}, r =>{
+      ok(r);
+    })
+  });
 }
