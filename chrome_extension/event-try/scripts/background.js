@@ -47,18 +47,6 @@ async function run(){
   }
 }
 
-// async function getChildDirectoryOrCreate(parentDirectory, name) {
-//   let target = getChildDirectory();
-//   if (target) {
-//     return target;
-//   }
-
-//   const make1 = (parentDirectory, name) => {
-//   };
-
-//   return await make1(parentDirectory, name);
-// }
-
 function getChildDirectory(parentDirectory, name) {
   if (!parentDirectory.children) {
     return null;
@@ -103,20 +91,14 @@ function createBookmark(parentDirectory, title, url) {
 function getBookmarkTree(){
   return new Promise((resolve, reject) => {
     chrome.bookmarks.getTree(r => {
-      // resolve(r[0].children[0])
-      resolve(r[0].children[0])
+      if (isVivaldi()) {
+        return resolve(r[0].children[0])
+      } else {
+        return resolve(r[0])
+      }
     });
   });
 }
-
-// function createBookmark(obj){
-//   console.info(`createBookMark ${JSON.stringify(obj)}`);
-//   return new Promise((resolve, reject) => {
-//     chrome.bookmarks.create(obj, r => {
-//       resolve(r);
-//     });
-//   });
-// }
 
 function getAllTabs(){
   return new Promise(ok => {
@@ -124,4 +106,8 @@ function getAllTabs(){
       ok(r);
     })
   });
+}
+
+function isVivaldi(){
+  return navigator.appVersion.match(/Vivaldi/);
 }
