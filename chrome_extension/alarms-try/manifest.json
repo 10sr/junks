@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "alarm example",
+  "description": "Alarm example.",
+  "version": "0.0.1",
+
+  "background": {
+    "scripts": ["scripts/background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "alarms"
+  ]
+}
