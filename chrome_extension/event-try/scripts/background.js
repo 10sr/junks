@@ -1,4 +1,5 @@
 const baseBookmarkDirectoryName = "EventPageExample";
+const isVivaldi = !!navigator.appVersion.match(/Vivaldi/);
 
 chrome.runtime.onStartup.addListener(() => {
   console.log("onStartup");
@@ -91,7 +92,7 @@ function createBookmark(parentDirectory, title, url) {
 function getBookmarkTree(){
   return new Promise((resolve, reject) => {
     chrome.bookmarks.getTree(r => {
-      if (isVivaldi()) {
+      if (isVivaldi) {
         return resolve(r[0].children[0])
       } else {
         return resolve(r[0])
@@ -106,8 +107,4 @@ function getAllTabs(){
       ok(r);
     })
   });
-}
-
-function isVivaldi(){
-  return navigator.appVersion.match(/Vivaldi/);
 }
