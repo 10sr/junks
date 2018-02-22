@@ -4,6 +4,7 @@
 def reverse(sec):
     return _reverse([], sec)
 
+
 def _reverse(ret, rest):
     if not rest:
         return ret
