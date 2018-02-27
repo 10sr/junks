@@ -13,5 +13,12 @@ def _reverse(ret, rest):
     return _reverse([first] + ret, rest)
 
 
+def reverse_for(seq):
+    ret = []
+    for e in seq:
+        ret = [e] + ret
+    return ret
+
+
 if __name__ == "__main__":
-    print(reverse([1, 2, 3, 45, 6]))
+    print(reverse_for([1, 2, 3, 45, 6]))
