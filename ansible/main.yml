@@ -102,3 +102,10 @@
       debug:
         msg: "Can compare str with num!"
       when: ansible_processor_cores >= 2
+
+    - name: Test template
+      template:
+        src: ./b.txt.j2
+        dest: b.txt
+      vars:
+        hoe: yes
