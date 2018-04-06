@@ -1,0 +1,21 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+ansible = "*"
+gnupg = "==2.2.0"
+python-gnupg = "==0.4.0"
+
+
+[dev-packages]
+
+
+
+[requires]
+
+python_version = "3.6"

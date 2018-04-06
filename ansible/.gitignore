@@ -1,4 +1,6 @@
 *.pyc
 *.retry
 venv/
+.venv/
 .vagrant/
+b.txt
