@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import yaml
 
@@ -8,7 +8,7 @@ import pprint
 
 def main(argv):
     with open(argv[1]) as f:
-        d = yaml.load(f.read().decode("utf-8"))
+        d = yaml.load(f.read())
     pprint.pprint(d)
     return 0
 
