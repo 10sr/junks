@@ -7,9 +7,8 @@ basics:
       piyo: hoge
     - hoe: hoe
   def: 123
-  hoe:
-  fue:
-    aaa
+  hoe:  # Same as `null'
+  fue: null
 
 float_syntax:
   floatarray: [1, 3, 4]
