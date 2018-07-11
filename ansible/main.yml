@@ -115,3 +115,12 @@
         dest: b.txt
       vars:
         hoe: yes
+
+    - name: debug unexist group
+      debug:
+        var: groups["hoe"]
+
+    # - name: test in
+    #   assert:
+    #     that:
+    #       - ansible_hotname in groups["hoe"]
