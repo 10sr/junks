@@ -124,3 +124,16 @@
     #   assert:
     #     that:
     #       - ansible_hotname in groups["hoe"]
+
+    - name: Test default
+      debug:
+        msg: "{{ unexistent | default(null) }}"
+      ignore_errors: yes
+
+    - name: Test default
+      debug:
+        msg: "{{ unexistent | default(None) }}"
+
+    - name: Test null
+      debug:
+        msg: null
