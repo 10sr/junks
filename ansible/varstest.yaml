@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  vars:
+    num1: "1"
+    num2: "{{ num1|int }}"
+
+  tasks:
+    - name: debug
+      assert:
+        that:
+          - num2 == 1
+      ignore_errors: true
