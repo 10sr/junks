@@ -4,3 +4,4 @@ venv/
 .venv/
 .vagrant/
 b.txt
+ansible.log
