@@ -16,7 +16,7 @@ float_syntax:
 
 
 types:
-  num_oct: 0500
+  num_oct: 0500  # 320
   num: 500
   strvalue: "123"
   strvalue2: "null"
