@@ -1,5 +1,5 @@
 ;; (flycheck-select-checker '(emacs-lisp))
-;; (require 'eieio)
+(require 'eieio)
 
 (defclass aclass ()
   ((aattr :initarg :aattr
