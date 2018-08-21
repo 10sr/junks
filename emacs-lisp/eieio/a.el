@@ -1,4 +1,5 @@
 ;; (flycheck-select-checker '(emacs-lisp))
+(require 'cl-lib)
 (require 'eieio)
 
 (defclass aclass ()
@@ -9,7 +10,7 @@
           :documentation "A attr."))
   "A class.")
 
-(defmethod aclass-amethod ((obj aclass) arg)
+(cl-defmethod aclass-amethod ((obj aclass) arg)
   "A method for `aclass'."
   (message "attr: %s, arg: %s"
            (oref obj aattr)
