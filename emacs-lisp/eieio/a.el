@@ -16,7 +16,8 @@
            arg))
 
 (aclass-amethod
- (aclass "aobj" :aattr "HOE"))
+ (aclass :aattr "HOE")
+ "fue")
 
 ;; Local Variables:
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
