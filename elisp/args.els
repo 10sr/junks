@@ -41,3 +41,8 @@
                              argi))))
 
 (main nil)
+
+;; Local Variables:
+;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
+;; flycheck-checker: emacs-lisp
+;; End:

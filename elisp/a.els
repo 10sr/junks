@@ -25,3 +25,8 @@
     (message "Noninteractive usage only")))
 
 (main command-line-args-left)
+
+;; Local Variables:
+;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
+;; flycheck-checker: emacs-lisp
+;; End:
