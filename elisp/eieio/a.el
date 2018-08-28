@@ -1,5 +1,5 @@
 ;; (flycheck-select-checker '(emacs-lisp))
-;; (require 'eieio)
+(require 'eieio)
 
 (defclass aclass ()
   ((aattr :initarg :aattr
@@ -16,7 +16,8 @@
            arg))
 
 (aclass-amethod
- (aclass "aobj" :aattr "HOE"))
+ (aclass :aattr "HOE")
+ "fue")
 
 ;; Local Variables:
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
