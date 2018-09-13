@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# https://stackoverflow.com/questions/23934486/is-a-start-end-range-expression-ever-useful-in-awk
+
 echo "abc
 def
 jhi
