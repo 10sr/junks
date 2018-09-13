@@ -137,3 +137,12 @@
     - name: Test null
       debug:
         msg: null
+
+
+    - name: Multiline stdin command test
+      command: awk '{ print $1, $3 }'
+      args:
+        stdin: |
+          abc def ghi
+          hoe fue hie
+          1 2 3
