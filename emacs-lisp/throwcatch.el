@@ -12,6 +12,11 @@
       (error "BBB"))
   (message "CCC"))
 
+(progn
+  (catch :hoe
+    (throw :hoe "throw")
+    (saa)))
+
 ;; Local Variables:
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; flycheck-checker: emacs-lisp
