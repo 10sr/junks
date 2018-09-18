@@ -6,6 +6,12 @@
         (error "AAA"))
     (error (message"Error: %s" err))))
 
+;; Finally
+(unwind-protect
+    (progn
+      (error "BBB"))
+  (message "CCC"))
+
 ;; Local Variables:
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; flycheck-checker: emacs-lisp
