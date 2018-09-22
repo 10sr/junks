@@ -2,8 +2,8 @@ root = true
 
 [*]
 fuafua = 2
-indent_style = space
-indent_size = 4
+# indent_style = space
+# indent_size = 4
 hoehoe = 1
 
 [*.c]
@@ -11,3 +11,6 @@ indent_style = tab
 
 [Makefile]
 indent_style = tab
+
+[/a.txt]
+file_type_ext = md
