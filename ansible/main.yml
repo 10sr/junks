@@ -146,3 +146,10 @@
           abc def ghi
           hoe fue hie
           1 2 3
+
+    - name: when test
+      debug:
+        msg: aaa
+      when: "helloworld.find(a|string) == -1"
+      vars:
+        a: 1
