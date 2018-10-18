@@ -20,6 +20,12 @@
  (aclass :aattr "HOE")
  "fue")
 
+(defun aclass-amethod (a)
+  "A."
+  (message "This is a function, not a method!: %S" a))
+
+(aclass-amethod 1)
+
 ;; Local Variables:
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; flycheck-checker: emacs-lisp
