@@ -1,8 +1,5 @@
 CREATE DATABASE adb;
 
-CREATE TABLE atb (
-id INT,
-data VARCHAR(100)
-);
+CREATE TABLE atb (id INT, data VARCHAR(100));
 
 INSERT INTO atb VALUES(1, "hoehoe");
