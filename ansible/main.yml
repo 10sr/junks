@@ -150,6 +150,7 @@
     - name: when test
       debug:
         msg: aaa
-      when: "helloworld.find(a|string) == -1"
+      when: "s.find(a|string) == -1"
       vars:
+        s: "hoe"
         a: 1
