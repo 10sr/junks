@@ -35,3 +35,6 @@ References
 * http://powerman.name/doc/asciidoc
 * http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
 * https://gist.github.com/powerman/d56b2675dfed38deb298
+* http://reddog.s35.xrea.com/wiki/AsciiDoc%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9.html
+* https://github.com/asciidoc/asciidoc
+* http://asciidoctor.org/docs/asciidoc-writers-guide/
