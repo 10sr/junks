@@ -56,3 +56,13 @@ app-test:
 
 mypy:
 	${poetry} run mypy --config-file .mypy.ini -p app -p proj -p tests
+
+
+#########
+# local sqlite3 debugging
+
+showdb:
+	sqlite3 db.sqlite3 '.tables'
+	sqlite3 db.sqlite3 '.schema app_fmodel'
+	sqlite3 db.sqlite3 '.schema app_mtmexample'
+	sqlite3 db.sqlite3 '.schema app_mtmexample_fmodel'

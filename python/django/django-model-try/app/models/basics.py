@@ -17,3 +17,8 @@ class BModel(models.Model):
 class FModel(models.Model):
     afield = models.CharField(max_length=50)
     bmodel = models.ForeignKey(BModel, on_delete=models.CASCADE)
+
+
+class MtmExample(models.Model):
+    afield = models.CharField(max_length=50)
+    fmodel = models.ManyToManyField(FModel)
