@@ -1,9 +1,6 @@
 from django.db import models
 
 
-# makemigrations はこのパッケージを発見できないらしい
-# https://docs.djangoproject.com/en/2.1/topics/db/models/#using-models
-
 class CModel(models.Model):
     afield = models.CharField(max_length=50)
 
