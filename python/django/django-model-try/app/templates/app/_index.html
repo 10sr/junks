@@ -1,0 +1,19 @@
+{% if sleeps %}
+<ul>
+    {% for sleep in sleeps %}
+    <li>{{ sleep.time_of_sleep }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No sleep record found.</p>
+{% endif %}
+
+{% if error_message %}
+<p>{{ error_message }}</p>
+{% endif %}
+
+<form action="{% url 'app:user_post' username %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="time_of_sleep" />
+    <input type="submit" value="Post" />
+</form>

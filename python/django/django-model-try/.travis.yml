@@ -1,0 +1,13 @@
+---
+language: python
+python:
+  - "3.6"
+  #- "3.7"
+  #- "3.7-dev"  # black --check fails...
+
+install:
+  - pip install poetry
+  - poetry install --no-interaction -vvv
+
+script:
+  - make check
