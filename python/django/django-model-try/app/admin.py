@@ -18,13 +18,13 @@ admin.AdminSite.site_header = "Neru Admin"
 #         admin.site.register(e)
 
 
-class _TimeOfSleepAdmin(admin.ModelAdmin):
-    # fields = ["id_str", "time_of_sleep", "note", "datetime"]
-    fieldsets = [
-        (None, {"fields": ["id_str", "datetime"]}),
-        ("Neru info", {"fields": ["time_of_sleep", "note"]}),
-    ]
+# class _TimeOfSleepAdmin(admin.ModelAdmin):
+#     # fields = ["id_str", "time_of_sleep", "note", "datetime"]
+#     fieldsets = [
+#         (None, {"fields": ["id_str", "datetime"]}),
+#         ("Neru info", {"fields": ["time_of_sleep", "note"]}),
+#     ]
 
 
-admin.site.register(app.models.basics.TimeOfSleep, _TimeOfSleepAdmin)
-admin.site.register(app.models.basics.TwitterUser)
+# admin.site.register(app.models.basics.TimeOfSleep, _TimeOfSleepAdmin)
+# admin.site.register(app.models.basics.TwitterUser)

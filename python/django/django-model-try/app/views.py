@@ -8,8 +8,6 @@ from django.utils import timezone
 from django.urls import reverse
 from django.views import generic
 
-from app.models.basics import TwitterUser
-
 # この行があると makemigrations は model を見つけられる
 # model は view から参照されている必要がある？
 from app.another_model_package import AModel
@@ -40,53 +38,3 @@ def login_required_page(request):
     <a href="{reverse("app:index")}">Back to Top</a>
     """
     )
-
-
-def user(request, username):
-    # TODO: Fix when username not found
-    try:
-        user = TwitterUser.objects.filter(username=username)[0]
-    except IndexError:
-        raise Http404("User {} not found".format(username))
-
-    # TODO: Rename to .dtl (Django Tepmlate Language)
-    template = loader.get_template("app/user.html.tpl")
-    # I don't like django.shortcuts.render.
-    return HttpResponse(
-        template.render(
-            {
-                "user": user,
-                "sleeps": models.TimeOfSleep.objects.filter(id_str=user.id_str),
-            },
-            request,
-        )
-    )
-
-
-class UserView(generic.DetailView):
-    model = TwitterUser
-    template_name = "app/userview.html.tpl"
-
-
-def user_addneru(request, username):
-    try:
-        user = TwitterUser.objects.filter(username=username)[0]
-    except IndexError:
-        raise Http404("User {} not found".format(username))
-
-    try:
-        note = request.POST["note"]
-    except KeyError:
-        template = loader.get_template("app/user.html.tpl")
-        return HttpResponse(
-            template.render(
-                {"sleeps": [], "error_message": "note not given", "user": user}
-            )
-        )
-
-    now = timezone.now()
-
-    models.TimeOfSleep(
-        id_str=user.id_str, datetime=now, time_of_sleep=now, note=note
-    ).save()
-    return HttpResponseRedirect(reverse("app:user", args=(username,)))
