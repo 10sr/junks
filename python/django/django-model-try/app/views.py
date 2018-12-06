@@ -10,8 +10,10 @@ from django.views import generic
 
 # この行があると makemigrations は model を見つけられる
 # model は view から参照されている必要がある？
+from app.models import basics
 from app.another_model_package import AModel
-from app.models.in_model_package import CModel
+# 参照を外すとなくなったことになる
+# from app.models.in_model_package import CModel
 
 
 def index(request):
@@ -26,6 +28,7 @@ def index(request):
     <a href="admin">admin</a>
     <a href="user/10sr">10sr</a>
     <a href="userview/10sr">10sr view</a>
+        models: {AModel} {CModel} {basics.BModel}
     """
     )
 
