@@ -12,3 +12,8 @@ class BModel(models.Model):
     @property
     def str(self):
         return str(self)
+
+
+class FModel(models.Model):
+    afield = models.CharField(max_length=50)
+    bmodel = models.ForeignKey(BModel, on_delete=models.CASCADE)

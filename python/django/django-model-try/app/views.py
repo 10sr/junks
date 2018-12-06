@@ -14,6 +14,7 @@ from app.models import basics
 from app.another_model_package import AModel
 # 参照を外すとなくなったことになる
 # from app.models.in_model_package import CModel
+# というかどこからも import ・参照されてない model は見つけられないということ？
 
 
 def index(request):
