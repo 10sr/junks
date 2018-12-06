@@ -8,7 +8,12 @@ from django.utils import timezone
 from django.urls import reverse
 from django.views import generic
 
-from app import models
+from app.models.basics import TwitterUser
+
+# この行があると makemigrations は model を見つけられる
+# model は view から参照されている必要がある？
+from app.another_model_package import AModel
+from app.models.in_model_package import CModel
 
 
 def index(request):
@@ -40,7 +45,7 @@ def login_required_page(request):
 def user(request, username):
     # TODO: Fix when username not found
     try:
-        user = models.TwitterUser.objects.filter(username=username)[0]
+        user = TwitterUser.objects.filter(username=username)[0]
     except IndexError:
         raise Http404("User {} not found".format(username))
 
@@ -59,13 +64,13 @@ def user(request, username):
 
 
 class UserView(generic.DetailView):
-    model = models.TwitterUser
+    model = TwitterUser
     template_name = "app/userview.html.tpl"
 
 
 def user_addneru(request, username):
     try:
-        user = models.TwitterUser.objects.filter(username=username)[0]
+        user = TwitterUser.objects.filter(username=username)[0]
     except IndexError:
         raise Http404("User {} not found".format(username))
 

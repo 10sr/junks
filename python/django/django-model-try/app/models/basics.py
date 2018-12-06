@@ -26,13 +26,25 @@ class TimeOfSleep(models.Model):
 class TwitterUser(models.Model):
     # Twitter id in number
     id_str = models.CharField(max_length=50)
-    id_str2 = models.CharField(max_length=50)
     # Twitter screen name
     # TODO: screen_name is better?
     username = models.CharField(max_length=20)
 
     def __str__(self):
         return "id_str: {}, username: {}".format(self.id_str, self.username)
+
+    @property
+    def str(self):
+        return str(self)
+
+
+class BModel(models.Model):
+    afield = models.CharField(max_length=50)
+
+    note = models.CharField(max_length=500, default="")
+
+    def __str__(self):
+        return f"{self.afield}/{self.note}"
 
     @property
     def str(self):

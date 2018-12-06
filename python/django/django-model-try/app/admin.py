@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.db.models import Model
 
 import app.models
+import app.models.basics
 
 
 # Configure site header
@@ -25,5 +26,5 @@ class _TimeOfSleepAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(app.models.TimeOfSleep, _TimeOfSleepAdmin)
-admin.site.register(app.models.TwitterUser)
+admin.site.register(app.models.basics.TimeOfSleep, _TimeOfSleepAdmin)
+admin.site.register(app.models.basics.TwitterUser)
