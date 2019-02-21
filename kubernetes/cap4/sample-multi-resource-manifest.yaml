@@ -1,4 +1,5 @@
 #!/usr/bin/env kubectl apply -f
+# -*- mode: k8s -*-
 ---
 apiVersion: apps/v1
 kind: Deployment
