@@ -1,6 +1,9 @@
 cap4
 ====
 
+sample-pod
+----------
+
 ```console
 kubectl create -f sample-pod.yaml
 kubectl create -f sample-pod.yaml
