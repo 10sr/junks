@@ -1,0 +1,2 @@
+[*.y{,a}ml]
+file_type_ext = k8s
