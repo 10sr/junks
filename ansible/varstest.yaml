@@ -8,6 +8,8 @@
         nested:
           - name: key1
             val: value1
+          - name: key1.1
+            val: value1.1
       - hoe: 2
         nested:
           - name: key2
@@ -23,7 +25,6 @@
     - name: a
       debug:
         msg: "{{ nested_structure | subelements('nested') }}"
-# Output following:
 # ok: [localhost] => {
 #     "msg": [
 #         [
@@ -33,12 +34,35 @@
 #                     {
 #                         "name": "key1",
 #                         "val": "value1"
+#                     },
+#                     {
+#                         "name": "key1.1",
+#                         "val": "value1.1"
 #                     }
 #                 ]
 #             },
 #             {
 #                 "name": "key1",
 #                 "val": "value1"
+#             }
+#         ],
+#         [
+#             {
+#                 "hoe": 1,
+#                 "nested": [
+#                     {
+#                         "name": "key1",
+#                         "val": "value1"
+#                     },
+#                     {
+#                         "name": "key1.1",
+#                         "val": "value1.1"
+#                     }
+#                 ]
+#             },
+#             {
+#                 "name": "key1.1",
+#                 "val": "value1.1"
 #             }
 #         ],
 #         [
