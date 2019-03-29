@@ -3,6 +3,15 @@
   vars:
     num1: "1"
     num2: "{{ num1|int }}"
+    nested_structure:
+      - hoe: 1
+        nested:
+          - name: key1
+            val: value1
+      - hoe: 2
+        nested:
+          - name: key2
+            val: value2
 
   tasks:
     - name: debug
@@ -10,3 +19,42 @@
         that:
           - num2 == 1
       ignore_errors: true
+
+    - name: a
+      debug:
+        msg: "{{ nested_structure | subelements('nested') }}"
+# Output following:
+# ok: [localhost] => {
+#     "msg": [
+#         [
+#             {
+#                 "hoe": 1,
+#                 "nested": [
+#                     {
+#                         "name": "key1",
+#                         "val": "value1"
+#                     }
+#                 ]
+#             },
+#             {
+#                 "name": "key1",
+#                 "val": "value1"
+#             }
+#         ],
+#         [
+#             {
+#                 "hoe": 2,
+#                 "nested": [
+#                     {
+#                         "name": "key2",
+#                         "val": "value2"
+#                     }
+#                 ]
+#             },
+#             {
+#                 "name": "key2",
+#                 "val": "value2"
+#             }
+#         ]
+#     ]
+# }
