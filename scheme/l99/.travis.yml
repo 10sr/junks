@@ -1,0 +1,6 @@
+language: gauche
+before_install:
+  - sudo apt-get update -qq
+install:
+  - sudo apt-get install -qq gauche
+script: make test
