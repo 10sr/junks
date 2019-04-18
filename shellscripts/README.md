@@ -5,6 +5,7 @@ Study shell (sh, dash, bash, zsh, ...) features.
 
 
 
+- http://www.nurs.or.jp/~sug/soft/super/bash.htm
 
 
 fd
