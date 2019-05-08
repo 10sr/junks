@@ -6,3 +6,4 @@ emacs-lisp/
 - [#13 標準コマンドから改めて見るEmacs (Software Design 2015年5月号掲載記事) Emacs 使い方](http://emacs.rubikitch.com/sd1505-builtin/)
 - [Emacs の dump-emacs 関数の怪 — ありえるえりあ](http://dev.ariel-networks.com/Members/matsuyama/dump-emacs/)
 - https://www.gnu.org/software/emacs/manual/html_node/elisp/Customization-Types.html
+- [Emacs Lisp: サルでも分かるシンタックステーブル入門！対応する括弧もコメントアウトも思いのまま(寄稿)](http://emacs.rubikitch.com/syntax-table-beginner/)
