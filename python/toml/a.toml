@@ -1,0 +1,10 @@
+[hoehoe]
+a = 1
+e = true
+f = ["hoe", "fue"]
+
+# [hoehoe.a]
+# b = 111
+
+[[eeee]]
+mmm = 999
