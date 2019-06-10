@@ -22,6 +22,10 @@ class AClass:
 
     @classmethod
     def from_dict(cls, dict_):
+        # We need explicit type check
+        for field in dataclasses.fields(cls):
+            if field.name in dict_:
+                assert isinstance(dict_[field.name], field.type)
         return cls(**dict_)
 
 
@@ -30,6 +34,7 @@ class AClass:
 a = AClass("aaa")
 b = AClass.from_dict({
     "aattr": "momomo",
+    # "battr": "mememe"
     # "a": True  # This raises error
 })
 #print(a)
