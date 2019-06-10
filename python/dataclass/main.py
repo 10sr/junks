@@ -34,7 +34,7 @@ class AClass:
 a = AClass("aaa")
 b = AClass.from_dict({
     "aattr": "momomo",
-    # "battr": "mememe"
+    # "battr": "mememe"  # This need explicit type check to fail
     # "a": True  # This raises error
 })
 #print(a)
