@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
+# from __future__ import annotations
+
 import dataclasses
 from pprint import pprint
+import typing
 
 
 @dataclasses.dataclass
