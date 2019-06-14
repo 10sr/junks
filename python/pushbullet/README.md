@@ -9,8 +9,9 @@ iPhone の通知を正しくやってくれるために
 
 参考
 
+- https://www.reddit.com/r/PushBullet/comments/53jvht/no_notifications_on_ios_10/
 - https://bohbi-log.com/app/pushbullet/ （リンク切れ）
-- https://webcache.googleusercontent.com/search?q=cache:iqtGDz8_i34J:https://bohbi-log.com/app/pushbullet/+&cd=1&hl=ja&ct=clnk&gl=jp&lr=lang_en%7Clang_ja&client=firefox-b-d （グーグルのキャッシュ）
+  - https://webcache.googleusercontent.com/search?q=cache:iqtGDz8_i34J:https://bohbi-log.com/app/pushbullet/+&cd=1&hl=ja&ct=clnk&gl=jp&lr=lang_en%7Clang_ja&client=firefox-b-d （グーグルのキャッシュ）
 
 
 iPhone のアプリを入れても、プッシュ通知を正しくやってくれない場合がある
