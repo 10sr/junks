@@ -1,0 +1,29 @@
+[sec1]
+key1 = "value1"
+a = 1
+dotted.key = 3
+dotted.key2 = 10
+
+[[sec2]]
+key2 = "value2"
+
+
+[[sec2]]
+key2_2 = "value2_2"
+
+
+[dotted.obj]
+aaa = true
+[dotted]
+obj.bbb = false
+
+
+[[dotted.array.sec]]
+momomo = 2019-06-14T17:57:08+09:00
+
+
+# [[dotted.array2]]
+# obj.momomo = 2019-06-14T17:57:08+09:00
+
+[[dotted.array2]]
+obj2.mememe = 2019-06-14T17:58:02+09:00
