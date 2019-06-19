@@ -53,6 +53,10 @@ class SingletonAnotherNew:
     def __new__(cls):
         raise RuntimeError('Cannot initialize via Constructor')
 
+    def __init__(self):
+        print("init")
+        return
+
     @classmethod
     def __internal_new__(cls):
         return super(SingletonAnotherNew, cls).__new__(cls)
@@ -69,5 +73,50 @@ print(SingletonAnotherNew.get_instance())
 
 try:
     SingletonAnotherNew()
+except Exception as e:
+    print(e)
+
+
+class SingletonDisallowInit:
+    __singleton_instance = None
+
+    def __init__(self):
+        raise RuntimeError('Cannot initialize via Constructor')
+
+    @classmethod
+    def get_instance(cls):
+        print(super(SingletonDisallowInit, cls))
+        if not cls.__singleton_instance:
+            cls.__singleton_instance = super(SingletonDisallowInit, cls).__new__(cls)
+
+        return cls.__singleton_instance
+
+
+print(SingletonDisallowInit.get_instance())
+print(SingletonDisallowInit.get_instance())
+try:
+    SingletonDisallowInit()
+except Exception as e:
+    print(e)
+
+
+class SingletonDisallowNew:
+    __singleton_instance = None
+
+    def __new__(self):
+        raise RuntimeError('Cannot initialize via Constructor')
+
+    @classmethod
+    def the(cls):
+        print(super(SingletonDisallowNew, cls))
+        if not cls.__singleton_instance:
+            cls.__singleton_instance = super(SingletonDisallowNew, cls).__new__(cls)
+
+        return cls.__singleton_instance
+
+print(SingletonDisallowNew.the())
+print(SingletonDisallowNew.the())
+try:
+    SingletonDisallowNew()
 except Exception as e:
     print(e)
