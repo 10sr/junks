@@ -159,7 +159,7 @@ class SingletonDisallowNew:
     """Raise error in __new__ method.
 
     SingletonAnotherNew の改変版。
-    the() からは super.__new__ を呼ぶ。
+    get_instance からは super.__new__ を呼ぶ。
     ついでに __init__ も呼ばれなくなってるが直感に反する気がする。
     """
     __singleton_instance = None
@@ -172,15 +172,15 @@ class SingletonDisallowNew:
         return
 
     @classmethod
-    def the(cls):
+    def get_instance(cls):
         print(super(SingletonDisallowNew, cls))
         if not cls.__singleton_instance:
             cls.__singleton_instance = super(SingletonDisallowNew, cls).__new__(cls)
 
         return cls.__singleton_instance
 
-print(SingletonDisallowNew.the())
-print(SingletonDisallowNew.the())
+print(SingletonDisallowNew.get_instance())
+print(SingletonDisallowNew.get_instance())
 try:
     SingletonDisallowNew()
 except Exception as e:
