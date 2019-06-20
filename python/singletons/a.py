@@ -16,7 +16,7 @@ class SingletonCheckInInit:
 
     def __init__(self):
         if self.__singleton_instance is not None:
-            raise RuntimeError("Singleton!")
+            raise RuntimeError("SingletonCheckInInit Singleton!")
         return
 
 print(SingletonCheckInInit.get_instance())
@@ -33,7 +33,7 @@ class SingletonHackNew:
     __singleton_instance = None
 
     def __init__(self):
-        print('init')
+        print('SingletonHackNew init')
         return
 
     def __new__(cls):
@@ -51,10 +51,10 @@ class SingletonAnotherNew:
     __singleton_instance = None
 
     def __new__(cls):
-        raise RuntimeError('Cannot initialize via Constructor')
+        raise RuntimeError('SingletonAnotherNew Cannot initialize via Constructor')
 
     def __init__(self):
-        print("init")
+        print("SingletonAnotherNew init, This will not be called!!!!!")
         return
 
     @classmethod
@@ -81,7 +81,7 @@ class SingletonDisallowInit:
     __singleton_instance = None
 
     def __init__(self):
-        raise RuntimeError('Cannot initialize via Constructor')
+        raise RuntimeError('SingletonDisallowInit Cannot initialize via Constructor')
 
     @classmethod
     def get_instance(cls):
@@ -100,11 +100,38 @@ except Exception as e:
     print(e)
 
 
+class SingletonDisallowInit2:
+    __singleton_instance = None
+
+    def __init__(self):
+        raise RuntimeError('SingletonDisallowInit2 Cannot initialize via Constructor')
+
+    @classmethod
+    def get_instance(cls):
+        print(super(SingletonDisallowInit2, cls))
+        if not cls.__singleton_instance:
+            cls.__singleton_instance = cls.__new__(cls)
+
+        return cls.__singleton_instance
+
+
+print(SingletonDisallowInit2.get_instance())
+print(SingletonDisallowInit2.get_instance())
+try:
+    SingletonDisallowInit2()
+except Exception as e:
+    print(e)
+
+
 class SingletonDisallowNew:
     __singleton_instance = None
 
     def __new__(self):
-        raise RuntimeError('Cannot initialize via Constructor')
+        raise RuntimeError('SingletonDisallowNew Cannot initialize via Constructor')
+
+    def __init__(self):
+        print("SingletonDisallowNew init, This will not be called!!!!!")
+        return
 
     @classmethod
     def the(cls):
