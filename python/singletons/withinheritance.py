@@ -20,14 +20,18 @@ class _SingletonBase:
 
 
 class SingletonA(_SingletonBase):
-    a1 = 1
+    a1 = None
+
+    def initialize(self, a1):
+        self.a1 = a1
+        return
 
     def met1(self):
         print(a1)
 
 
 print(SingletonA.get_instance())
-print(SingletonA.get_instance())
+print(SingletonA.get_instance().initialize(1))
 try:
     SingletonA()
 except Exception as e:
