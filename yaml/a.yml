@@ -69,4 +69,11 @@ multiline_values:
     fff
 
 
+# 'eee   # This text will not be skipped ddd fff'
+  with_comment: >-
+    eee   # This text will not be skipped
+    ddd
+    fff
+
+
 hoge: fuga
