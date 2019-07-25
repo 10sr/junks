@@ -24,6 +24,10 @@
     - role: role1
       debugmsg: "eeeeeeee"
 
+    - role: role1
+      vars:
+        debugmsg: "insidevars"
+
   tasks:
     - name: Print hello world
       debug: msg="{{ helloworld }}"
