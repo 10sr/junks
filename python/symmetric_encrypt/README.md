@@ -1,3 +1,1 @@
-One more example:
-
-https://groups.google.com/forum/#!topic/web2py/lSgtN0eKbQY
+https://nitratine.net/blog/post/encryption-and-decryption-in-python/
