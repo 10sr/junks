@@ -7,3 +7,4 @@ emacs-lisp/
 - [Emacs の dump-emacs 関数の怪 — ありえるえりあ](http://dev.ariel-networks.com/Members/matsuyama/dump-emacs/)
 - https://www.gnu.org/software/emacs/manual/html_node/elisp/Customization-Types.html
 - [Emacs Lisp: サルでも分かるシンタックステーブル入門！対応する括弧もコメントアウトも思いのまま(寄稿)](http://emacs.rubikitch.com/syntax-table-beginner/)
+- [ParEdit チュートリアル](http://www.daregada.sakuraweb.com/paredit_tutorial_ja.html)
