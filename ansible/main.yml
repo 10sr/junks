@@ -4,11 +4,6 @@
   gather_subset: [network]
   vars:
     helloworld: Hell, world!
-    lastone: "{{ 'hogehoge' | lastone }}"
-    idx: "{{ 'hoehoe' | idx(3) }}"
-    # Hide this for production!
-    encrypt_key: secret_key
-    decrypted_message: "{{ 'gAAAAABYy4KB8lRgVJXCTHQORp5U1cgKWk2DnhQvMRohee77-JpzKRSPQSxwn_AJe5Ts7ECgWq6O08JA0cHMBhxzLN1eSLcwRg==' | decrypt(encrypt_key) }}"
 
     yaml_data:
       - 1
@@ -46,6 +41,9 @@
     - name: debug lastone
       debug:
         var: lastone
+      vars:
+        lastone: "{{ 'hogehoge' | lastone }}"
+
 
     - name: debug host_var1
       debug:
@@ -58,6 +56,9 @@
     - name: debug idx
       debug:
         var: idx
+      vars:
+        idx: "{{ 'hoehoe' | idx(3) }}"
+
 
     - name: Try timetest.py
       timetest.py:
@@ -79,6 +80,10 @@
     - name: encryption_test
       debug:
         msg: "{{ decrypted_message }}"
+      vars:
+        # Hide this for production!
+        encrypt_key: secret_key
+        decrypted_message: "{{ 'gAAAAABYy4KB8lRgVJXCTHQORp5U1cgKWk2DnhQvMRohee77-JpzKRSPQSxwn_AJe5Ts7ECgWq6O08JA0cHMBhxzLN1eSLcwRg==' | decrypt(encrypt_key) }}"
 
     - name: yaml_file test
       yaml_file:
