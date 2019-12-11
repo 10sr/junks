@@ -168,3 +168,20 @@
       vars:
         s: "hoe"
         a: 1
+
+    - name: Modify list
+      debug:
+        # msg: "{{ d | dict2items | selectattr('value') | list }}"
+        msg: |
+          {{ d |
+          dict2items |
+          map(attribute='value') |
+          list }}
+      vars:
+        d:
+          k1:
+            name: 1
+            value: 2
+          k2:
+            name: 3
+            value: 4
