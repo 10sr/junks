@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.js"></script>
+
+
+  <script>
+    $(function() {
+      $('select.dropdown').dropdown({
+        // true だと、フォーカス外したときに値が入ってしまってうざい
+        forceSelection: false,
+        // fuzzy match を使用する
+        fullTextSearch: true
+      });
+    });
+  </script>
+
+  </head>
+  <body>
+        <form class="ui error small form"
+          action="/post_endpoint"
+          method="POST">
+          <button class="ui submit blue button" type="submit">Save</button>
+          <div class="ui stacked segment">
+            <div class="field">
+              <label>Label</label>
+              <p>Description</p>
+              <!-- Do not use v2.2.14 https://github.com/Semantic-Org/Semantic-UI/issues/6123 -->
+              <select class="ui fluid search dropdown" id="field1" multiple name="field1">
+                <option value="">Options</option>
+                <option value="opt1" selected="selected">Opt1</option>
+                <option value="opt2">Opt2</option>
+            </div>
+
+          </div>
+      </div>
+        </form>
+</html>
