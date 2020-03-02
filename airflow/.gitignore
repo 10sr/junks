@@ -1,0 +1,5 @@
+.venv/
+
+airflow_home/*.pid
+airflow_home/*.db
+airflow_home/logs/
