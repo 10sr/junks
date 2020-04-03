@@ -50,3 +50,8 @@ Sample program of `getopt'.
 * [getoptによるオプション解析](http://www.am.sanken.osaka-u.ac.jp/~mukaigaw/misc/getopt.html)
 * [getopt_long - 研究日誌。](http://blog.goo.ne.jp/u1low_cheap/e/fd1b21d10e15a330969bfc363a828f2d)
 * [C言語でコマンドを作るまで - ザリガニが見ていた...。](http://d.hatena.ne.jp/zariganitosh/20100208/1265618630)
+
+styleguide
+
+* [JF: Linux Kernel 3.x/2.6 Documentation: CodingStyle](http://linuxjf.sourceforge.jp/JFdocs/kernel-docs-2.6/CodingStyle.html)
+* [Google C++スタイルガイド 日本語訳 | textdrop](http://www.textdrop.net/google-styleguide-ja/cppguide.xml)
