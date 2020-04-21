@@ -5,7 +5,7 @@
 # useradd rpmbuilder
 # su - rpmbuilder
 # rpmdev-setuptree || mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
-# wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz -O rpmbuild/SOURCES/Python-3.7.3.tgz
+# wget https://www.python.org/ftp/python/3.7.7/Python-3.7.7.tgz -O rpmbuild/SOURCES/Python-3.7.7.tgz
 # cd rpmbuild/SPECS/
 # rpmdev-newspec python37
 # vim python37.spec
@@ -25,9 +25,9 @@
 #----------------------------------------------------------
 %define name        Python
 %define binsuffix   37
-%define version     3.7.3
+%define version     3.7.7
 %define libvers     3.7
-%define vendor      mykysyk
+%define vendor      10sr
 %define release     %{vendor}%{?dist}
 %define __prefix    /usr/local
 
@@ -57,6 +57,8 @@ Prefix: %{__prefix}
 Python
 
 %changelog
+* Sun April 21 2020 10sr <10sr> [3.7.7-1]
+- Update to Python 3.7.7
 * Sun May 18 2014 mykysyk <mykysyk> [3.7.3-1]
 - Initial RPM releas
 
