@@ -1,6 +1,6 @@
 #----------------------------------------------------------
 # yum install -y rpmdevtools tar wget
-# yum install -y bzip2-devel db4-devel expat-devel openssl-devel readline-devel sqlite-devel zlib-devel libffi-devel
+# yum install -y bzip2-devel expat-devel openssl-devel readline-devel sqlite-devel zlib-devel libffi-devel
 # yum groupinstall -y "Development Tools"
 # useradd rpmbuilder
 # su - rpmbuilder
@@ -45,7 +45,6 @@ Source: https://www.python.org/ftp/python/%{version}/Python-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: glibc-devel
 BuildRequires: bzip2-devel
-BuildRequires: db4-devel
 BuildRequires: expat-devel
 BuildRequires: openssl-devel
 BuildRequires: readline-devel
@@ -57,7 +56,7 @@ Prefix: %{__prefix}
 Python
 
 %changelog
-* Sun April 21 2020 10sr <10sr> [3.7.7-1]
+* Sun Apr 21 2020 10sr <10sr> [3.7.7-1]
 - Update to Python 3.7.7
 * Sun May 18 2014 mykysyk <mykysyk> [3.7.3-1]
 - Initial RPM releas
