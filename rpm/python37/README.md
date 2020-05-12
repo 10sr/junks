@@ -9,3 +9,4 @@ Build Using Docker
 
 ```sh
 docker run -it -v `pwd`:/v centos:7 bash -i
+```
