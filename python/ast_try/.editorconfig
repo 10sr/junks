@@ -1,0 +1,5 @@
+[s2.py]
+indent_size = 2
+
+[crlf.py]
+end_of_line = crlf
