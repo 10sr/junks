@@ -1,6 +1,6 @@
 appdirs==1.4.3
 cssselect==1.0.1
-Django==1.9
+Django==1.11.29
 docutils==0.13.1
 Genshi==0.7
 lxml==3.7.3
