@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: yes
+
+  tasks:
+    - name: shell multiline
+      shell: |
+        set -eux
+        echo a
+        echo b
+        echo c
