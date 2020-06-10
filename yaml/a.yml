@@ -75,5 +75,11 @@ multiline_values:
     ddd
     fff
 
+# This somehow preserves newline...
+# 'eee\n  ddd\nfff'
+  with_indent: >-
+    eee
+      ddd
+    fff
 
 hoge: fuga
