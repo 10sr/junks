@@ -26,6 +26,7 @@ class AClass:
 
         # We need explicit type check
         # When from __future__ import annotations, field.type is a str
+        # TOOD: Use typeguard
         types = typing.get_type_hints(self)
         for field in dataclasses.fields(self):
             assert isinstance(
@@ -52,4 +53,4 @@ b = AClass.from_dict(
         # "a": True  # This raises error
     }
 )
-# print(a)
+print(a)
