@@ -7,7 +7,13 @@ import dataclasses
 from pprint import pprint
 import typing
 
+# Too permissive
+from typeguard import typechecked
+# Too strict
+# from pytypes import typechecked
 
+
+@typechecked
 @dataclasses.dataclass
 class AClass:
     aattr: str
@@ -27,11 +33,11 @@ class AClass:
         # We need explicit type check
         # When from __future__ import annotations, field.type is a str
         # TOOD: Use typeguard
-        types = typing.get_type_hints(self)
-        for field in dataclasses.fields(self):
-            assert isinstance(
-                getattr(self, field.name), types[field.name]
-            ), f"Type check fail: {field.name}"
+        # types = typing.get_type_hints(self)
+        # for field in dataclasses.fields(self):
+        #     assert isinstance(
+        #         getattr(self, field.name), types[field.name]
+        #     ), f"Type check fail: {field.name}"
         return
 
     @classmethod
@@ -54,3 +60,4 @@ b = AClass.from_dict(
     }
 )
 print(a)
+print(b)
