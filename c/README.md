@@ -55,3 +55,15 @@ styleguide
 
 * [JF: Linux Kernel 3.x/2.6 Documentation: CodingStyle](http://linuxjf.sourceforge.jp/JFdocs/kernel-docs-2.6/CodingStyle.html)
 * [Google C++スタイルガイド 日本語訳 | textdrop](http://www.textdrop.net/google-styleguide-ja/cppguide.xml)
+* <http://www.jpcert.or.jp/sc-rules/>
+
+
+misc
+
+- <http://itsd210.s24.xrea.com/ja/ansi-c/>
+- <http://www.c-tipsref.com/reference.html>
+- <http://www.asahi-net.or.jp/~wg5k-ickw/>
+- <http://www.gnu.org/software/hello/>
+- <http://gcc.gnu.org/onlinedocs/gcc-4.1.0/gcc/>
+- <http://www.fireproject.jp/pc_cluster/mpi/intro/hello.html>
+- <http://en.cppreference.com/w/>
