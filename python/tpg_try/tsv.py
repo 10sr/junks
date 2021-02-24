@@ -33,13 +33,13 @@ class Tsv(tpg.Parser):
     START/e -> Fields/e;
     Fields/e ->
         Field/e
-        (Sep/s Fields/f  $ e = Pair(e, s, f) $
+        (Sep/s Fields/f  $ e = Pair(e, s, f)
         )*
         ;
 
-    Sep/e -> sep/e  $ e = e $ ;
+    Sep/e -> sep/e;
 
-    Field/e -> field/e  $ e = e $ ;
+    Field/e -> field/e;
     """
 
 p = Tsv()
