@@ -1,0 +1,12 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+tpg = {file = "http://christophe.delord.free.fr/tpg/TPG-3.2.3.tar.gz"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

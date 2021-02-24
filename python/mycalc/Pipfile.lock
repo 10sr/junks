@@ -1,0 +1,28 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "dfbeb62f72aa8d767764f1e4a9336debf199914c87e9757590856944ac797090"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.9"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "tpg": {
+            "file": "http://christophe.delord.free.fr/tpg/TPG-3.2.3.tar.gz",
+            "hashes": [
+                "sha256:6574621548a2b8dddc26c18c9bcc1b04f97093bb8d6493c60ba923f26dfe6128"
+            ],
+            "version": "==3.2.3"
+        }
+    },
+    "develop": {}
+}
