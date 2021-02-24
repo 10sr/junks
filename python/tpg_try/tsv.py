@@ -45,3 +45,7 @@ class Tsv(tpg.Parser):
 p = Tsv()
 print(p("aaa\tbbb"))
 print(p("aaa\tbbb\tccc"))
+try:
+    print(p("aaa\tbbb\tあ"))
+except Exception as e:
+    print(e)
