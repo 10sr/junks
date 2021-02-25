@@ -44,13 +44,14 @@ class LtsvField2(tpg.Parser):
 	separator space	'\s+';
 
 	token key	'[a-zA-Z]+'	str
+	token value	'[a-zA-Z]+'	str
 	token colon	':';
 
         START/e -> EXPR/e ;
 
         EXPR/e ->
                 KEY/e
-		( COLON/a VALUE/t  $ e = Field(e, a, t)
+		( COLON/a EXPR/t  $ e = Field(e, a, t)
 		)*
                 ;
 
