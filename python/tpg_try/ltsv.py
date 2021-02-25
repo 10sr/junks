@@ -43,8 +43,7 @@ class LtsvField2(tpg.Parser):
 
 	separator space	'\s+';
 
-	token real	'[a-zA-Z]+'	str
-
+	token key	'[a-zA-Z]+'	str
 	token colon	':';
 
         START/e -> EXPR/e ;
@@ -62,8 +61,7 @@ class LtsvField2(tpg.Parser):
                 ;
 
         FACT/f ->
-                    real/f	$ f = Value(f)
-                |   '\(' EXPR/f '\)'
+                    key/f	$ f = Value(f)
                 ;
 
     """
