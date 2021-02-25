@@ -43,22 +43,21 @@ class LtsvField2(tpg.Parser):
 
 	separator space	'\s+';
 
-	token real	'\d+'	float
+	token real	'[a-zA-Z]+'	str
 
-	token add	'[+-]';
-	token mul	'[*/]';
+	token colon	':';
 
         START/e -> EXPR/e ;
 
         EXPR/e ->
                 TERM/e
-		( add/a TERM/t  $ e = Field(e, a, t)
+		( colon/a TERM/t  $ e = Field(e, a, t)
 		)*
                 ;
 
         TERM/t ->
                 FACT/t
-		( mul/m FACT/f  $ t = Field(t, m, f)
+		( colon/m FACT/f  $ t = Field(t, m, f)
 		)*
                 ;
 
@@ -70,7 +69,7 @@ class LtsvField2(tpg.Parser):
     """
 
 p = LtsvField2()
-print(p("1+2+3"))
+print(p("a:b:c"))
 
 
 class LtsvField(tpg.Parser):
@@ -79,16 +78,16 @@ class LtsvField(tpg.Parser):
     token key '[a-zA-Z]+' str;
     token value '[a-zA-Z]+' str;
 
-    START/e -> Field/e;
+    START/e -> FIELD/e;
 
-    Field/e ->
-        Key/e
-        (Valuesep/s Value/v  $ e = Field(e, s, v)
+    FIELD/e ->
+        KEY/e
+        (VAlUESEP/s VALUE/v  $ e = Field(e, s, v)
         )*
         ;
-    Key/e -> key/e  $ e = Key(e) $ ;
-    Valuesep/s -> colon/s  $ s = Colon(s) $ ;
-    Value/v -> value/v $ v = Value(v) $;
+    KEY/e -> key/e  $ e = Key(e) $ ;
+    VAlUESEP/s -> colon/s  $ s = Colon(s) $ ;
+    VALUE/v -> value/v $ v = Value(v) $;
     """
 
 p = LtsvField()
