@@ -38,6 +38,9 @@ class Pair(Node):
     right: Node
 
 
+# ここで key と value を逆にするとエラーになる
+# つまり、文法上 value のほうが適切でも、 key にはじめにマッチするため
+# tokenize 時点で key の要素として扱われてしまうぽい
 class LtsvField2(tpg.Parser):
     r"""
 
