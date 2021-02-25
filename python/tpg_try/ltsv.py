@@ -49,18 +49,15 @@ class LtsvField2(tpg.Parser):
         START/e -> EXPR/e ;
 
         EXPR/e ->
-                TERM/e
-		( colon/a TERM/t  $ e = Field(e, a, t)
+                KEY/e
+		( colon/a VALUE/t  $ e = Field(e, a, t)
 		)*
                 ;
 
-        TERM/t ->
-                FACT/t
-		( colon/m FACT/f  $ t = Field(t, m, f)
-		)*
+        KEY/f ->
+                    key/f	$ f = Value(f)
                 ;
-
-        FACT/f ->
+        VALUE/f ->
                     key/f	$ f = Value(f)
                 ;
 
