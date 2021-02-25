@@ -50,7 +50,7 @@ class LtsvField2(tpg.Parser):
 
         EXPR/e ->
                 KEY/e
-		( colon/a VALUE/t  $ e = Field(e, a, t)
+		( COLON/a VALUE/t  $ e = Field(e, a, t)
 		)*
                 ;
 
@@ -59,6 +59,9 @@ class LtsvField2(tpg.Parser):
                 ;
         VALUE/f ->
                     key/f	$ f = Value(f)
+                ;
+        COLON/f ->
+                    colon/f	$ f = Colon(f)
                 ;
 
     """
