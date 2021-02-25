@@ -27,8 +27,8 @@ class Pair(Node):
 
 class Tsv(tpg.Parser):
     r"""
-    token sep '	' Tab;
-    token field '[a-zA-Z0-9]*' Field;
+    token sep '	' str;
+    token field '[a-zA-Z0-9]*' str;
 
     START/e -> Fields/e;
     Fields/e ->
@@ -37,9 +37,9 @@ class Tsv(tpg.Parser):
         )*
         ;
 
-    Sep/e -> sep/e;
+    Sep/e -> sep/e $ e = Tab(e) $ ;
 
-    Field/e -> field/e;
+    Field/e -> field/e $ e = Field(e) $ ;
     """
 
 p = Tsv()
