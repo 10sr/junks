@@ -26,3 +26,6 @@ print(list(lexer))
 
 lexer.input("aaaa\t100\tmomomo\n")
 print(list(lexer))
+
+lexer.input("aaaa\tあ100\tmomomo\n")
+print(list(lexer))
