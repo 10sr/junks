@@ -21,8 +21,7 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-# Required for yacc to work
-_ = lex.lex()
+lexer = lex.lex()
 
 # lexer.input("a\tb\tc")
 # print(list(lexer))
@@ -78,5 +77,5 @@ def p_error(p):
     return
 
 parser = yacc.yacc()
-print(parser.parse("aaa\tbbb"))
-print(parser.parse("aaa\tbbb\txccc"))
+print(parser.parse("aaa\tbbb", lexer=lexer))
+print(parser.parse("aaa\tbbb\txccc", lexer=lexer))
