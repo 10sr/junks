@@ -21,10 +21,11 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-lexer = lex.lex()
+# Required for yacc to work
+_ = lex.lex()
 
-lexer.input("a\tb\tc")
-print(list(lexer))
+# lexer.input("a\tb\tc")
+# print(list(lexer))
 
 
 from ply import yacc
