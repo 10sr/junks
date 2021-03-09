@@ -2,7 +2,7 @@
 # https://ply.readthedocs.io/en/latest/ply.html#lex-example
 from ply import lex
 
-class LtsvParser(object):
+class LtsvLexer(object):
     _lexer = None
 
     tokens = (
@@ -36,6 +36,6 @@ class LtsvParser(object):
         return self._lexer
 
 
-parser = LtsvParser()
-parser.build()
-print(list(parser.input("aaaa\t100:ee\tmomomo:bb\n")))
+lexer = LtsvLexer()
+lexer.build()
+print(list(lexer.input("aaaa\t100:ee\tmomomo:bb\n")))
