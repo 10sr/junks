@@ -48,7 +48,7 @@ class Pair(Node):
     sep: Node
     right: Node
 
-output = dict()
+# output = dict()
 
 def p_statement_line(p):
     """line : fields
