@@ -43,10 +43,12 @@ class Field(Node):
 
 
 @dataclass
-class Pair(Node):
-    left: Node
-    sep: Node
-    right: Node
+class Fields(Node):
+    v: list[Field]
+
+    def append(self, n: Field):
+        self.v.append(n)
+        return
 
 # output = dict()
 
@@ -58,13 +60,20 @@ def p_statement_line(p):
     p[0] = p[1]
     return
 
-def p_statement_fields(p):
-    """fields : field
-              | fields TAB field"""
-    if len(p) == 2:
-        p[0] = Field(p[1])
-    else:
-        p[0] = Pair(p[1], p[2], p[3])
+def p_statement_fields_1(p):
+    """fields : field"""
+    p[0] = Fields(list(p[1]))
+    return
+
+def p_statement_fields_2(p):
+    """fields : field TAB field"""
+    p[0] = Fields([p[1], p[3]])
+    return
+
+def p_statement_fields_3(p):
+    """fields : fields TAB field"""
+    p[1].append(p[3])
+    p[0] = p[1]
     return
 
 def p_statement_field(p):
