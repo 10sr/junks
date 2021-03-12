@@ -52,7 +52,7 @@ class Pair(Node):
 
 def p_statement_line(p):
     """line : fields
-              | fields NEWLINE"""
+            | fields NEWLINE"""
     # discard NEWLINE?
     # output["root"] = p[1]
     p[0] = p[1]
@@ -60,7 +60,7 @@ def p_statement_line(p):
 
 def p_statement_fields(p):
     """fields : field
-                | field TAB fields"""
+              | fields TAB field"""
     if len(p) == 2:
         p[0] = Field(p[1])
     else:
@@ -78,4 +78,5 @@ def p_error(p):
 
 parser = yacc.yacc()
 print(parser.parse("aaa\tbbb", lexer=lexer))
-print(parser.parse("aaa\tbbb\txccc", lexer=lexer))
+print(parser.parse("aaa\tbbb\tccc", lexer=lexer))
+print(parser.parse("aaa\tbbb\tccc\tddd", lexer=lexer))
