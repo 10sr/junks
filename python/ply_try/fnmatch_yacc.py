@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from ply import lex
 from ply import yacc
 
-class _FnmatchLexer(object):
+class _FnmatchLexerBuilder(object):
     lexer = None
 
     tokens = (
@@ -32,14 +32,11 @@ class _FnmatchLexer(object):
     def __iter__(self):
         return iter(self._lexer)
 
-    def input(self, data):
-        self.lexer.input(data)
-        return self.lexer
 
-
-lexer = _FnmatchLexer()
-lexer.build()
-print(list(lexer.input(r"a*bc\*def")))
+builder = _FnmatchLexerBuilder()
+lexer = builder.build()
+lexer.input(r"a*bc\*def")
+print(list(lexer))
 
 
 @dataclass
@@ -105,14 +102,14 @@ class FnmatchParser():
         return
 
     def build(self, **kwargs):
-        self.fnmatch_lexer = _FnmatchLexer()
-        self.fnmatch_lexer.build()
-        self.tokens = self.fnmatch_lexer.tokens
+        lb = _FnmatchLexerBuilder()
+        self.fnmatch_lexer = lb.build()
+        self.tokens = lb.tokens
         self.parser = yacc.yacc(module=self, **kwargs)
         return
 
     def parse(self, s):
-        return self.parser.parse(s, lexer=self.fnmatch_lexer.lexer)
+        return self.parser.parse(s, lexer=self.fnmatch_lexer)
 
 
 p = FnmatchParser()
