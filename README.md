@@ -15,8 +15,8 @@ Migrate some document from other places:
 * http://10sr-p.hateblo.jp/
 * https://gist.github.com/10sr
 
-どのドキュメントをどこに置くのかについて明確な基準が欲しい。
-メモ書きが分散してしまってる。
+どのドキュメントをどこに置くのかについて明確な基準をつくりたい
+メモ書きが分散してる
 
 [a.md](a.md)
 
