@@ -17,8 +17,7 @@ Files to Edit
 
   * Modify args of `AC_INIT`
   * Add line `AM_INIT_AUTOMAKE([foreign])`
-    * Without `foreign` argument, some files includeing `README` must be
-      included
+    * Without `foreign` argument, some files including `README` must exist
   * Add `AC_CONFIG_FILES([Makefile src/Makefile])`
 
 * `Makefile.am` and `src/Makefile.am`
