@@ -1,0 +1,35 @@
+name: GitHub Push Branch
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: git setting
+        run: |
+          git config --local user.email "10sr@example.com"
+          git config --local user.name "${{ github.actor }}"
+
+      - name: Checkout branch
+        run: git switch -c gh-pages origin/gh-pages || git switch -c gh-pages origin/master
+
+      - name: Merge master
+        run: git merge --no-ff origin/master
+
+      - name: Create file
+        run: |
+          echo date > index.html
+
+      - name: Commit files
+        run: |
+          git add .
+          git commit -m "Auto commit via GitHub Actions"
+          git push origin master
