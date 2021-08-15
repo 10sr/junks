@@ -13,6 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Fetch more commits
+        run: |
+          git fetch --depth 100 origin master
+          git fetch --depth 100 origin gh-pages || true
+
       - name: Add Git settings
         run: |
           git config --local user.email "10sr@example.com"
@@ -26,7 +31,7 @@ jobs:
 
       - name: Create file
         run: |
-          echo date > index.html
+          date >index.html
 
       - name: Commit files
         run: |
