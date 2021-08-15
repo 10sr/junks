@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: git setting
+      - name: Add Git settings
         run: |
           git config --local user.email "10sr@example.com"
           git config --local user.name "${{ github.actor }}"
@@ -32,4 +32,4 @@ jobs:
         run: |
           git add .
           git commit -m "Auto commit via GitHub Actions"
-          git push origin master
+          git push origin gh-pages
