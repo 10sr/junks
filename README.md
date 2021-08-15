@@ -1,4 +1,6 @@
 [![Manual workflow](https://github.com/10sr/junks/actions/workflows/manual.yml/badge.svg)](https://github.com/10sr/junks/actions/workflows/manual.yml)
+[![Docker](https://github.com/10sr/junks/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/10sr/junks/actions/workflows/docker-publish.yml)
+
 
 junks
 =====
