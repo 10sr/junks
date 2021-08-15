@@ -1,3 +1,5 @@
+[![Manual workflow](https://github.com/10sr/junks/actions/workflows/manual.yml/badge.svg)](https://github.com/10sr/junks/actions/workflows/manual.yml)
+
 junks
 =====
 
