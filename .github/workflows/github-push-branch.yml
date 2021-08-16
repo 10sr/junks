@@ -30,8 +30,7 @@ jobs:
         run: git merge --no-ff origin/master
 
       - name: Create file
-        run: |
-          date >index.html
+        run: bash .github/workflows/github-push-branch.sh
 
       - name: Commit files
         run: |
