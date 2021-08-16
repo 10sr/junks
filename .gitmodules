@@ -1,7 +1,3 @@
-[submodule "ansible/ansible"]
-	path = ansible/ansible_src
-	url = https://github.com/ansible/ansible.git
-	ignore = dirty
 [submodule "tensorflow/fizz-buzz-tensorflow"]
 	path = python/tensorflow/fizz-buzz-tensorflow
 	url = https://github.com/joelgrus/fizz-buzz-tensorflow
