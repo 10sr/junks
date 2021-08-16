@@ -23,7 +23,6 @@ Migrate some document from other places:
 どのドキュメントをどこに置くのかについて明確な基準をつくりたい
 メモ書きが分散してる
 
-[a.md](a.md)
 
 
 License
