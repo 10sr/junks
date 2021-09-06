@@ -185,3 +185,8 @@
           k2:
             name: 3
             value: 4
+
+    - name: undefined test
+      debug:
+        msg: "{{ undefined() }}"
+      ignore_errors: true
