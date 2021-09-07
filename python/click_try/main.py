@@ -8,9 +8,9 @@ import click
 @click.argument("n")
 @click.option("-p", help="oPtion")
 def cmd1(ctx, n, p):
-    print(n)
-    print(p)
-    print(ctx.obj)
+    click.echo(n)
+    click.echo(p)
+    click.echo(ctx.obj)
     return
 
 @click.group()
@@ -18,8 +18,8 @@ def cmd1(ctx, n, p):
 @click.argument("m")
 @click.option("-o", help="Option")
 def cli(ctx, m, o):
-    print(m)
-    print(o)
+    click.echo(m)
+    click.echo(o)
     ctx.ensure_object(dict)
     ctx.obj["m"] = m
     ctx.obj["o"] = o
