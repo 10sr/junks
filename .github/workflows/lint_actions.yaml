@@ -27,3 +27,5 @@ jobs:
         run: pip install pyyaml requests termcolor
       - name: Run check
         run: .github/workflows/check-latest-actions.py .github/workflows/*.y{,a}ml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
