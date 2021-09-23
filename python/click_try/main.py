@@ -3,6 +3,8 @@
 import functools
 
 import click
+import docstring_parser as docparser
+
 
 def f1(f):
     print(f"{f.__doc__=}")
@@ -31,22 +33,64 @@ def f1(f):
     return wrapper
 
 
-@f1
+def dochelp(style=docparser.DocstringStyle.REST):
+    def decorator(f):
+        print(f"{f.__doc__=}")
+        parsed = docparser.parse(f.__doc__)
+        print(f"{parsed.short_description=}")
+        print(f"{parsed.long_description=}")
+        param_dict = dict()
+        for param in parsed.params:
+            print(f"{param=}")
+            print(f"{param.arg_name=}")
+            print(f"{param.description=}")
+            param_dict[param.arg_name] = param.description
+
+        for param in f.params:
+            print(f"{param=}")
+            print(f"{param.name=}")
+            print(f"{hasattr(param, 'help')=}")
+            if hasattr(param, 'help') and param.name in param_dict:
+                param.help = param_dict[param.name]
+        return f
+    return decorator
+
+
+@dochelp()
 @click.command()
 @click.pass_context
-@click.argument("n", help="n help")
+@click.argument("n")
 @click.option("-p", help="oPtion")
 def cmd1(ctx, n, p):
+    """Run CMD1.
+
+    CMD1 description body.
+
+    :param ctx: Click context
+    :param n: N parameter
+    :param p: P parameter
+    """
     click.echo(n)
     click.echo(p)
     click.echo(ctx.obj)
     return
 
+@dochelp()
 @click.group()
 @click.pass_context
-@click.argument("m", help="m help")
+@click.argument("m")
 @click.option("-o", help="Option")
-def cli(ctx, m, o):
+@click.option("--long-param")
+def cli(ctx, m, o, long_param):
+    """CLI root.
+
+    Root descrption body.
+
+    :param ctx: Click context
+    :param m: M parameter
+    :param o: O parameter
+    :param long_param: LOOng parameter
+    """
     click.echo(m)
     click.echo(o)
     ctx.ensure_object(dict)
@@ -58,4 +102,5 @@ cli.add_command(cmd1)
 
 if __name__ == "__main__":
     # cli(["--help"])
-    cli(["-o", "fue", "hoe", "cmd1", "abc"])
+    cli(["mvalue", "cmd1", "--help"])
+    # cli(["-o", "fue", "hoe", "cmd1", "abc"])
