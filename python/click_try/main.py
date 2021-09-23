@@ -46,6 +46,12 @@ def dochelp(style=docparser.DocstringStyle.REST):
             print(f"{param.description=}")
             param_dict[param.arg_name] = param.description
 
+        print(f"{dir(f)=}")
+        print(f"{f.help=}")
+        if parsed.long_description:
+            f.help = parsed.short_description + "\n\n" + parsed.long_description
+        else:
+            f.help = parsed.short_description
         for param in f.params:
             print(f"{param=}")
             print(f"{param.name=}")
@@ -65,6 +71,9 @@ def cmd1(ctx, n, p):
     """Run CMD1.
 
     CMD1 description body.
+    Hoehoehoe.
+
+    SEcond paragraph.
 
     :param ctx: Click context
     :param n: N parameter
