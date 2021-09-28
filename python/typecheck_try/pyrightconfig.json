@@ -1,0 +1,6 @@
+{
+  "include": [
+    "typecheck_try"
+  ],
+  "venvPath": ".venv"
+}

@@ -33,29 +33,29 @@ def f1(f):
     return wrapper
 
 
-def dochelp(style=docparser.DocstringStyle.REST):
+def dochelp(style=docparser.DocstringStyle.AUTO):
     def decorator(f):
-        print(f"{f.__doc__=}")
-        parsed = docparser.parse(f.__doc__)
-        print(f"{parsed.short_description=}")
-        print(f"{parsed.long_description=}")
+        # print(f"{f.__doc__=}")
+        parsed = docparser.parse(f.__doc__, style=style)
+        # print(f"{parsed.short_description=}")
+        # print(f"{parsed.long_description=}")
         param_dict = dict()
         for param in parsed.params:
-            print(f"{param=}")
-            print(f"{param.arg_name=}")
-            print(f"{param.description=}")
+            # print(f"{param=}")
+            # print(f"{param.arg_name=}")
+            # print(f"{param.description=}")
             param_dict[param.arg_name] = param.description
 
-        print(f"{dir(f)=}")
-        print(f"{f.help=}")
+        # print(f"{dir(f)=}")
+        # print(f"{f.help=}")
         if parsed.long_description:
             f.help = parsed.short_description + "\n\n" + parsed.long_description
         else:
             f.help = parsed.short_description
         for param in f.params:
-            print(f"{param=}")
-            print(f"{param.name=}")
-            print(f"{hasattr(param, 'help')=}")
+            # print(f"{param=}")
+            # print(f"{param.name=}")
+            # print(f"{hasattr(param, 'help')=}")
             if hasattr(param, 'help') and param.name in param_dict:
                 param.help = param_dict[param.name]
         return f

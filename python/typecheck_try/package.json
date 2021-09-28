@@ -1,0 +1,26 @@
+{
+  "name": "typecheck-try",
+  "version": "1.0.0",
+  "description": "Try typecheck packages",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "make check",
+    "pyright": "pyright"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/10sr/typecheck-try.git"
+  },
+  "author": "10sr",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/10sr/typecheck-try/issues"
+  },
+  "homepage": "https://github.com/10sr/typecheck-try#readme",
+  "dependencies": {
+    "pyright": "^1.1.171"
+  }
+}

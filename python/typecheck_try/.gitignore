@@ -1,0 +1,3 @@
+*.egg-info
+.pyre
+node_modules
