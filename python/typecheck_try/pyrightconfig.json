@@ -2,5 +2,21 @@
   "include": [
     "typecheck_try"
   ],
-  "venvPath": ".venv"
+  "exclude": [ ".venv" ],
+  "venvPath": "./.venv/",
+  "typingsPath": "./typestubs",
+
+  "reportTypeshedErrors": false,
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+
+  "executionEnvironments": [
+    {
+      "root": "./",
+      "venv": "./",
+      "extraPaths": [
+        "./3rd-modules"
+      ]
+    }
+  ]
 }
