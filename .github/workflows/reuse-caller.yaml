@@ -15,8 +15,8 @@ jobs:
   # call-workflow:
   #   uses: octo-org/example-repo/.github/workflows/workflow-A.yml@v1
 
-  call-workflow-passing-data:
-    uses: 10sr/junks/.github/workflows/reuse-callee.yaml@master
+  job-call-workflow-with-data:
+    uses: 10sr/junks/.github/workflows/reuse-callee.yaml@${{ github.sha }}
     with:
       username: ${{ github.sha }}
 
