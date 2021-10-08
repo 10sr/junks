@@ -24,5 +24,7 @@ jobs:
     name: normal job
     runs-on: ubuntu-latest
     steps:
-      - run: echo Hello ${{ github.sha }}
-      - run: "echo ref: ${{ github.ref }}"
+      - name: step 1
+        run: echo Hello ${{ github.sha }}
+      - name: step 2
+        run: "echo ref: ${{ github.ref }}"
