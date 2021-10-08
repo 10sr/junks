@@ -1,0 +1,21 @@
+# https://docs.github.com/en/actions/learn-github-actions/reusing-workflows
+
+name: Reuse Caller
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - 'master'
+
+jobs:
+  # call-workflow:
+  #   uses: octo-org/example-repo/.github/workflows/workflow-A.yml@v1
+
+  call-workflow-passing-data:
+    uses: 10sr/junks/.github/workflows/reuse-callee.yaml@${{ github.sha }}
+    with:
+      username: ${{ github.ref }}
