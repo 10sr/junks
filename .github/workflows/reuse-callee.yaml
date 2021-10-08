@@ -1,0 +1,17 @@
+# https://docs.github.com/en/actions/learn-github-actions/reusing-workflows
+
+name: Reuse Callee
+
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        type: string
+
+jobs:
+  job1:
+    name: Reuse job \#1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Hello ${{ inputs.username }}
