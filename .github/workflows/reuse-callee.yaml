@@ -14,5 +14,7 @@ jobs:
     name: Reuse job \#1
     runs-on: ubuntu-latest
     steps:
-      - run: echo Hello ${{ inputs.username }}
-      - run: "echo github: ${{ github }}"
+      - name: step1
+        run: echo Hello ${{ inputs.username }}
+      - name: step2
+        run: "echo github: ${{ github }}"
