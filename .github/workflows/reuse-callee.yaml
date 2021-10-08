@@ -15,4 +15,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo Hello ${{ inputs.username }}
-      - run: echo github: ${{ github }}
+      - run: echo "github: ${{ github }}"
