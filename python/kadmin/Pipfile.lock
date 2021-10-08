@@ -1,0 +1,28 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "20f8fa1a9c24a7c03ce8b1ba1c7795ffcc9cf8bb260ff8e3cbf70b4c51bbbb60"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.7"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "python-kadmin": {
+            "hashes": [
+                "sha256:eefed8b41c555176356e32a9dec31c65b4bcd05567784a511e5451223fb56c44"
+            ],
+            "index": "pypi",
+            "version": "==0.1.2"
+        }
+    },
+    "develop": {}
+}
