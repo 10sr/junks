@@ -8,6 +8,7 @@ on:
       username:
         required: true
         type: string
+        description: workflow_call arg 1
 
 jobs:
   job1:
