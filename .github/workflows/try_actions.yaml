@@ -1,0 +1,13 @@
+# https://github.com/rhysd/actionlint/blob/main/docs/usage.md#on-github-actions
+name: Try actions
+on: [push, pull_request]
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Echo
+        run: |
+          echi $GITHUB_REF
+        shell: bash
