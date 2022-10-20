@@ -18,6 +18,7 @@ def gen_key(password: bytes, salt: bytes) -> bytes:
     return key
 
 print(gen_key(b"password", b"salt"))
+print(gen_key(b"password", b"salt"))  # same
 print(gen_key(b"password", b"salt_"))
 
 msg = b"target_message"
@@ -39,5 +40,8 @@ print(encrypted)
 print(decrypted)
 
 # Fail!
-decrypted_2 = d(gen_key(b"password", b"salt_"), encrypted)
-print(decrypted_2)
+try:
+    decrypted_2 = d(gen_key(b"password", b"salt_"), encrypted)
+    print(decrypted_2)
+except:
+    print("Failed!")
