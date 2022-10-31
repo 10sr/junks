@@ -160,6 +160,11 @@
           abc def ghi
           hoe fue hie
           1 2 3
+      register: _multiline_command_result
+
+    - name: Check register contents
+      debug:
+        msg: "{{ _multiline_command_result.stdout_lines }}"
 
     - name: when test
       debug:
