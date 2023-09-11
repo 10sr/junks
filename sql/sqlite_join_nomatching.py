@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 
+
+"""SQL nomatching.
+
+JOIN した時対応するデータがないやつだけを取り出すやつ。
+最後のクエリで対応する org がない user3 のみを取り出してる。
+
+"""
+
 import sqlite3
 import sys
 
