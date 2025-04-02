@@ -5,3 +5,9 @@ a = ("a"
      "b")
 b = "c" "d"
 __EOC__
+
+echo ---
+
+cat <<__EOC__ | python3 -m tokenize
+n = 1
+__EOC__
