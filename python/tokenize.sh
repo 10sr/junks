@@ -17,3 +17,11 @@ echo ===
 cat <<__EOC__ | python3 -m tokenize
 n = 1 + 2
 __EOC__
+
+echo ===
+
+cat <<__EOC__ | python3 -m tokenize
+a = ["aaa",
+     "bbb"
+     "ccc"]
+__EOC__
